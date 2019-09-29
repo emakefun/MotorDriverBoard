@@ -38,8 +38,8 @@
 #define RGB_PIN A1
 #define ECHO_PIN A3
 #define TRIG_PIN A2
-#define IR_PIN 9
-#define BUZZER_PIN 8
+#define IR_PIN 8
+#define BUZZER_PIN A0
 
 #define PS2_DAT   12
 #define PS2_CMD   11
@@ -51,6 +51,11 @@
 
 #define NRF_NAME "emakefun"
 #define NRF_DATA_LEN 12
+
+#define UL_LIMIT_MIN 16
+#define UL_LIMIT_MID 20
+#define UL_LIMIT_MAX 500
+
 typedef enum
 {
     E_RGB_ALL = 0,
@@ -136,7 +141,7 @@ class Emakefun_StepperMotor {
  public:
   Emakefun_StepperMotor(void);
   friend class Emakefun_MotorDriver;
-  void step(uint16_t steps, uint8_t dir,  uint8_t style = SINGLE);
+  void step(uint16_t steps, uint8_t dir,  uint8_t style = DOUBLE);
   void setSpeed(uint16_t);
   uint8_t onestep(uint8_t dir, uint8_t style);
   void release(void);
@@ -186,7 +191,7 @@ class Emakefun_MotorDriver
     Emakefun_EncoderMotor encoder[2];
     Emakefun_StepperMotor steppers[2];
     Emakefun_MS_PWMServoDriver _pwm;
-    Emakefun_Servo servos[6];
+    Emakefun_Servo servos[8];
     Emakefun_Sensor sensors[E_SENSOR_MAX];
 };
 

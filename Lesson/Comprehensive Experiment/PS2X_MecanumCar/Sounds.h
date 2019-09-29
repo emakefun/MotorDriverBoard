@@ -1,6 +1,27 @@
 #ifndef _SOUNDS_H_
 #define _SOUNDS_H_
 
+typedef enum {
+    E_NOTE,
+    E_SOUND,
+    E_MUSIC,
+    E_BUZZER_TYPE_MAX,
+}E_BUZZER_TYPE;
+
+typedef enum {
+    E_BEAT_8_1,
+    E_BEAT_4_1,
+    E_BEAT_2_1,
+    E_BEAT_1,
+    E_BEAT_2,
+    E_BEAT_4
+}E_MUSIC_BEAT;
+
+typedef struct {
+    uint16_t note;
+    E_MUSIC_BEAT beat;
+}ST_MUSIC_TYPE;
+
 //***********************************************************************************
 //*********************************SOUNDS DEFINES************************************
 //***********************************************************************************
@@ -110,24 +131,24 @@
 #define  note_Eb8 4978.03  //D#8/Eb8
 
 
-#define S_connection 	0
+#define S_connection   0
 #define S_disconnection 1
-#define S_buttonPushed 	2
-#define S_mode1 		3
-#define S_mode2 		4
-#define S_mode3 		5
-#define S_surprise 		6
-#define S_OhOoh 		7
-#define S_OhOoh2 		8
-#define S_cuddly 		9
-#define S_sleeping 		10
-#define S_happy 		11
-#define S_superHappy 	12
-#define S_happy_short 	13
-#define S_sad 			14
-#define S_confused 		15
-#define S_fart1			16
-#define S_fart2			17
-#define S_fart3			18
+#define S_buttonPushed  2
+#define S_mode1     3
+#define S_mode2     4
+#define S_mode3     5
+#define S_surprise    6
+#define S_OhOoh     7
+#define S_OhOoh2    8
+#define S_cuddly    9
+#define S_sleeping    10
+#define S_happy     11
+#define S_superHappy  12
+#define S_happy_short   13
+#define S_sad       14
+#define S_confused    15
+#define S_fart1     16
+#define S_fart2     17
+#define S_fart3     18
 
 #endif /* _SOUNDS_H_ */

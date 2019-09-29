@@ -138,7 +138,7 @@ void Emakefun_EncoderMotor::run(uint8_t cmd) {
       MC->setPin(IN1pin, LOW);  // take low first to avoid 'break'
       break;
     case RELEASE:
-      MC->setPin(IN1pin, LOW);
+    MC->setPin(IN1pin, LOW);
       break;
   }
 }

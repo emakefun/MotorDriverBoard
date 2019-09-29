@@ -13,11 +13,16 @@ void setup()
 void loop()
 {
   EncodeMotor_1->setSpeed(100);
-  //EncodeMotor_2->setSpeed(100);
+  EncodeMotor_2->setSpeed(100);
   EncodeMotor_1->run(FORWARD);
- // EncodeMotor_2->run(FORWARD);
+  EncodeMotor_2->run(FORWARD);
   delay(1000);
   EncodeMotor_1->run(BACKWARD);
-  //EncodeMotor_2->run(BACKWARD);
+  EncodeMotor_2->run(BACKWARD);
+  delay(1000);
+  EncodeMotor_1->setSpeed(0);
+  EncodeMotor_2->setSpeed(0);
+  EncodeMotor_1->run(RELEASE);
+  EncodeMotor_2->run(RELEASE);
   delay(1000);
 }

@@ -49,9 +49,7 @@ void Emakefun_MotorDriver::setPin(uint8_t pin, boolean value) {
 
 Emakefun_DCMotor *Emakefun_MotorDriver::getMotor(uint8_t num) {
   if (num > 4) return NULL;
-
   num--;
-
   if (dcmotors[num].motornum == 0) {
     // not init'd yet!
     dcmotors[num].motornum = num;

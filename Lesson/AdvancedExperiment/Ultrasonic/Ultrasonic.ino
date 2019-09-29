@@ -5,11 +5,10 @@ Emakefun_Sensor *ult = mMotorDriver.getSensor(E_ULTRASONIC);
 
 void setup()
 {
-  Serial.begin(9600);
+    Serial.begin(9600);
 }
 
 void loop()
 {
-  Serial.println(ult->GetUltrasonicDistance());
-  delay(100);
+    Serial.println(ult->GetUltrasonicDistance());
 }

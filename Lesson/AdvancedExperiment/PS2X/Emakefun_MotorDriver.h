@@ -51,6 +51,11 @@
 
 #define NRF_NAME "emakefun"
 #define NRF_DATA_LEN 12
+
+#define UL_LIMIT_MIN 16
+#define UL_LIMIT_MID 20
+#define UL_LIMIT_MAX 500
+
 typedef enum
 {
     E_RGB_ALL = 0,

@@ -163,6 +163,7 @@ GNU General Public License for more details.
 #define CLR(x,y) (x&=(~(1<<y)))
 #define CHK(x,y) (x & (1<<y))
 #define TOG(x,y) (x^=(1<<y))
+#define CENTER 0xFF
 
 class PS2X {
   public:
@@ -180,6 +181,8 @@ class PS2X {
     void enableRumble();
     bool enablePressures();
     byte Analog(byte);
+    uint16_t RightHart();
+    uint16_t LeftHart();
     void reconfig_gamepad();
 
   private:
@@ -197,7 +200,7 @@ class PS2X {
     unsigned char i;
     unsigned int last_buttons;
     unsigned int buttons;
-	
+	  float LY,LX,RY,RX,LeftAngle,RightAngle;
     #ifdef __AVR__
       uint8_t maskToBitNum(uint8_t);
       uint8_t _clk_mask; 
@@ -231,6 +234,3 @@ class PS2X {
 };
 
 #endif
-
-
-

@@ -13,7 +13,6 @@ void setup()
 
 void loop()
 {
-  /*Forward 4 seconds*/
   DCMotor_1->setSpeed(200);
   DCMotor_1->run(1);
   DCMotor_2->setSpeed(200);
@@ -23,7 +22,6 @@ void loop()
   DCMotor_4->setSpeed(200);
   DCMotor_4->run(1);
   delay(4000);
-  /*Reverse 4 seconds*/
   DCMotor_1->setSpeed(200);
   DCMotor_1->run(2);
   DCMotor_2->setSpeed(200);
@@ -33,7 +31,6 @@ void loop()
   DCMotor_4->setSpeed(200);
   DCMotor_4->run(2);
   delay(4000);
-  /*Stop for 4 seconds*/
   DCMotor_1->setSpeed(0);
   DCMotor_1->run(4);
   DCMotor_2->setSpeed(0);

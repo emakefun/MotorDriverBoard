@@ -49,9 +49,7 @@ void Emakefun_MotorDriver::setPin(uint8_t pin, boolean value) {
 
 Emakefun_DCMotor *Emakefun_MotorDriver::getMotor(uint8_t num) {
   if (num > 4) return NULL;
-
   num--;
-
   if (dcmotors[num].motornum == 0) {
     // not init'd yet!
     dcmotors[num].motornum = num;
@@ -139,7 +137,6 @@ void Emakefun_EncoderMotor::run(uint8_t cmd) {
       break;
     case RELEASE:
       MC->setPin(IN1pin, LOW);
-      
       break;
   }
 }
@@ -158,7 +155,7 @@ Emakefun_StepperMotor *Emakefun_MotorDriver::getStepper(uint16_t steps, uint8_t 
     steppers[num].steppernum = num;
     steppers[num].revsteps = steps;
     steppers[num].MC = this;
-    uint8_t pwma, pwmb, ain1, ain2, bin1, bin2;
+    uint8_t pwma, pwmb, ain1, bin1;
     if (num == 0) {
       pwma = 8;  ain1 = 10;
       pwmb = 13; bin1 = 11;
@@ -192,15 +189,15 @@ Emakefun_Servo *Emakefun_MotorDriver::getServo(uint8_t num) {
     } else if (num == 3) {
       pwm = 6;
     } else if ( num == 4 ) {
-      pwm = 9;  // give arduino gpio
+      pwm = 9;  
     } else if ( num == 5 ) {
-      pwm = 12;  // give arduino gpio
+      pwm = 12;  
     }else if ( num == 6 ) {
-      pwm = 14;  // give arduino gpio
+      pwm = 14;  
     }else if ( num == 7 ) {
-      pwm = 15;  // give arduino gpio
+      pwm = 15;  
     }
-   servos[num].PWMpin = pwm;
+    servos[num].PWMpin = pwm;
   }
   return &servos[num];
 }
@@ -226,9 +223,9 @@ void Emakefun_Servo::setServoPulse(double pulse) {
   MC->setPWM(PWMpin, pulse);
 }
 void Emakefun_Servo::writeServo(uint8_t angle) {
-    double pulse;
-    pulse = 0.5 + angle / 90.0;
-    setServoPulse(pulse);
+  double pulse;
+  pulse = 0.5 + angle / 90.0;
+  setServoPulse(pulse);
   currentAngle = angle;
   /* if(n>1){
      currentAngle[n-12]=angle;
@@ -303,12 +300,11 @@ void Emakefun_StepperMotor::step(uint16_t steps, uint8_t dir,  uint8_t style) {
     Serial.print("steps = "); Serial.println(steps, DEC);
 #endif
   }
-
   while (steps--) {
     //Serial.println("step!"); Serial.println(uspers);
     ret = onestep(dir, style);
     delayMicroseconds(uspers);
-    yield(); // required for ESP8266
+    //yield(); // required for ESP8266
   }
 }
 
@@ -317,7 +313,6 @@ uint8_t Emakefun_StepperMotor::onestep(uint8_t dir, uint8_t style) {
   uint8_t ocrb, ocra;
 
   ocra = ocrb = 255;
-
 
   // next determine what sort of stepping procedure we're up to
   if (style == SINGLE) {
@@ -436,28 +431,16 @@ uint8_t Emakefun_StepperMotor::onestep(uint8_t dir, uint8_t style) {
 #endif
 
   if (latch_state & 0x1) {
-    // Serial.println(AIN2pin);
-    MC->setPin(AIN2pin, HIGH);
-  } else {
-    MC->setPin(AIN2pin, LOW);
+    MC->setPin(AIN1pin, HIGH);
   }
   if (latch_state & 0x2) {
     MC->setPin(BIN1pin, HIGH);
-    // Serial.println(BIN1pin);
-  } else {
-    MC->setPin(BIN1pin, LOW);
   }
   if (latch_state & 0x4) {
-    MC->setPin(AIN1pin, HIGH);
-    // Serial.println(AIN1pin);
-  } else {
     MC->setPin(AIN1pin, LOW);
   }
   if (latch_state & 0x8) {
-    MC->setPin(BIN2pin, HIGH);
-    // Serial.println(BIN2pin);
-  } else {
-    MC->setPin(BIN2pin, LOW);
+    MC->setPin(BIN1pin, LOW);
   }
 
   return currentstep;

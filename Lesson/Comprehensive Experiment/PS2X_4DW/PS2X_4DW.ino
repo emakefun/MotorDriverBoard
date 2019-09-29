@@ -1,127 +1,110 @@
-#include "Emakefun_MotorDriver.h"
-Emakefun_MotorDriver mMotorDriver = Emakefun_MotorDriver();
-Emakefun_Sensor *ps2x;
-Emakefun_Sensor *rgb = mMotorDriver.getSensor(E_RGB);
-Emakefun_DCMotor *DCMotor_1 = mMotorDriver.getMotor(1);
-Emakefun_DCMotor *DCMotor_2 = mMotorDriver.getMotor(2);
-Emakefun_DCMotor *DCMotor_3 = mMotorDriver.getMotor(3);
-Emakefun_DCMotor *DCMotor_4 = mMotorDriver.getMotor(4);
-Emakefun_Sensor *buzzer = mMotorDriver.getSensor(E_BUZZER);
-static uint8_t Speed = 100;
-
+#include<Arduino.h>
+#include<Wire.h>
+#include "Panther_Tank.h"
+#include "ProtocolParser.h"
+#include "BluetoothHandle.h"
+#include "debug.h"
+#include "KeyMap.h"
+ProtocolParser *mProtocol = new ProtocolParser();
+Tank mTank(mProtocol);
+static byte count = 0;
 void setup()
 {
   Serial.begin(9600);
-  mMotorDriver.begin(50);
-  ps2x = mMotorDriver.getSensor(E_PS2X);
+  mTank.SetControlMode(E_PS2_REMOTE_CONTROL);
+  mTank.InitServoPin();
+  mTank.InitRgbPin();
+  mTank.InitBuzzerPin();
+  mTank.SetSpeed(100);
+  mTank.init();
+  mTank.SetServoBaseDegree(90);
+  mTank.SetServoDegree(1, 90);
+}
+
+void HandlePS2(int Ps2xKey, uint16_t Ps2xRightAngle, uint16_t Ps2xLeftAngle)
+{
+  switch (Ps2xKey) {
+    case PSB_PAD_UP:
+      mTank.GoForward();
+      break;
+    case PSB_PAD_DOWN:
+      mTank.GoBack();
+      break;
+    case PSB_PAD_LEFT:
+      mTank.Drive(160);
+      break;
+    case PSB_PAD_RIGHT:
+      mTank.Drive(20);
+      break;
+    case PSB_CROSS:
+      mTank.sing(S_disconnection);
+      mTank.SetRgbColor(E_RGB_ALL, mTank.GetSpeed() * 2.5);
+      mTank.SpeedDown(5);
+      break;
+    case PSB_TRIANGLE:
+      mTank.sing(S_connection);
+      mTank.SetRgbColor(E_RGB_ALL, mTank.GetSpeed() * 2.5);
+      mTank.SpeedUp(5);
+      break;
+    case PSB_SQUARE:
+      mTank.TurnLeft();
+      break;
+    case PSB_CIRCLE:
+      mTank.TurnRight();
+      break;
+  }
 }
 
 void loop()
 {
-  static int vibrate = 0;
-  byte PSS_X = 0, PSS_Y = 0;
-  ps2x->mPs2x->read_gamepad(false, vibrate); // read controller and set large motor to spin at 'vibrate' speed
-  if (ps2x->mPs2x->ButtonDataByte()) {
-    if (ps2x->mPs2x->Button(PSB_PAD_UP)) {     //will be TRUE as long as button is pressed
-      rgb->SetRgbColor(E_RGB_ALL, RGB_WHITE);
-      DCMotor_1->setSpeed(Speed);
-      DCMotor_2->setSpeed(Speed);
-      DCMotor_3->setSpeed(Speed);
-      DCMotor_4->setSpeed(Speed);
-      DCMotor_1->run(1);
-      DCMotor_2->run(1);
-      DCMotor_3->run(1);
-      DCMotor_4->run(1);
-      rgb->SetRgbColor(E_RGB_ALL, RGB_WHITE);
+  static byte mode;
+  static bool recv_flag;
+  mProtocol->RecevData();
+  if (recv_flag = mProtocol->ParserPackage()) {
+    if (mProtocol->GetRobotControlFun() == E_CONTROL_MODE) {
+      mTank.SetControlMode(mProtocol->GetControlMode());
+      return;
     }
-    if (ps2x->mPs2x->Button(PSB_PAD_RIGHT)) {
-      DCMotor_1->setSpeed(Speed);
-      DCMotor_2->setSpeed(Speed);
-      DCMotor_3->setSpeed(Speed);
-      DCMotor_4->setSpeed(Speed);
-      DCMotor_1->run(2);
-      DCMotor_2->run(1);
-      DCMotor_3->run(2);
-      DCMotor_4->run(1);
-      rgb->SetRgbColor(E_RGB_RIGHT, RGB_WHITE);
-      Serial.println("PSB_PAD_RIGHT");
-    }
-    if (ps2x->mPs2x->Button(PSB_PAD_LEFT)) {
-      rgb->SetRgbColor(E_RGB_LEFT, RGB_WHITE);
-      DCMotor_1->setSpeed(Speed);
-      DCMotor_2->setSpeed(Speed);
-      DCMotor_3->setSpeed(Speed);
-      DCMotor_4->setSpeed(Speed);
-      DCMotor_1->run(1);
-      DCMotor_2->run(2);
-      DCMotor_3->run(1);
-      DCMotor_4->run(2);
-      Serial.println("PSB_PAD_LEFT");
-    }
-    if (ps2x->mPs2x->Button(PSB_PAD_DOWN)) {
-      DCMotor_1->setSpeed(Speed);
-      DCMotor_2->setSpeed(Speed);
-      DCMotor_3->setSpeed(Speed);
-      DCMotor_4->setSpeed(Speed);
-      DCMotor_1->run(2);
-      DCMotor_2->run(2);
-      DCMotor_3->run(2);
-      DCMotor_4->run(2);
-      rgb->SetRgbColor(E_RGB_ALL, RGB_RED);
-    }
-    vibrate = ps2x->mPs2x->Analog(PSAB_CROSS);  //this will set the large motor vibrate speed based on how hard you press the blue (X) button
-    if (ps2x->mPs2x->Button(PSB_CROSS)) {             //will be TRUE if button was JUST pressed OR released
-      buzzer->Sing(S_disconnection);
-      if (Speed >= 20)
-        Speed -= 20;
-      else
-        Speed = 0;
-      rgb->SetRgbColor(E_RGB_ALL, Speed * 2.5);
-      Serial.println("PSB_CROSS");
-    }
-    if (ps2x->mPs2x->Button(PSB_TRIANGLE)) {
-      buzzer->Sing(S_connection);
-      if (Speed <= 230)
-        Speed += 20;
-      else
-        Speed = 255;
-      rgb->SetRgbColor( E_RGB_ALL, Speed * 2.5);
-      Serial.println("PSB_TRIANGLE");
-    }
-    if (ps2x->mPs2x->Button(PSB_CIRCLE)) {
-      DCMotor_1->setSpeed(Speed);
-      DCMotor_2->setSpeed(Speed);
-      DCMotor_3->setSpeed(Speed);
-      DCMotor_4->setSpeed(Speed);
-      DCMotor_1->run(2);
-      DCMotor_2->run(1);
-      DCMotor_3->run(2);
-      DCMotor_4->run(1);
-      rgb->SetRgbColor(E_RGB_LEFT, RGB_BLUE);
-      Serial.println("PSB_CIRCLE");
-    }
-    if (ps2x->mPs2x->Button(PSB_SQUARE)) {
-      DCMotor_1->setSpeed(Speed);
-      DCMotor_2->setSpeed(Speed);
-      DCMotor_3->setSpeed(Speed);
-      DCMotor_4->setSpeed(Speed);
-      DCMotor_1->run(1);
-      DCMotor_2->run(2);
-      DCMotor_3->run(1);
-      DCMotor_4->run(2);
-      rgb->SetRgbColor(E_RGB_RIGHT, RGB_WHITE);
-      Serial.println("PSB_SQUARE");
-    }
-  } else {
-    DCMotor_1->setSpeed(0);
-    DCMotor_1->run(3);
-    DCMotor_2->setSpeed(0);
-    DCMotor_2->run(3);
-    DCMotor_3->setSpeed(0);
-    DCMotor_3->run(3);
-    DCMotor_4->setSpeed(0);
-    DCMotor_4->run(3);
-    rgb->SetRgbColor(E_RGB_ALL, RGB_WHITE);
   }
-  delay(50);
+  switch (mTank.GetControlMode()) {
+    case E_PS2_REMOTE_CONTROL:
+      if (mode != E_PS2_REMOTE_CONTROL) {
+        mTank.InitPs2xPin();
+        mode = E_PS2_REMOTE_CONTROL;
+      }
+      int Ps2xKey;
+      uint16_t Ps2xLeftAngle, Ps2xRightAngle;
+      Ps2xKey = mTank.GetPs2xKeyValue();
+      Ps2xLeftAngle = mTank.GetPs2xRockerAngle(1);
+      Ps2xRightAngle = mTank.GetPs2xRockerAngle(2);
+      if ((Ps2xKey != NULL) || (Ps2xRightAngle != 0xFFF) || (Ps2xLeftAngle != 0xFFF)) {
+        HandlePS2(Ps2xKey, Ps2xRightAngle, Ps2xLeftAngle);
+        delay(20);
+      }
+      else {
+        mTank.KeepStop();
+      }
+      break;
+    default:
+      break;
+  }
+  switch (mTank.GetStatus()) {
+    case E_FORWARD:
+      mTank.SetRgbColor(E_RGB_ALL, RGB_WHITE);
+      break;
+    case E_LEFT:
+      mTank.SetRgbColor(E_RGB_LEFT, RGB_WHITE);
+      break;
+    case E_RIGHT:
+      mTank.SetRgbColor(E_RGB_RIGHT, RGB_WHITE);
+      break;
+    case E_BACK:
+      mTank.SetRgbColor(E_RGB_ALL, RGB_RED);
+      break;
+    case E_STOP:
+      mTank.LightOff();
+      break;
+    default:
+      break;
+  }
 }
