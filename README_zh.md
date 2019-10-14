@@ -1,4 +1,4 @@
-# MotorDriverBoard
+# MotorDriverBoard V4.0
 [English](README.md) 中文版
 
 Arduino Mega2560(Arduino UNO R3)多功能电机驱动扩展板   [深圳市易创空间科技有限公司](www.emakefun.com)出品
