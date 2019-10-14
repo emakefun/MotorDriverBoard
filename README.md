@@ -23,11 +23,11 @@
 ## Application scenario
 
   PS2 control four-wheel drive car
-  PS2 control four-wheel drive Mecanum wheel
-  PS2 control four-wheel drive car plus robot arm
-  Bluetooth (WIFI) control four-wheel drive car
-  Bluetooth (WIFI) control four-wheel drive Mecanum wheel
-  Bluetooth (WIFI) control four-wheel drive car plus robotic arm
+  PS2 control four-wheel drive Mecanum wheel
+  PS2 control four-wheel drive car plus robot arm
+  Bluetooth (WIFI) control four-wheel drive car
+  Bluetooth (WIFI) control four-wheel drive Mecanum wheel
+  Bluetooth (WIFI) control four-wheel drive car plus robotic arm
 
 ## Blocks Preview
 ### MotorDriverBoard Scratch
