@@ -2,7 +2,7 @@
 [English](README.md) 中文版
 
 Arduino Mega2560(Arduino UNO R3)多功能电机驱动扩展板   [深圳市易创空间科技有限公司](www.emakefun.com)出品
-
+![image](https://github.com/emakefun/emakefun-docs/raw/master/docs/open_source_hardware/UNO_mega2560_pic/icon.png)
 
 ## 特点
 
@@ -32,12 +32,12 @@ Arduino Mega2560(Arduino UNO R3)多功能电机驱动扩展板   [深圳市易�
 
 ## 应用场景
 
-  PS2控制四驱小车
-  PS2控制四驱麦克纳姆轮小车
-  PS2控制四驱小车加机械臂
-  蓝牙（WIFI）控制四驱小车
-  蓝牙（WIFI）控制四驱麦克纳姆轮小车
-  蓝牙（WIFI）控制四驱小车加机械臂
+- PS2控制四驱小车
+- PS2控制四驱麦克纳姆轮小车
+- PS2控制四驱小车加机械臂
+- 蓝牙（WIFI）控制四驱小车
+- 蓝牙（WIFI）控制四驱麦克纳姆轮小车
+- 蓝牙（WIFI）控制四驱小车加机械臂
 
 ## 图像化编程块说明
 

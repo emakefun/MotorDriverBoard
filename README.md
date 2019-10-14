@@ -2,6 +2,7 @@
 [中文版](README_zh.md)
 
 [Emakefun](www.emakefun.com) MotorDrvierBoard  for Arduino Mega2560 (Arduino UNO)
+![image](https://github.com/emakefun/emakefun-docs/raw/master/docs/open_source_hardware/UNO_mega2560_pic/icon.png)
 
 ## Feature
 
@@ -22,12 +23,12 @@
 
 ## Application scenario
 
-  PS2 control four-wheel drive car
-  PS2 control four-wheel drive Mecanum wheel
-  PS2 control four-wheel drive car plus robot arm
-  Bluetooth (WIFI) control four-wheel drive car
-  Bluetooth (WIFI) control four-wheel drive Mecanum wheel
-  Bluetooth (WIFI) control four-wheel drive car plus robotic arm
+- PS2 control four-wheel drive car
+- PS2 control four-wheel drive Mecanum wheel
+- PS2 control four-wheel drive car plus robot arm
+- Bluetooth (WIFI) control four-wheel drive car
+- Bluetooth (WIFI) control four-wheel drive Mecanum wheel
+- Bluetooth (WIFI) control four-wheel drive car plus robotic arm
 
 ## Blocks Preview
 ### MotorDriverBoard Scratch
