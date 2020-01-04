@@ -6,13 +6,13 @@
 
 ## Feature
 
-- Drvie 4 DC motors 
+- Drive 4 DC motors 
 - Drive 8 x Servos
-- Drvie 2 Stepper motors 
+- Drive 2 Stepper motors 
 - On board buzzer
 - On board 2x RGB Neo Pixels
 - On board ir receiver
-- Extend I2C , 1 PS2X port ,1 Bluetooth / wiif module port,1 NRF24L01+ port
+- Extend I2C , 1 PS2X port ,1 Bluetooth / wifi module port,1 NRF24L01+ port
 - 1 Ultrasonal (RUS-04) module port 
 - Servo power can be switched to external power supply
 - Support Arduidno Mega2560 and Arduino UNO
@@ -41,16 +41,16 @@
 #### Scratch 3.0
 ![image](https://github.com/emakefun/emakefun-docs/raw/master/docs/open_source_hardware/UNO_mega2560_pic/Scratch3.0.png)
 
-# Please Contact Us
+## Please Contact Us
 
 Technical support email: abbott@keywish-robot.com</br>
 Sales email: ken@keywish-robot.com</br>
 
-# Kit Data Download 
+## Kit Data Download 
 
 [kit Data download](https://codeload.github.com/emakefun/MotorDriverBoard/zip/MotorDrvierBoardV5.0)
 
-# Programming software download
+## Programming software download
 
 Download the Arduino IDE:
 * [Mac OS X 10.8 Mountain Lion or newer](https://downloads.arduino.cc/arduino-1.8.10-macosx.zip)</br>
@@ -75,6 +75,6 @@ Download the mBlock 3:
 * [Windows XP](http://download.makeblock.com/mblock/v_3_4_2/mBlock_win_V3.4.2_beta2_20161111.exe)</br>
 * [Linux](https://dl.makeblock.com/mBlock4.0/mBlock_4.0.4_amd64.deb)</br>
 
-# APP download
+## APP download
 
 Android :[Keywish](https://codeload.github.com/keywish/KeywishBot/zip/master)</br>
