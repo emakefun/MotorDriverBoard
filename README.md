@@ -1,4 +1,4 @@
-# MotorDrvierBoard V4.0
+# MotorDrvierBoard V5.0
 [中文版](README_zh.md)
 
 [Emakefun](www.emakefun.com) MotorDrvierBoard  for Arduino Mega2560 (Arduino UNO)
@@ -41,6 +41,40 @@
 #### Scratch 3.0
 ![image](https://github.com/emakefun/emakefun-docs/raw/master/docs/open_source_hardware/UNO_mega2560_pic/Scratch3.0.png)
 
+# Please Contact Us
 
-## License
-MIT
+Technical support email: abbott@keywish-robot.com</br>
+Sales email: ken@keywish-robot.com</br>
+
+# Kit Data Download 
+
+[kit Data download](https://codeload.github.com/emakefun/MotorDriverBoard/zip/MotorDrvierBoardV5.0)
+
+# Programming software download
+
+Download the Arduino IDE:
+* [Mac OS X 10.8 Mountain Lion or newer](https://downloads.arduino.cc/arduino-1.8.10-macosx.zip)</br>
+* [Windows Installer, for Windows XP and up ](https://downloads.arduino.cc/arduino-1.8.10-windows.exe)</br>
+* [Linux 32 bits](https://downloads.arduino.cc/arduino-1.8.10-linux32.tar.xz)</br> 
+* [Linux 64 bits](https://downloads.arduino.cc/arduino-1.8.10-linux64.tar.xz)</br> 
+* [Linux ARM 32 bits ](https://downloads.arduino.cc/arduino-1.8.10-linuxarm.tar.xz)</br> 
+* [Linux ARM 64 bits ](https://downloads.arduino.cc/arduino-1.8.10-linuxaarch64.tar.xz)</br> 
+
+Download the MagicBlock:
+* [Mac](http://www.emakefun.com/en/download)</br>
+* [Windows](http://www.emakefun.com/en/download)</br>
+
+Download the mBlock 5:
+* [Mac](https://dl.makeblock.com/mblock5/darwin/V5.1.0.pkg)</br>
+* [Windows](https://dl.makeblock.com/mblock5/win32/V5.1.0.exe)</br>
+* [Linux](https://dl.makeblock.com/mblock5/linux/mLink-1.2.0-amd64.deb)</br>
+
+Download the mBlock 3:
+* [Mac](https://dl.makeblock.com/mblock3/mBlock_mac_V3.4.12.zip)</br>
+* [Windows7+](https://dl.makeblock.com/mblock3/mBlock_win_V3.4.12.exe)</br>
+* [Windows XP](http://download.makeblock.com/mblock/v_3_4_2/mBlock_win_V3.4.2_beta2_20161111.exe)</br>
+* [Linux](https://dl.makeblock.com/mBlock4.0/mBlock_4.0.4_amd64.deb)</br>
+
+# APP download
+
+Android :[Keywish](https://codeload.github.com/keywish/KeywishBot/zip/master)</br>
