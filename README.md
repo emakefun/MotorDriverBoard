@@ -46,9 +46,9 @@
 Technical support email: abbott@keywish-robot.com</br>
 Sales email: ken@keywish-robot.com</br>
 
-## Kit Data Download 
+## MotorDrvierBoardV5.0 Data Download 
 
-[kit Data download](https://codeload.github.com/emakefun/MotorDriverBoard/zip/MotorDrvierBoardV5.0)
+[MotorDrvierBoard-5.0 Data download](https://codeload.github.com/emakefun/MotorDriverBoard/zip/MotorDrvierBoardV5.0)
 
 ## Programming software download
 
