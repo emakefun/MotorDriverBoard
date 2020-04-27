@@ -43,7 +43,7 @@
 
 ## Please Contact Us
 
-Technical support email: abbott@keywish-robot.com</br>
+Technical support email: support@emakefun.com</br>
 Sales email: ken@keywish-robot.com</br>
 
 ## MotorDrvierBoardV5.0 Data Download 
