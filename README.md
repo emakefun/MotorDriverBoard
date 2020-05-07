@@ -81,5 +81,5 @@ Android :[Keywish](https://codeload.github.com/keywish/KeywishBot/zip/master)</b
 
 # Please Contact Us
 Technical support email: support@emakefun.com</br>
-Sales email: ken@makefun.com</br>
+Sales email: ken@emakefun.com</br>
 The latest information download address:https://github.com/emakefun/MotorDriverBoard   </br>
