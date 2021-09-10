@@ -1,5 +1,5 @@
-# If you are buying 4.0 version, please click here : [MotorDriverBoard-4.0](https://github.com/emakefun/MotorDriverBoard/tree/MotorDriveBoardV4.0)
-# If you are buying 5.0 version, please click here : [MotorDriverBoard-5.0](https://github.com/emakefun/MotorDriverBoard/tree/MotorDrvierBoardV5.0)
+# MotorDrvierBoard V5.0
+[中文版](README_zh.md)
 
 [Emakefun](www.emakefun.com) MotorDrvierBoard  for Arduino Mega2560 (Arduino UNO)
 ![image](https://github.com/emakefun/emakefun-docs/raw/master/docs/open_source_hardware/UNO_mega2560_pic/icon.png)
@@ -43,8 +43,12 @@
 
 ## Please Contact Us
 
-Technical support email: abbott@keywish-robot.com</br>
+Technical support email: support@emakefun.com</br>
 Sales email: ken@keywish-robot.com</br>
+
+## MotorDrvierBoardV5.0 Data Download 
+
+[MotorDrvierBoard-5.0 Data download](https://codeload.github.com/emakefun/MotorDriverBoard/zip/MotorDrvierBoardV5.0)
 
 ## Programming software download
 
@@ -72,4 +76,10 @@ Download the mBlock 3:
 * [Linux](https://dl.makeblock.com/mBlock4.0/mBlock_4.0.4_amd64.deb)</br>
 
 ## APP download
+
 Android :[Keywish](https://codeload.github.com/keywish/KeywishBot/zip/master)</br>
+
+# Please Contact Us
+Technical support email: support@emakefun.com</br>
+Sales email: ken@emakefun.com</br>
+The latest information download address:https://github.com/emakefun/MotorDriverBoard   </br>

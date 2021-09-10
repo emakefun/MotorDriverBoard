@@ -1,55 +1,82 @@
-# MotorDriverBoard V4.0
+# MotorDriverBoard
 [English](README.md) 中文版
 
-Arduino Mega2560(Arduino UNO R3)多功能电机驱动扩展板   [深圳市易创空间科技有限公司](www.emakefun.com)出品
-![image](https://github.com/emakefun/emakefun-docs/raw/master/docs/open_source_hardware/UNO_mega2560_pic/icon.png)
+MotorDriverBoard是由 [深圳市易创空间科技有限公司](www.emakefun.com)，专门针对Arduino Uno(兼容Mega2560)机器人，电机驱动，多路舵机控制而研发的一款多功能电机驱动扩展板。本驱动板采用I2C方式控制[PCA9685](./doc/pca9685.pdf)(16路PWM输出芯片)。所以本驱动板电机或者舵机不存在和arduino口的对应关系，是通过I2C扩展PWM控制，详情请见[驱动板原理图]()。
+![image]()
 
 ## 特点
-
-- 支持4路直流电机
-
-- 支持驱动8路舵机
-
+- 支持4路直流电机，最大驱动电流3A
+- 支持驱动8路舵机，带自恢复保险丝，保护舵机不被卡死
 - 支持驱动2路4线步进电机
-
+- 支持4路编码电机
 - 板载无源蜂鸣器
-
-- 板载2个RGB全彩灯
-
+- 板载1个RGB全彩灯
 - 板载红外接收头
-
-- 1个 i2c接口 、1个PS2X接口、1个蓝牙/wiif模块接口 、1个NRF24L01模块接口
-
-- 1个超声波（RUS-04)模块接口
-
+- 1个 i2c接口 、1个PS2X接口、1个Uart(蓝牙/wiif模块)接口 、1个NRF24L01模块接口
+- 1个超声波模块接口
 - 舵机电源可切换到外部供电
-
 - 支持Arduidno Mega2560与Arduino UNO
+- 软件支持Arduino IDE，Mixly，MagicBlock(Scratch3.0)
 
 ## 硬件功能介绍
 ### 正面
-![image](https://github.com/emakefun/emakefun-docs/raw/master/docs/open_source_hardware/UNO_mega2560_pic/MotorDriverBoard_ZH.png)
+![image]()
 
-## 应用场景
+### 供电说明
+- DC头供电
 
-- PS2控制四驱小车
-- PS2控制四驱麦克纳姆轮小车
-- PS2控制四驱小车加机械臂
-- 蓝牙（WIFI）控制四驱小车
-- 蓝牙（WIFI）控制四驱麦克纳姆轮小车
-- 蓝牙（WIFI）控制四驱小车加机械臂
+  
+
+- 接线柱供电
+
+  
+
+- 舵机采用驱动板载DC-DC电源供电
+
+  
+
+- 舵机采用外部供电
+
+## 驱动库使用
+
+
+
+## 基础示例程序
+[gpiotest](examples/gpiotest/gpiotest.ino)
+
+- 这个示例程序为控制PCA9685输出口当作普通IO口输出高低电平
+
+[pwmtest](examples/pwmtest/pwmtest.ino)
+- 这个示例程序为控制PCA9685输出口输出PWM波形
+
+[dc](examples/dc/dc.ino)
+- 4路直流电机测试程序
+
+[servo](examples/servo/servo.ino)
+- 八路舵机测试程序
+
+[stepper](examples/stepper/stepper.ino)
+- 步进电机测试程序
+
+## 综合应用
+
+[PS2控制四驱小车]()
+
+[PS2控制四驱麦克纳姆轮小车]()
+
+[PS2控制四驱小车加机械臂]()
+
+[蓝牙（WIFI）控制四驱小车]()
 
 ## 图像化编程块说明
 
 ### MotorDriverBoard 编程图形块
-#### mBlock3
-![image](https://github.com/emakefun/emakefun-docs/raw/master/docs/open_source_hardware/UNO_mega2560_pic/mBlock_ZH.png)
-#### mBlock5
-![image](https://github.com/emakefun/emakefun-docs/raw/master/docs/open_source_hardware/UNO_mega2560_pic/mBlock5_ZH.png)
+#### [mBlock5]()
+![image]()
 #### 米思齐
-![image](https://github.com/emakefun/emakefun-docs/raw/master/docs/open_source_hardware/UNO_mega2560_pic/mixly_ZH.png)
-#### Scratch 3.0
-![image](https://github.com/emakefun/emakefun-docs/raw/master/docs/open_source_hardware/UNO_mega2560_pic/Scratch3.0_ZH.png)
+![image]()
+#### MagicBlock
+![image]()
 
 ## 开源许可
 MIT
