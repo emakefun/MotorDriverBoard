@@ -6,7 +6,7 @@ MotorDriverBoard是由 [深圳市易创空间科技有限公司](www.emakefun.co
 
 ## 特点
 - 支持4路直流电机，最大驱动电流3A
-- 支持驱动8路舵机，带自恢复保险丝，保护舵机不被卡死
+- 支持驱动8路舵机，带自恢复保险丝，防止舵机堵转
 - 支持驱动2路4线步进电机
 - 支持4路编码电机
 - 板载无源蜂鸣器
@@ -15,7 +15,6 @@ MotorDriverBoard是由 [深圳市易创空间科技有限公司](www.emakefun.co
 - 1个 i2c接口 、1个PS2X接口、1个Uart(蓝牙/wiif模块)接口 、1个NRF24L01模块接口
 - 1个超声波模块接口
 - 舵机电源可切换到外部供电
-- 支持Arduidno Mega2560与Arduino UNO
 - 软件支持Arduino IDE，Mixly，MagicBlock(Scratch3.0)
 
 ## 硬件功能介绍
@@ -42,21 +41,35 @@ MotorDriverBoard是由 [深圳市易创空间科技有限公司](www.emakefun.co
 
 
 ## 基础示例程序
-[gpiotest](examples/gpiotest/gpiotest.ino)
+[gpiotest](examples/gpiotest/gpiotest.ino) 控制PCA9685输出口当作普通IO口输出高低电平
 
-- 这个示例程序为控制PCA9685输出口当作普通IO口输出高低电平
+- gpio.begin(1000);  初始化io口的输出频率为1KHz
 
-[pwmtest](examples/pwmtest/pwmtest.ino)
-- 这个示例程序为控制PCA9685输出口输出PWM波形
+- gpio.setPin(1, HIGH);  引脚1输出高电平
+- gpio.setPin(1, LOW);  引脚1输出低电平
 
-[dc](examples/dc/dc.ino)
-- 4路直流电机测试程序
+[pwmtest](examples/pwmtest/pwmtest.ino) 这个示例程序为控制PCA9685输出口输出PWM波形
+
+
+
+[dc](examples/dc/dc.ino)4路直流电机测试程序
+
+### 连接方法
 
 [servo](examples/servo/servo.ino)
 - 八路舵机测试程序
 
-[stepper](examples/stepper/stepper.ino)
-- 步进电机测试程序
+[stepper](examples/stepper/stepper.ino) 步进电机测试程序
+
+- Emakefun_StepperMotor *StepperMotor_1 = mMotorDriver.getStepper(1, 200);  //初始化步进电机1，42步进电机走一步是1.8度，所以一圈的步数为200
+
+- StepperMotor_1->setSpeed(100);  //设置步进电机没分钟转的圈数为100圈
+
+- StepperMotor_1->step(200, FORWARD, DOUBLE); //驱动步进电机按 DOUBLE(全步)的方式，FORWARD（前进）200步。
+
+  步进电机的驱动方式 全步DOUBLE、单步SINGLE、1/2步进INTERLEAVE、1/16步进MICROSTEP这四种驱动方式（步进电机的驱动原理请查阅相关资料）。建议用1/16步进的模式。
+
+  
 
 ## 综合应用
 
@@ -78,5 +91,3 @@ MotorDriverBoard是由 [深圳市易创空间科技有限公司](www.emakefun.co
 #### MagicBlock
 ![image]()
 
-## 开源许可
-MIT

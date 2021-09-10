@@ -1,14 +1,15 @@
-#include "Emakefun_MotorShield.h"
-Emakefun_MotorShield mMotorShield = Emakefun_MotorShield(0x60);
-Emakefun_DCMotor *DCMotor_1 = mMotorShield.getMotor(1);
-Emakefun_DCMotor *DCMotor_2 = mMotorShield.getMotor(2);
-Emakefun_DCMotor *DCMotor_3 = mMotorShield.getMotor(3);
-Emakefun_DCMotor *DCMotor_4 = mMotorShield.getMotor(4);
+#include "Emakefun_MotorDriver.h"
+
+Emakefun_MotorDriver mMotor = Emakefun_MotorDriver(0x60);
+Emakefun_DCMotor *DCMotor_1 = mMotor.getMotor(1);
+Emakefun_DCMotor *DCMotor_2 = mMotor.getMotor(2);
+Emakefun_DCMotor *DCMotor_3 = mMotor.getMotor(3);
+Emakefun_DCMotor *DCMotor_4 = mMotor.getMotor(4);
 
 void setup()
 {
     Serial.begin(9600);
-    mMotorShield.begin(50);
+    mMotor.begin(50);
 }
 
 void loop()

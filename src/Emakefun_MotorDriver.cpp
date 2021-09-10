@@ -1,5 +1,5 @@
 /*!
- * @file Emakefun_MotorShield.cpp
+ * @file Emakefun_MotorDriver.cpp
  *
  * @mainpage Emakefun FXOS8700 accel/mag sensor driver
  *
@@ -8,8 +8,8 @@
  * This is the library for the Emakefun Motor Shield V2 for Arduino.
  * It supports DC motors & Stepper motors with microstepping as well
  * as stacking-support. It is *not* compatible with the V1 library!
- * For use with the Motor Shield https://www.Emakefun.com/products/1483
- * and Motor FeatherWing https://www.Emakefun.com/product/2927
+ * For use with the Motor Shield https://www.emakefun.com/products/1483
+ * and Motor FeatherWing https://www.emakefun.com/product/2927
  *
  * This shield/wing uses I2C to communicate, 2 pins (SCL+SDA) are required
  * to interface.
@@ -20,7 +20,6 @@
  *
  * @section author Author
  *
- * Written by Limor Fried/Ladyada for Emakefun Industries.
  *
  * @section license License
  *
@@ -28,7 +27,7 @@
  *
  */
 #include "PinChangeInt.h"
-#include "Emakefun_MotorShield.h"
+#include "Emakefun_MotorDriver.h"
 #include "Arduino.h"
 #include "Emakefun_MS_PWMServoDriver.h"
 #include <Wire.h>
@@ -50,7 +49,7 @@ static uint8_t microstepcurve[] = {0,   25,  50,  74,  98,  120, 141, 162, 180,
     @param  addr Optional I2C address if you've changed it
 */
 /**************************************************************************/
-Emakefun_MotorShield::Emakefun_MotorShield(uint8_t addr) {
+Emakefun_MotorDriver::Emakefun_MotorDriver(uint8_t addr) {
   _addr = addr;
   _pwm = Emakefun_MS_PWMServoDriver(_addr);
 }
@@ -66,7 +65,7 @@ Emakefun_MotorShield::Emakefun_MotorShield(uint8_t addr) {
    Wire1 (on Due)
 */
 /**************************************************************************/
-void Emakefun_MotorShield::begin(uint16_t freq, TwoWire *theWire) {
+void Emakefun_MotorDriver::begin(uint16_t freq, TwoWire *theWire) {
   if (!theWire) {
 #if defined(ARDUINO_SAM_DUE)
     _i2c = &Wire1;
@@ -94,7 +93,7 @@ void Emakefun_MotorShield::begin(uint16_t freq, TwoWire *theWire) {
    special 'all on' value
 */
 /**************************************************************************/
-void Emakefun_MotorShield::setPWM(uint8_t pin, uint16_t value) {
+void Emakefun_MotorDriver::setPWM(uint8_t pin, uint16_t value) {
   if (value > 4095) {
     _pwm.setPWM(pin, 4096, 0);
   } else
@@ -108,7 +107,7 @@ void Emakefun_MotorShield::setPWM(uint8_t pin, uint16_t value) {
     @param  value HIGH or LOW depending on the value you want!
 */
 /**************************************************************************/
-void Emakefun_MotorShield::setPin(uint8_t pin, boolean value) {
+void Emakefun_MotorDriver::setPin(uint8_t pin, boolean value) {
   if (value == LOW)
     _pwm.setPWM(pin, 0, 0);
   else
@@ -123,18 +122,16 @@ void Emakefun_MotorShield::setPin(uint8_t pin, boolean value) {
     @returns NULL if something went wrong, or a pointer to a Emakefun_DCMotor
 */
 /**************************************************************************/
-Emakefun_DCMotor *Emakefun_MotorShield::getMotor(uint8_t num) {
+Emakefun_DCMotor *Emakefun_MotorDriver::getMotor(uint8_t num) {
   if (num > 4)
     return NULL;
-
   num--;
-
   if (dcmotors[num].motornum == 0) {
     dcmotors[num].motornum = num;
     dcmotors[num].MC = this;
     uint8_t in1, in2;
     if (num == 0) {
-      in2 = 8; in1 = 10;      
+      in2 = 10; in1 = 8;      
     } else if (num == 1) {
       in2 = 13; in1 = 11;
     } else if (num == 2) {
@@ -142,7 +139,6 @@ Emakefun_DCMotor *Emakefun_MotorShield::getMotor(uint8_t num) {
     } else if (num == 3) {
       in2 = 7; in1 = 5;
     } 
-//    dcmotors[num].PWMpin = pwm;
     dcmotors[num].IN1pin = in1;
     dcmotors[num].IN2pin = in2;
   }
@@ -160,7 +156,7 @@ Emakefun_DCMotor *Emakefun_MotorShield::getMotor(uint8_t num) {
    Emakefun_StepperMotor
 */
 /**************************************************************************/
-Emakefun_StepperMotor *Emakefun_MotorShield::getStepper(uint16_t steps, uint8_t num) {
+Emakefun_StepperMotor *Emakefun_MotorDriver::getStepper(uint16_t steps, uint8_t num) {
   if (num > 2) return NULL;
 
   num--;
@@ -170,7 +166,7 @@ Emakefun_StepperMotor *Emakefun_MotorShield::getStepper(uint16_t steps, uint8_t 
     steppers[num].steppernum = num;
     steppers[num].revsteps = steps;
     steppers[num].MC = this;
-    uint8_t pwma, pwmb, ain1, ain2, bin1, bin2;
+    uint8_t ain1, ain2, bin1, bin2;
     if (num == 0) {
         ain1 = 8; ain2 = 10;
         bin1 = 13; bin2 = 11;
@@ -178,8 +174,6 @@ Emakefun_StepperMotor *Emakefun_MotorShield::getStepper(uint16_t steps, uint8_t 
         ain1 = 2; ain2 = 4;
         bin1 = 7; bin2 = 5;
     }
-//    steppers[num].PWMApin = pwma;
-//    steppers[num].PWMBpin = pwmb;
     steppers[num].AIN1pin = ain1;
     steppers[num].AIN2pin = ain2;
     steppers[num].BIN1pin = bin1;
@@ -224,7 +218,30 @@ uint8_t Emakefun_Servo::readDegrees() {
   return currentAngle;
 }
 
-
+void Emakefun_Servo::writeServo(uint8_t angle, uint8_t speed) {
+    double pulse;
+    if (speed == 10) {
+        pulse=0.5+angle/90.0;
+        setServoPulse(pulse);
+    } else {
+        if (angle < currentAngle){
+            for (int i = currentAngle; i > angle; i--)
+            {
+                delay(4 * (10 - speed));
+                pulse = 0.5+i/90.0;
+                setServoPulse(pulse);
+            }
+        } else {
+            for (int i = currentAngle; i < angle; i++)
+            {
+                delay(4 * (10 - speed));
+                pulse = 0.5+i/90.0;
+                setServoPulse(pulse);
+            }
+        }
+    }
+    currentAngle = angle;
+}
 /******************************************
                MOTORS
 ******************************************/
@@ -232,14 +249,14 @@ uint8_t Emakefun_Servo::readDegrees() {
 /**************************************************************************/
 /*!
     @brief  Create a DCMotor object, un-initialized!
-    You should never call this, instead have the {@link Emakefun_MotorShield}
-    give you a DCMotor object with {@link Emakefun_MotorShield.getMotor}
+    You should never call this, instead have the {@link Emakefun_MotorDriver}
+    give you a DCMotor object with {@link Emakefun_MotorDriver.getMotor}
 */
 /**************************************************************************/
 Emakefun_DCMotor::Emakefun_DCMotor(void) {
   MC = NULL;
   motornum = 0;
-  PWMpin = IN1pin = IN2pin = 0;
+  IN1pin = IN2pin = 0;
 }
 
 /**************************************************************************/
@@ -249,20 +266,24 @@ Emakefun_DCMotor::Emakefun_DCMotor(void) {
 */
 /**************************************************************************/
 void Emakefun_DCMotor::run(uint8_t cmd) {
-  switch (cmd) {
-  case FORWARD:
-    MC->setPin(IN2pin, LOW); // take low first to avoid 'break'
-    MC->setPin(IN1pin, HIGH);
-    break;
-  case BACKWARD:
-    MC->setPin(IN1pin, LOW); // take low first to avoid 'break'
-    MC->setPin(IN2pin, HIGH);
-    break;
-  case RELEASE:
-    MC->setPin(IN1pin, LOW);
-    MC->setPin(IN2pin, LOW);
-    break;
-  }
+    switch (cmd) {
+        case FORWARD:
+            MC->setPin(IN2pin, LOW);
+            MC->setPin(IN1pin, MC->DcSpeed);
+            break;
+        case BACKWARD:
+            MC->setPin(IN1pin, LOW);
+            MC->setPin(IN2pin, MC->DcSpeed);
+            break;
+        case RELEASE:
+            MC->setPin(IN1pin, LOW);
+            MC->setPin(IN2pin, LOW);
+            break;
+        case BRAKE:
+            MC->setPin(IN2pin, HIGH);
+            MC->setPin(IN1pin, HIGH);
+            break;
+    }
 }
 
 /**************************************************************************/
@@ -272,7 +293,116 @@ void Emakefun_DCMotor::run(uint8_t cmd) {
 */
 /**************************************************************************/
 void Emakefun_DCMotor::setSpeed(uint8_t speed) {
-  MC->setPWM(PWMpin, speed * 16);
+    MC->DcSpeed = (speed * 16);
+}
+
+/******************************************
+               ENCODER MOTOR
+******************************************/
+
+void Emakefun_EncoderMotor::EncoderCallback1(void)
+{
+  (CallBack[0])();
+}
+
+void Emakefun_EncoderMotor::EncoderCallback2(void)
+{
+  (CallBack[1])();
+}
+
+void Emakefun_EncoderMotor::EncoderCallback3(void)
+{
+  (CallBack[2])();
+}
+
+void Emakefun_EncoderMotor::EncoderCallback4(void)
+{
+  (CallBack[3])();
+}
+
+Emakefun_EncoderMotor::Emakefun_EncoderMotor(void) {
+  MC = NULL;
+  encodernum = 0;
+  IN2pin = IN1pin = ENCODER1pin = ENCODER2pin = 0;
+}
+
+void Emakefun_EncoderMotor::init(FuncPtr encoder_fun) {
+  pinMode(ENCODER1pin, INPUT);
+  CallBack[encodernum] = encoder_fun;
+  if (encodernum == 0) {
+#if ARDUINO > 10609
+    attachPinChangeInterrupt(ENCODER1pin, *(FuncPtr )(&EncoderCallback1), CHANGE);
+#else
+    attachPinChangeInterrupt(ENCODER1pin, *(FuncPtr )(&Emakefun_EncoderMotor::EncoderCallback1), CHANGE);
+#endif
+  } else if (encodernum == 1) {
+#if ARDUINO > 10609
+    attachPinChangeInterrupt(ENCODER1pin, *(FuncPtr )(&EncoderCallback2), CHANGE);
+#else
+    attachPinChangeInterrupt(ENCODER1pin, *(FuncPtr )(&Emakefun_EncoderMotor::EncoderCallback2), CHANGE);
+#endif
+  } else if (encodernum == 2) {
+
+#if ARDUINO > 10609
+    attachPinChangeInterrupt(ENCODER1pin, *(FuncPtr )(&EncoderCallback3), CHANGE);
+#else
+    attachPinChangeInterrupt(ENCODER1pin, *(FuncPtr )(&Emakefun_EncoderMotor::EncoderCallback3), CHANGE);
+#endif
+  } else if (encodernum == 3) {
+#if ARDUINO > 10609
+    attachPinChangeInterrupt(ENCODER1pin, *(FuncPtr )(&EncoderCallback4), CHANGE);
+#else
+    attachPinChangeInterrupt(ENCODER1pin, *(FuncPtr )(&Emakefun_EncoderMotor::EncoderCallback4), CHANGE);
+#endif
+  }
+  
+}
+
+Emakefun_EncoderMotor *Emakefun_MotorDriver::getEncoderMotor(uint8_t num) {
+  if (num > 2) return NULL;
+  num--;
+  if (encoder[num].encodernum == 0) {
+    // not init'd yet!
+    encoder[num].encodernum = num;
+    encoder[num].MC = this;
+
+    uint8_t in1, in2, encoder1pin , encoder2pin;
+    if (num == 0) {
+     in1 = 8; in2 = 10; encoder1pin = 3; encoder2pin = 2;
+    } else if (num == 1) {
+      in1 = 11; in2 = 13; encoder1pin = 7; encoder2pin = 4;
+    }
+    encoder[num].IN1pin = in1;
+    encoder[num].IN2pin = in2;
+    encoder[num].ENCODER1pin = encoder1pin;
+    encoder[num].ENCODER2pin = encoder2pin;
+  }
+  return &encoder[num];
+}
+
+void Emakefun_EncoderMotor::run(uint8_t cmd) {
+  switch (cmd) {
+    case FORWARD:
+      MC->setPin(IN2pin, LOW);
+      MC->setPWM(IN1pin, MC->DcSpeed);
+      break;
+    case BACKWARD:
+      MC->setPin(IN1pin, LOW);
+      MC->setPWM(IN2pin, MC->DcSpeed);
+      break;
+    case RELEASE:
+      MC->setPin(IN1pin, LOW);
+      MC->setPin(IN2pin, LOW);
+      break;
+     case BRAKE:
+      MC->setPin(IN2pin, HIGH);
+      MC->setPin(IN1pin, HIGH);
+      break;
+  }
+}
+
+void Emakefun_EncoderMotor::setSpeed(uint8_t speed) {
+     MC->DcSpeed = speed*16;
 }
 
 /******************************************
@@ -282,12 +412,38 @@ void Emakefun_DCMotor::setSpeed(uint8_t speed) {
 /**************************************************************************/
 /*!
     @brief  Create a StepperMotor object, un-initialized!
-    You should never call this, instead have the {@link Emakefun_MotorShield}
-    give you a StepperMotor object with {@link Emakefun_MotorShield.getStepper}
+    You should never call this, instead have the {@link Emakefun_MotorDriver}
+    give you a StepperMotor object with {@link Emakefun_MotorDriver.getStepper}
 */
 /**************************************************************************/
 Emakefun_StepperMotor::Emakefun_StepperMotor(void) {
   revsteps = steppernum = currentstep = 0;
+}
+
+Emakefun_StepperMotor *Emakefun_MotorDriver::getStepper(uint8_t num, uint16_t steps) {
+  if (num > 2) return NULL;
+
+  num--;
+
+  if (steppers[num].steppernum == 0) {
+    // not init'd yet!
+    steppers[num].steppernum = num;
+    steppers[num].revsteps = steps;  // steps：旋转一圈所需的步数
+    steppers[num].MC = this;
+    uint8_t ain1, ain2, bin1, bin2;
+    if (num == 0) {
+        ain1 = 8; ain2 = 10;
+        bin1 = 13; bin2 = 11;
+    } else if (num == 1) {
+        ain1 = 2; ain2 = 4;
+        bin1 = 7; bin2 = 5;
+    }
+    steppers[num].AIN1pin = ain1;
+    steppers[num].AIN2pin = ain2;
+    steppers[num].BIN1pin = bin1;
+    steppers[num].BIN2pin = bin2;
+  }
+  return &steppers[num];
 }
 
 /**************************************************************************/
@@ -296,6 +452,7 @@ Emakefun_StepperMotor::Emakefun_StepperMotor(void) {
     @param  rpm The desired RPM, we will do our best to reach it!
 */
 /**************************************************************************/
+// 设定一分钟旋转的圈速
 void Emakefun_StepperMotor::setSpeed(uint16_t rpm) {
   // Serial.println("steps per rev: "); Serial.println(revsteps);
   // Serial.println("RPM: "); Serial.println(rpm);
@@ -313,8 +470,6 @@ void Emakefun_StepperMotor::release(void) {
   MC->setPin(AIN2pin, LOW);
   MC->setPin(BIN1pin, LOW);
   MC->setPin(BIN2pin, LOW);
-//  MC->setPWM(PWMApin, 0);
-//  MC->setPWM(PWMBpin, 0);
 }
 
 /**************************************************************************/
@@ -436,10 +591,7 @@ uint8_t Emakefun_StepperMotor::onestep(uint8_t dir, uint8_t style) {
   Serial.print(" pwmA = "); Serial.print(ocra, DEC);
   Serial.print(" pwmB = "); Serial.println(ocrb, DEC);
 #endif
-//  if (MC->_version != 5) {
-//    MC->setPWM(PWMApin, ocra * 16);
-//    MC->setPWM(PWMBpin, ocrb * 16);
-//  }
+
   // release all
   uint8_t latch_state = 0; // all motor pins to 0
   //Serial.println(step, DEC);
@@ -505,64 +657,4 @@ uint8_t Emakefun_StepperMotor::onestep(uint8_t dir, uint8_t style) {
       MC->setPWM(BIN2pin, ocrb * 16);
     }
   return currentstep;
-}
-
-Emakefun_EncoderMotor::Emakefun_EncoderMotor(void) {
-  MC = NULL;
-  encodernum = 0;
-  ENCODER1pin = ENCODER2pin = 0;
-  PWMpin = IN1pin = IN2pin = 0;
-
-}
-
-void Emakefun_EncoderMotor::run(uint8_t cmd) {
-  switch (cmd) {
-    case FORWARD:
-        MC->setPWM(IN1pin, DcSpeed);
-      break;
-    case BACKWARD:
-      MC->setPin(IN1pin, LOW);
-        MC->setPWM(IN2pin, DcSpeed);
-      break;
-    case BRAKE:
-      MC->setPin(IN1pin, HIGH);
-      break;
-    case RELEASE:
-        MC->setPin(IN1pin, LOW);
-        MC->setPin(IN2pin, LOW);
-      break;
-  }
-}
-
-void Emakefun_EncoderMotor::setSpeed(uint8_t speed) {
-    DcSpeed = (speed * 16);
-}
-
-void Emakefun_EncoderMotor::init(FuncPtr encoder_fun) {
-  pinMode(ENCODER1pin, INPUT);
-  CallBack[encodernum] = encoder_fun;
-  if (encodernum == 0) {
-#if ARDUINO > 10609
-    attachPinChangeInterrupt(ENCODER1pin, *(FuncPtr )(&EncoderCallback1), CHANGE);
-    
-#else
-    attachPinChangeInterrupt(ENCODER1pin, *(FuncPtr )(&Emakefun_EncoderMotor::EncoderCallback1), CHANGE);
-#endif
-  } else if (encodernum == 1) {
-#if ARDUINO > 10609
-    attachPinChangeInterrupt(ENCODER1pin, *(FuncPtr )(&EncoderCallback2), CHANGE);
-#else
-    attachPinChangeInterrupt(ENCODER1pin, *(FuncPtr )(&Emakefun_EncoderMotor::EncoderCallback2), CHANGE);
-#endif
-  }
-}
-
-void Emakefun_EncoderMotor::EncoderCallback1(void)
-{
-  (CallBack[0])();
-}
-
-void Emakefun_EncoderMotor::EncoderCallback2(void)
-{
-  (CallBack[1])();
 }

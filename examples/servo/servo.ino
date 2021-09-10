@@ -1,42 +1,48 @@
-#include "Emakefun_MotorShield.h"
-  Emakefun_MotorShield Pwm = Emakefun_MotorShield();
-  
-  Emakefun_Servo *myServo1 = Pwm.getServo(1);
-  Emakefun_Servo *myServo2 = Pwm.getServo(2);
-  Emakefun_Servo *myServo3 = Pwm.getServo(3);
-  Emakefun_Servo *myServo4 = Pwm.getServo(4);
-  Emakefun_Servo *myServo5 = Pwm.getServo(5);
-  Emakefun_Servo *myServo6 = Pwm.getServo(6);
-  Emakefun_Servo *myServo7 = Pwm.getServo(7);
-  Emakefun_Servo *myServo8 = Pwm.getServo(8);
-void setup () {
-Pwm.begin(50);
-}
-	void loop() 
-{
-		for (int i = 0; i <= 180; i+=10)
-		{
-			myServo1->writeServo(i);
-			myServo2->writeServo(i);
-			myServo3->writeServo(i);
-			myServo4->writeServo(i);
-			myServo5->writeServo(i);
-			myServo6->writeServo(i);
-			myServo7->writeServo(i);
-			myServo8->writeServo(i);
-			delay(20);
-		}
+#include "Emakefun_MotorDriver.h"
+Emakefun_MotorDriver mMotorDriver = Emakefun_MotorDriver(0x60);
 
-		for (int i = 180; i >= 0; i-=10)
-		{
-			myServo1->writeServo(i);
-			myServo2->writeServo(i);
-			myServo3->writeServo(i);
-			myServo4->writeServo(i);
-			myServo5->writeServo(i);
-			myServo6->writeServo(i);
-			myServo7->writeServo(i);
-			myServo8->writeServo(i);
-			delay(20);
-		}
+Emakefun_Servo *mServo1 = mMotorDriver.getServo(1);
+Emakefun_Servo *mServo2 = mMotorDriver.getServo(2);
+Emakefun_Servo *mServo3 = mMotorDriver.getServo(3);
+Emakefun_Servo *mServo4 = mMotorDriver.getServo(4);
+Emakefun_Servo *mServo5 = mMotorDriver.getServo(5);
+Emakefun_Servo *mServo6 = mMotorDriver.getServo(6);
+Emakefun_Servo *mServo7 = mMotorDriver.getServo(7);
+Emakefun_Servo *mServo8 = mMotorDriver.getServo(8);
+
+void setup()
+{
+    Serial.begin(9600);
+    mMotorDriver.begin(50);
+}
+
+void loop()
+{
+    mServo1->writeServo(0);
+    mServo2->writeServo(0);
+    mServo3->writeServo(0);
+    mServo4->writeServo(0);
+    mServo5->writeServo(0);
+    mServo6->writeServo(0);
+    mServo7->writeServo(0);
+    mServo8->writeServo(0);
+    delay(1000);
+    mServo1->writeServo(90);
+    mServo2->writeServo(90);
+    mServo3->writeServo(90);
+    mServo4->writeServo(90);
+    mServo5->writeServo(90);
+    mServo6->writeServo(90);
+    mServo7->writeServo(90);
+    mServo8->writeServo(90);
+    delay(1000);
+    mServo1->writeServo(180);
+    mServo2->writeServo(180);
+    mServo3->writeServo(180);
+    mServo4->writeServo(180);
+    mServo5->writeServo(180);
+    mServo6->writeServo(180);
+    mServo7->writeServo(180);
+    mServo8->writeServo(180);
+    delay(1000);
 }

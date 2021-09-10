@@ -1,5 +1,5 @@
-#include "pca9685.h"
-Pca9685 pwm = Pca9685(0x40);
+#include "Emakefun_MotorDriver.h"
+Emakefun_MotorDriver pwm = Emakefun_MotorDriver(0x60);
 
 void setup() {
   Serial.begin(9600);

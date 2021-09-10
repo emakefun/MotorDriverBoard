@@ -14,8 +14,8 @@
  All text above must be included in any redistribution.
  ******************************************************************/
 
-#ifndef _Emakefun_MotorShield_h_
-#define _Emakefun_MotorShield_h_
+#ifndef _Emakefun_MotorDriver_h_
+#define _Emakefun_MotorDriver_h_
 
 #include "Emakefun_MS_PWMServoDriver.h"
 #include <Wire.h>
@@ -44,33 +44,37 @@
 #define INTERLEAVE 3
 #define MICROSTEP 4
 
-class Emakefun_MotorShield;
+class Emakefun_MotorDriver;
 /** Object that controls and keeps state for a Servo */
 class Emakefun_Servo
 {
 public:
   Emakefun_Servo(void);
-  friend class Emakefun_MotorShield;
+  friend class Emakefun_MotorDriver;
   void setServoPulse(double pulse);
   void writeServo(uint8_t angle);
+  void writeServo(uint8_t angle, uint8_t speed);
   uint8_t readDegrees();
 private:
   uint8_t PWMpin;
   uint16_t PWMfreq;
-  Emakefun_MotorShield *MC;
+  Emakefun_MotorDriver *MC;
   uint8_t servonum, currentAngle;
 };
+
+
 /** Object that controls and keeps state for a single DC motor */
 class Emakefun_DCMotor {
 public:
   Emakefun_DCMotor(void);
-  friend class Emakefun_MotorShield; ///< Let MotorShield create DCMotors
+  friend class Emakefun_MotorDriver; ///< Let MotorShield create DCMotors
   void run(uint8_t);
   void setSpeed(uint8_t);
 
 private:
-  uint8_t PWMpin, IN1pin, IN2pin;
-  Emakefun_MotorShield *MC;
+  uint8_t IN1pin, IN2pin;
+  Emakefun_MotorDriver *MC;
+ // int DcSpeed;
   uint8_t motornum;
 };
 
@@ -84,16 +88,16 @@ public:
   uint8_t onestep(uint8_t dir, uint8_t style);
   void release(void);
 
-  friend class Emakefun_MotorShield; ///< Let MotorShield create StepperMotors
+  friend class Emakefun_MotorDriver; ///< Let MotorShield create StepperMotors
 
 private:
   uint32_t usperstep;
 
-  uint8_t PWMApin, AIN1pin, AIN2pin;
-  uint8_t PWMBpin, BIN1pin, BIN2pin;
+  uint8_t AIN1pin, AIN2pin;
+  uint8_t BIN1pin, BIN2pin;
   uint16_t revsteps; // # steps per revolution
   uint8_t currentstep;
-  Emakefun_MotorShield *MC;
+  Emakefun_MotorDriver *MC;
   uint8_t steppernum;
 };
 
@@ -102,49 +106,52 @@ typedef void (*FuncPtr)(void);
 class Emakefun_EncoderMotor {
  public:
   Emakefun_EncoderMotor(void);
-  friend class Emakefun_MotorShield;
+  friend class Emakefun_MotorDriver;
   void run(uint8_t);
   void setSpeed(uint8_t);
   //void release(void);
   void init(FuncPtr encoder_fun);
   void EncoderCallback1(void);
   void EncoderCallback2(void);
-  static FuncPtr CallBack[2];
+  void EncoderCallback3(void);
+  void EncoderCallback4(void);
+  static FuncPtr CallBack[4];
  private:
-  uint8_t PWMpin, IN1pin, IN2pin;
+  uint8_t IN1pin, IN2pin;
   uint8_t ENCODER1pin, ENCODER2pin;
   uint8_t pluse;
-  int DcSpeed;
-  Emakefun_MotorShield *MC;
+
+  Emakefun_MotorDriver *MC;
   uint8_t encodernum;
 };
 
 /** Object that controls and keeps state for the whole motor shield.
     Use it to create DC and Stepper motor objects! */
-class Emakefun_MotorShield {
+class Emakefun_MotorDriver {
 public:
-  Emakefun_MotorShield(uint8_t addr = 0x60);
+  Emakefun_MotorDriver(uint8_t addr = 0x60);
 
   void begin(uint16_t freq = 1600, TwoWire *theWire = NULL);
   Emakefun_DCMotor *getMotor(uint8_t n);
-  Emakefun_StepperMotor *getStepper(uint16_t steps, uint8_t n);
+  Emakefun_StepperMotor *getStepper(uint8_t n, uint16_t steps);
   Emakefun_EncoderMotor *getEncoderMotor(uint8_t num);
   Emakefun_Servo *getServo(uint8_t n);
-  friend class Emakefun_DCMotor; ///< Let DCMotors control the Shield
+  friend class Emakefun_DCMotor;  //< Let DCMotors control the Shield
 
   void setPWM(uint8_t pin, uint16_t val);
   void setPin(uint8_t pin, boolean val);
+  int DcSpeed;
 
 private:
   TwoWire *_i2c;
   uint8_t _addr;
   uint16_t _freq;
+
   Emakefun_Servo servos[8];
   Emakefun_DCMotor dcmotors[4];
   Emakefun_StepperMotor steppers[2];
-  Emakefun_EncoderMotor encoder[2];
+  Emakefun_EncoderMotor encoder[4];
   Emakefun_MS_PWMServoDriver _pwm;
-  
 };
 
 #endif
