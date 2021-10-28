@@ -133,7 +133,7 @@ public:
 
   void begin(uint16_t freq = 1600, TwoWire *theWire = NULL);
   Emakefun_DCMotor *getMotor(uint8_t n);
-  Emakefun_StepperMotor *getStepper(uint8_t n, uint16_t steps);
+  Emakefun_StepperMotor *getStepper(uint16_t steps, uint8_t num);
   Emakefun_EncoderMotor *getEncoderMotor(uint8_t num);
   Emakefun_Servo *getServo(uint8_t n);
   friend class Emakefun_DCMotor;  //< Let DCMotors control the Shield

@@ -420,32 +420,6 @@ Emakefun_StepperMotor::Emakefun_StepperMotor(void) {
   revsteps = steppernum = currentstep = 0;
 }
 
-Emakefun_StepperMotor *Emakefun_MotorDriver::getStepper(uint8_t num, uint16_t steps) {
-  if (num > 2) return NULL;
-
-  num--;
-
-  if (steppers[num].steppernum == 0) {
-    // not init'd yet!
-    steppers[num].steppernum = num;
-    steppers[num].revsteps = steps;  // steps：旋转一圈所需的步数
-    steppers[num].MC = this;
-    uint8_t ain1, ain2, bin1, bin2;
-    if (num == 0) {
-        ain1 = 8; ain2 = 10;
-        bin1 = 13; bin2 = 11;
-    } else if (num == 1) {
-        ain1 = 2; ain2 = 4;
-        bin1 = 7; bin2 = 5;
-    }
-    steppers[num].AIN1pin = ain1;
-    steppers[num].AIN2pin = ain2;
-    steppers[num].BIN1pin = bin1;
-    steppers[num].BIN2pin = bin2;
-  }
-  return &steppers[num];
-}
-
 /**************************************************************************/
 /*!
     @brief  Set the delay for the Stepper Motor speed in RPM
@@ -636,25 +610,26 @@ uint8_t Emakefun_StepperMotor::onestep(uint8_t dir, uint8_t style) {
   Serial.print("Latch: 0x"); Serial.println(latch_state, HEX);
 #endif
 
+    
     if (latch_state & 0x1) {
-      MC->setPin(AIN2pin, LOW);
+      MC->setPWM(AIN2pin, 4096);
     } else {
-      MC->setPWM(AIN2pin, ocra * 16);
+      MC->setPin(AIN2pin, LOW);
     }
     if (latch_state & 0x2) {
-      MC->setPin(BIN1pin, LOW);
+      MC->setPWM(BIN1pin, 4096);
     } else {
-      MC->setPWM(BIN1pin, ocrb * 16);
+      MC->setPin(BIN1pin, LOW);
     }
     if (latch_state & 0x4) {
-      MC->setPin(AIN1pin, LOW);
+      MC->setPWM(AIN1pin, 4096);
     } else {
-      MC->setPWM(AIN1pin, ocra * 16);
+      MC->setPin(AIN1pin, LOW);
     }
     if (latch_state & 0x8) {
-      MC->setPin(BIN2pin, LOW);
+      MC->setPWM(BIN2pin, 4096);
     } else {
-      MC->setPWM(BIN2pin, ocrb * 16);
+      MC->setPin(BIN2pin, LOW);
     }
   return currentstep;
 }
