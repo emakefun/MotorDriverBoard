@@ -135,7 +135,7 @@ public:
   Emakefun_DCMotor *getMotor(uint8_t n);
   Emakefun_StepperMotor *getStepper(uint8_t num, uint16_t steps);
   Emakefun_EncoderMotor *getEncoderMotor(uint8_t num);
-  Emakefun_Servo *getServo(uint8_t n);
+  Emakefun_Servo *getServo(uint8_t num);
   friend class Emakefun_DCMotor;  //< Let DCMotors control the Shield
 
   void setPWM(uint8_t pin, uint16_t val);

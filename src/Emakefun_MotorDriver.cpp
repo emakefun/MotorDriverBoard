@@ -182,6 +182,39 @@ Emakefun_StepperMotor *Emakefun_MotorDriver::getStepper(uint8_t num, uint16_t st
   return &steppers[num];
 }
 
+Emakefun_Servo *Emakefun_MotorDriver::getServo(uint8_t num) {
+  if (num > 8) return NULL;
+
+  num--;
+
+  if (servos[num].servonum == 0) {
+    // not init'd yet!
+    servos[num].servonum = num;
+    servos[num].MC = this;
+    uint8_t pwm;
+    if (num == 0) {
+      pwm = 0;
+    } else if (num == 1) {
+      pwm = 1;
+    } else if (num == 2) {
+      pwm = 14;
+    } else if (num == 3) {
+      pwm = 15;
+    } else if (num == 4) {
+      pwm = 9;
+    } else if (num == 5) {
+      pwm = 12;
+    } else if (num == 6) {
+      pwm = 3;
+    } else if (num == 7) {
+      pwm = 6;
+    }
+      servos[num].PWMpin = pwm;
+    }
+  }
+  return &servos[num];
+}
+
 /******************************************
                SERVOS
 ******************************************/
