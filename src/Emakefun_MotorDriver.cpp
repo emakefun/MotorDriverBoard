@@ -156,7 +156,7 @@ Emakefun_DCMotor *Emakefun_MotorDriver::getMotor(uint8_t num) {
    Emakefun_StepperMotor
 */
 /**************************************************************************/
-Emakefun_StepperMotor *Emakefun_MotorDriver::getStepper(uint16_t steps, uint8_t num) {
+Emakefun_StepperMotor *Emakefun_MotorDriver::getStepper(uint8_t num, uint16_t steps) {
   if (num > 2) return NULL;
 
   num--;
