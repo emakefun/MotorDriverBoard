@@ -211,7 +211,6 @@ Emakefun_Servo *Emakefun_MotorDriver::getServo(uint8_t num) {
     }
       servos[num].PWMpin = pwm;
     }
-  }
   return &servos[num];
 }
 
