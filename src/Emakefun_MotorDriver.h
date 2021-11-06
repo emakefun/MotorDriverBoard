@@ -44,6 +44,15 @@
 #define INTERLEAVE 3
 #define MICROSTEP 4
 
+#define S1 0
+#define S2 1
+#define S3 14
+#define S4 15
+#define S5 9
+#define S6 12
+#define S7 3
+#define S8 6
+
 class Emakefun_MotorDriver;
 /** Object that controls and keeps state for a Servo */
 class Emakefun_Servo
