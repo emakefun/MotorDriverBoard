@@ -1,4 +1,3 @@
-
 /******************************************************************
  This is the library for the Emakefun Motor Shield V2 for Arduino.
  It supports DC motors & Stepper motors with microstepping as well
@@ -147,8 +146,7 @@ public:
   Emakefun_EncoderMotor *getEncoderMotor(uint8_t num);
   Emakefun_Servo *getServo(uint8_t num);
   friend class Emakefun_DCMotor;  //< Let DCMotors control the Shield
-  friend class Emakefun_EncoderMotor;
-  
+
   void setPWM(uint8_t pin, uint16_t val);
   void setPin(uint8_t pin, boolean val);
   int DcSpeed;

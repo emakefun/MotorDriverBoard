@@ -8,8 +8,8 @@ void setup() {
 }
 
 void loop() {
-  gpio.setPin(1, HIGH);
+  gpio.setPin(S1, HIGH);
   delay(1000);
-  gpio.setPin(1, LOW);
+  gpio.setPin(S1, LOW);
   delay(1000);
 }

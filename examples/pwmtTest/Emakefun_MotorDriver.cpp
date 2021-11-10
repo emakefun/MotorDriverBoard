@@ -391,7 +391,7 @@ void Emakefun_EncoderMotor::init(FuncPtr encoder_fun) {
 }
 
 Emakefun_EncoderMotor *Emakefun_MotorDriver::getEncoderMotor(uint8_t num) {
-  if (num > 4) return NULL;
+  if (num > 2) return NULL;
   num--;
   if (encoder[num].encodernum == 0) {
     // not init'd yet!
@@ -399,15 +399,26 @@ Emakefun_EncoderMotor *Emakefun_MotorDriver::getEncoderMotor(uint8_t num) {
     encoder[num].MC = this;
 
     uint8_t in1, in2, encoder1pin , encoder2pin;
+//    if (num == 0) {
+//     in1 = 8; in2 = 10; encoder1pin = 3; encoder2pin = 2;
+//    } else if (num == 1) {
+//      in1 = 11; in2 = 13; encoder1pin = 7; encoder2pin = 4;
+//    }else if (num == 2) {
+//      in1 = 4; in2 = 2; encoder1pin = 6; encoder2pin = 5;
+//    }else if (num == 3) {
+//      in1 = 5; in2 = 7; encoder1pin = 10; encoder2pin = 9;
+//    }
+
     if (num == 0) {
-     in1 = 8; in2 = 10; encoder1pin = 3; encoder2pin = 2;
+     in1 = 4; in2 = 2; encoder1pin = 6; encoder2pin = 5;
     } else if (num == 1) {
-      in1 = 11; in2 = 13; encoder1pin = 7; encoder2pin = 4;
+      in1 = 5; in2 = 7; encoder1pin = 7; encoder2pin = 4;
     }else if (num == 2) {
-      in1 = 4; in2 = 2; encoder1pin = 6; encoder2pin = 5;
+      in1 = 8; in2 = 10; encoder1pin = 3; encoder2pin = 2;
     }else if (num == 3) {
-      in1 = 5; in2 = 7; encoder1pin = 10; encoder2pin = 9;
-    }    
+      in1 = 11; in2 = 13; encoder1pin = 7; encoder2pin = 4;
+    }
+    
     encoder[num].IN1pin = in1;
     encoder[num].IN2pin = in2;
     encoder[num].ENCODER1pin = encoder1pin;

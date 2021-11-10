@@ -15,7 +15,7 @@ static void encoder1(void)
  // Serial.println(Encoder1Pulse);
 }
 
- void encoder2(void)
+static void encoder2(void)
 {
 //  Encoder2Pulse++;
 //  Serial.print("Encoder2Pulse");
@@ -34,9 +34,9 @@ void setup()
 
 void loop()
 {
-  EncodeMotor_1->setSpeed(10);
-  EncodeMotor_2->setSpeed(1);
+  EncodeMotor_1->setSpeed(100);
+  EncodeMotor_2->setSpeed(100);
   EncodeMotor_1->run(BACKWARD);
   EncodeMotor_2->run(BACKWARD);
-  while(1);
+//  while(1);
 }
