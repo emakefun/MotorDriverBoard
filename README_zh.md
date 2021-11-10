@@ -5,7 +5,7 @@ MotorDriverBoard是由 [深圳市易创空间科技有限公司](www.emakefun.co
 
 MotorDrvierBoard for Arduino  UNO(Arduino Mega2560) 
 
-![MotorDriverBoard_0](./doc/picture/MotorDriverBoard_show0.jpg)
+![MotorDriverBoard_0](./doc/picture/ZH/MotorDriverBoard_show0.jpg)
 
 ## 特点
 - 支持4路直流电机，最大驱动电流3A
@@ -20,32 +20,32 @@ MotorDrvierBoard for Arduino  UNO(Arduino Mega2560)
 - 舵机电源可切换到外部供电
 - 软件支持Arduino IDE，Mixly，MagicBlock(Scratch3.0)
 
-![MotorDriverBoard_1](./doc/picture/MotorDriverBoard_show1.png)
+![MotorDriverBoard_1](./doc/picture/ZH/MotorDriverBoard_show1.png)
 
 ## 硬件功能介绍
 ### 正面
-![hardware_introduction](./doc/picture/hardware_introduction.jpg)
+![hardware_introduction](./doc/picture/ZH/hardwareIntroduction.png)
 
 ### 供电说明
 - DC头供电
 
-![MotorDriverBoard_dc_power_supply](./doc/picture/dc_power_supply.png)
+![MotorDriverBoard_dc_power_supply](./doc/picture/ZH/dc_power_supply.png)
 
 - 接线柱供电
 
-![MotorDriverBoard_terminal_power_supply](./doc/picture/terminal_power_supply.png)
+![MotorDriverBoard_terminal_power_supply](./doc/picture/ZH/terminal_power_supply.png)
 
 - 舵机采用驱动板载DC-DC电源供电
 
-![MotorDriverBoard_terminal_power_supply](./doc/picture/dc_dc_servo.png) 
-![MotorDriverBoard_terminal_power_supply](./doc/picture/back.png)
+![MotorDriverBoard_terminal_power_supply](./doc/picture/ZH/dc_dc_servo.png) 
+![MotorDriverBoard_terminal_power_supply](./doc/picture/ZH/back.png)
 
 
 
 
 - 舵机采用外部供电
 
-![MotorDriverBoard_terminal_power_supply](./doc/picture/terminal_power_servo.png)
+![MotorDriverBoard_terminal_power_supply](./doc/picture/ZH/terminal_power_servo.png)
 
 ## 驱动库使用
 
@@ -76,7 +76,7 @@ DCMotor_1->run(FORWARD);
 控制电机运行状态（FORWARD(前)、BACKWARD(后)、BRAKE(停止)）
 ```
 
-**接线图**![MotorDriverBoard_dc](./doc/picture/dc.png)
+**接线图**![MotorDriverBoard_dc](./doc/picture/ZH/dc.png)
 
 [**servo**](examples/servo/servo.ino)八路舵机测试程序
 
@@ -85,9 +85,9 @@ mMotorDriver.begin(50); 		初始化io口的输出频率为50Hz
 mServo1->writeServo(0); 		设置舵机角度 0~180
 ```
 
-**接线图**![MotorDriverBoard_servo](./doc/picture/servo.png)
+**接线图**![MotorDriverBoard_servo](./doc/picture/ZH/servo.png)
 
-**接线图**![MotorDriverBoard_servo](./doc/picture/servo.png)
+**接线图**![MotorDriverBoard_servo](./doc/picture/ZH/servo.png)
 
 [**stepper**](examples/stepper/stepper.ino) 步进电机测试程序
 
@@ -103,7 +103,7 @@ StepperMotor_1->step(200, FORWARD, DOUBLE); //驱动步进电机按 DOUBLE(全�
   步进电机的驱动方式 全步DOUBLE、单步SINGLE、1/2步进INTERLEAVE、1/16步进MICROSTEP这四种驱动方式（步进电机的驱动原理请查阅相关资料）。建议用1/16步进的模式。
 ```
 
-**接线图**![MotorDriverBoard_stepper](./doc/picture/stepper.png)
+**接线图**![MotorDriverBoard_stepper](./doc/picture/ZH/stepper.png)
 
 [**encoder**](examples/encoder/encoder.ino)4路直流电机测试程序
 
@@ -142,7 +142,7 @@ MsTimer2::set(500, EncoderSpeed);  	定时器2定时获取编码电机速度
 MsTimer2::start(); 					启动定时器2
 ```
 
-![pid](./doc/picture/pid.png)
+![pid](./doc/picture/ZH/pid.png)
 
 **接线图**
 
