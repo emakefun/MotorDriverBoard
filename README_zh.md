@@ -28,12 +28,15 @@ MotorDrvierBoard for Arduino  UNO(Arduino Mega2560)
 
 ### 供电说明
 - DC头供电
+
 ![MotorDriverBoard_dc_power_supply](./doc/picture/dc_power_supply.png)
 
 - 接线柱供电
+
 ![MotorDriverBoard_terminal_power_supply](./doc/picture/terminal_power_supply.png)
-  
+
 - 舵机采用驱动板载DC-DC电源供电
+
 ![MotorDriverBoard_terminal_power_supply](./doc/picture/dc_dc_servo.png) 
 ![MotorDriverBoard_terminal_power_supply](./doc/picture/back.png)
 
@@ -41,6 +44,7 @@ MotorDrvierBoard for Arduino  UNO(Arduino Mega2560)
 
 
 - 舵机采用外部供电
+
 ![MotorDriverBoard_terminal_power_supply](./doc/picture/terminal_power_servo.png)
 
 ## 驱动库使用
@@ -144,11 +148,11 @@ MsTimer2::start(); 					启动定时器2
 
 ## 综合应用
 
-[PS2控制四驱小车](examples/ps2_control_car/ps2_control_car.ino)
+[PS2控制四驱小车](examples/ps2ControlCar/ps2ControlCar.ino)
 
-[PS2控制四驱麦克纳姆轮小车](examples/ps2_control_mecanum_wheel/ps2_control_mecanum_wheel.ino)
+[PS2控制四驱麦克纳姆轮小车](examples/ps2ControlMecanumWheel/ps2ControlMecanumWheel.ino)
 
-[PS2控制四驱小车加机械臂](examples/ps2_control_car_and_robotic_arm/ps2_control_car_and_robotic_arm.ino)
+[PS2控制四驱小车加机械臂](examples/ps2ControlCarAndRoboticArm/ps2ControlCarAndRoboticArm.ino)
 
 [蓝牙（WIFI）控制四驱小车](examples/ble/ble.ino)
 
