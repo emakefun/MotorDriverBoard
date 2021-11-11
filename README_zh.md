@@ -55,9 +55,9 @@ MotorDrvierBoard for Arduino  UNO(Arduino Mega2560)
 [**gpiotest**](examples/gpiotest/gpiotest.ino) 控制PCA9685输出口当作普通IO口输出高低电平
 
 ```c++
-gpio.begin(1000);  		初始化io口的输出频率为1KHz
-gpio.setPin(S1, HIGH);  引脚S1(S1~S8)输出高电平
-gpio.setPin(S1, LOW);  	引脚S1(S1~S8)输出低电平
+gpio.begin(1000);  		/*初始化io口的输出频率为1KHz*/
+gpio.setPin(S1, HIGH);  /*引脚S1(S1~S8)输出高电平*/
+gpio.setPin(S1, LOW);  	/*引脚S1(S1~S8)输出低电平*/
 ```
 
   
@@ -65,15 +65,15 @@ gpio.setPin(S1, LOW);  	引脚S1(S1~S8)输出低电平
 [**pwmtest**](examples/pwmtest/pwmtest.ino) 这个示例程序为控制PCA9685输出口输出PWM波形
 
 ```c++
-pwm.begin(1500);  			初始化io口的输出频率为1500Hz
-pwm.setPin(S1, 1024); 		引脚1输出占空比为 1024/4096 的PWM波（0~4096）
+pwm.begin(1500);  			/*初始化io口的输出频率为1500Hz*/
+pwm.setPin(S1, 1024); 		/*引脚1输出占空比为 1024/4096 的PWM波（0~4096）*/
 
-[dc](examples/dc/dc.ino)	4路直流电机测试程序
+[dc](examples/dc/dc.ino)	/*4路直流电机测试程序*/
 
-mMotor.begin(50); 			初始化io口的输出频率为50Hz
-DCMotor_1->setSpeed(200); 	设置速度为200
+mMotor.begin(50); 			/*初始化io口的输出频率为50Hz*/
+DCMotor_1->setSpeed(200); 	/*设置速度为200*/
 DCMotor_1->run(FORWARD); 
-控制电机运行状态（FORWARD(前)、BACKWARD(后)、BRAKE(停止)）
+/*控制电机运行状态（FORWARD(前)、BACKWARD(后)、BRAKE(停止)）*/
 ```
 
 **接线图**![MotorDriverBoard_dc](./doc/picture/ZH/dc.png)
@@ -81,8 +81,8 @@ DCMotor_1->run(FORWARD);
 [**servo**](examples/servo/servo.ino)八路舵机测试程序
 
 ```c++
-mMotorDriver.begin(50); 		初始化io口的输出频率为50Hz
-mServo1->writeServo(0); 		设置舵机角度 0~180
+mMotorDriver.begin(50); 		/*初始化io口的输出频率为50Hz*/
+mServo1->writeServo(0); 		/*设置舵机角度 0~180*/
 ```
 
 **接线图**![MotorDriverBoard_servo](./doc/picture/ZH/servo.png)
@@ -92,15 +92,17 @@ mServo1->writeServo(0); 		设置舵机角度 0~180
 [**stepper**](examples/stepper/stepper.ino) 步进电机测试程序
 
 ```c++
-Emakefun_StepperMotor *StepperMotor_1 = mMotorDriver.getStepper(1, 200);  //初始化步进电机1，42步进电机走一步是1.8度，所以一圈的步数为200
+Emakefun_StepperMotor *StepperMotor_1 = mMotorDriver.getStepper(1, 200);  
+/*初始化步进电机1，42步进电机走一步是1.8度，所以一圈的步数为200*/
 
-mMotorDriver.begin(1526); //设置频率为最大 1526HZ
+mMotorDriver.begin(1526); 			/*设置频率为最大 1526HZ*/
 
-StepperMotor_1->setSpeed(400);  //设置步进电机每分钟转的圈数为400圈
+StepperMotor_1->setSpeed(400);  	/*设置步进电机每分钟转的圈数为400圈*/
 
-StepperMotor_1->step(200, FORWARD, DOUBLE); //驱动步进电机按 DOUBLE(全步)的方式，FORWARD（前进）200步。
+StepperMotor_1->step(200, FORWARD, DOUBLE); 
+/*驱动步进电机按 DOUBLE(全步)的方式，FORWARD（前进）200步。*/
 
-  步进电机的驱动方式 全步DOUBLE、单步SINGLE、1/2步进INTERLEAVE、1/16步进MICROSTEP这四种驱动方式（步进电机的驱动原理请查阅相关资料）。建议用1/16步进的模式。
+  /*步进电机的驱动方式 全步DOUBLE、单步SINGLE、1/2步进INTERLEAVE、1/16步进MICROSTEP这四种驱动方式（步进电机的驱动原理请查阅相关资料）。建议用1/16步进的模式。*/
 ```
 
 **接线图**![MotorDriverBoard_stepper](./doc/picture/ZH/stepper.png)
@@ -108,10 +110,10 @@ StepperMotor_1->step(200, FORWARD, DOUBLE); //驱动步进电机按 DOUBLE(全�
 [**encoder**](examples/encoder/encoder.ino)4路直流电机测试程序
 
 ```c++
-mMotorDriver.begin(); 				初始化io口的输出频率默认为最大
-EncodeMotor_1->setSpeed(100); 		设置速度为100
+mMotorDriver.begin(); 				/*初始化io口的输出频率默认为最大*/
+EncodeMotor_1->setSpeed(100); 		/*设置速度为100*/
 EncodeMotor_1->run(BACKWARD);
-控制电机运行状态（FORWARD(前)、BACKWARD(后)、BRAKE(停止)）
+/*控制电机运行状态（FORWARD(前)、BACKWARD(后)、BRAKE(停止)）*/
 ```
 
 使用PID控制编码电机速度
@@ -130,16 +132,16 @@ PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
 - REVERSE：方向参数，编码电机反转
 
 ```c++
-myPID.SetSampleTime(500); 			设置PID采样时间为 500ms
-myPID.SetMode(AUTOMATIC);  			设置PID模式为AUTOMATIC
+myPID.SetSampleTime(500); 			/*设置PID采样时间为 500ms*/
+myPID.SetMode(AUTOMATIC);  			/*设置PID模式为AUTOMATIC*/
 ```
 
 ```c++
-Emakefun_EncoderMotor *EncodeMotor_1 = mMotorDriver.getEncoderMotor(1); 获取编码电机1
-mMotorDriver.begin(); 				初始化io口的输出频率默认为最大
-EncodeMotor_1->init(encoder1); 		初始化encoder1为编码电机1的回调函数(计算编码盘的脉冲)
-MsTimer2::set(500, EncoderSpeed);  	定时器2定时获取编码电机速度
-MsTimer2::start(); 					启动定时器2
+Emakefun_EncoderMotor *EncodeMotor_1 = mMotorDriver.getEncoderMotor(1); /*获取编码电机1*/
+mMotorDriver.begin(); 				/*初始化io口的输出频率默认为最大*/
+EncodeMotor_1->init(encoder1); 		/*初始化encoder1为编码电机1的回调函数(计算编码盘的脉冲)*/
+MsTimer2::set(500, EncoderSpeed);  	/*定时器2定时获取编码电机速度*/
+MsTimer2::start(); 					/*启动定时器2*/
 ```
 
 ![pid](./doc/picture/ZH/pid.png)

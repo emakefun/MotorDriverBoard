@@ -54,6 +54,19 @@
 #define S7 3
 #define S8 6
 
+#define M1 1
+#define M2 2
+#define M3 3
+#define M4 4
+
+#define E1 1
+#define E2 2
+#define E3 3
+#define E4 4
+
+#define STE1 1
+#define STE2 2
+
 class Emakefun_MotorDriver;
 /** Object that controls and keeps state for a Servo */
 class Emakefun_Servo

@@ -1,85 +1,171 @@
-# MotorDrvierBoard V5.0
+# MotorDriverBoard
 [中文版](README_zh.md)
 
-[Emakefun](www.emakefun.com) MotorDrvierBoard  for Arduino Mega2560 (Arduino UNO)
-![image](https://github.com/emakefun/emakefun-docs/raw/master/docs/open_source_hardware/UNO_mega2560_pic/icon.png)
+MotorDriverBoard is a multi-function motor drive expansion board developed by [Shenzhen Emake Space Technology Co., Ltd.] (www.emakefun.com), specifically for Arduino Uno (compatible with Mega2560) robot, motor drive, and multi-channel steering gear control. This driver board adopts I2C mode control [PCA9685](./doc/pca9685.pdf) (16-channel PWM output chip). Therefore, there is no corresponding relationship between the drive board motor or steering gear and the arduino port. It is controlled by I2C extended PWM control. For details, please see[Schematic diagram of the driver board](./doc/MotorDriverBoard_V5.1.pdf).
 
-## Feature
+MotorDrvierBoard for Arduino  UNO(Arduino Mega2560) 
 
-- Drive 4 DC motors 
-- Drive 8 x Servos
-- Drive 2 Stepper motors 
-- On board buzzer
-- On board 2x RGB Neo Pixels
-- On board ir receiver
-- Extend I2C , 1 PS2X port ,1 Bluetooth / wifi module port,1 NRF24L01+ port
-- 1 Ultrasonal (RUS-04) module port 
-- Servo power can be switched to external power supply
-- Support Arduidno Mega2560 and Arduino UNO
+![MotorDriverBoard_0](./doc/picture/EN/MotorDriverBoard_show0.jpg)
 
-## Hardware Preview
+## Features
+- Support 4 DC motors with a maximum drive current of 3A
+- Support to drive 8 steering gears, with self-recovery fuses to prevent the steering gear from blocking
+- Support driving 2-way 4-wire stepper motors
+- Support 4 way encoding motor
+- Onboard passive buzzer
+- Onboard 1 RGB full-color light
+- Onboard infrared receiver
+- 1 i2c interface, 1 PS2X interface, 1 Uart (Bluetooth/wifi module) interface, 1 NRF24L01 module interface
+- 1 ultrasonic module interface
+- The steering gear power supply can be switched to external power supply
+- Software supports Arduino IDE, Mixly, MagicBlock(Scratch3.0)
+
+![MotorDriverBoard_1](./doc/picture/EN/MotorDriverBoard_show1.png)
+
+## Hardware function introduction
 ### Front
-![image](https://github.com/emakefun/emakefun-docs/raw/master/docs/open_source_hardware/UNO_mega2560_pic/MotorDriverBoard.png)
+![hardware_introduction](./doc/picture/EN/hardwareIntroduction.jpg)
 
-## Application scenario
+### Power supply instructions
+- powered by DC
 
-- PS2 control four-wheel drive car
-- PS2 control four-wheel drive Mecanum wheel
-- PS2 control four-wheel drive car plus robot arm
-- Bluetooth (WIFI) control four-wheel drive car
-- Bluetooth (WIFI) control four-wheel drive Mecanum wheel
-- Bluetooth (WIFI) control four-wheel drive car plus robotic arm
+![MotorDriverBoard_dc_power_supply](./doc/picture/EN/dc_power_supply.png)
 
-## Blocks Preview
-### MotorDriverBoard Scratch
-### mBlock3
-![image](https://github.com/emakefun/emakefun-docs/raw/master/docs/open_source_hardware/UNO_mega2560_pic/mBlock.png)
-#### mBlock5
-![image](https://github.com/emakefun/emakefun-docs/raw/master/docs/open_source_hardware/UNO_mega2560_pic/mBlock5.png)
+- Terminal power supply
+
+![MotorDriverBoard_terminal_power_supply](./doc/picture/EN/terminal_power_supply.png)
+
+- The steering gear is powered by the on-board DC-DC power supply
+
+![MotorDriverBoard_terminal_power_supply](./doc/picture/EN/dc_dc_servo.png) 
+![MotorDriverBoard_terminal_power_supply](./doc/picture/EN/back.png)
+
+
+
+
+- The steering gear adopts external power supply
+
+![MotorDriverBoard_terminal_power_supply](./doc/picture/EN/terminal_power_servo.png)
+
+## Driver library use
+
+
+
+## Basic sample program
+[**gpiotest**](examples/gpiotest/gpiotest.ino) Control the PCA9685 output port as a normal IO port to output high and low levels
+
+```c++
+gpio.begin(1000);  		/*Initialize the output frequency of the io port to 1KHz*/
+gpio.setPin(S1, HIGH);  /*Pin S1 (S1~S8) output high level*/
+gpio.setPin(S1, LOW);  	/*Pin S1(S1~S8) output low level*/
+```
+
+  
+
+[**pwmtest**](examples/pwmtest/pwmtest.ino) This sample program is to control PCA9685 output port to output PWM waveform
+
+```c++
+pwm.begin(1500);  			/*Initialize the output frequency of the io port to 1500Hz*/
+pwm.setPin(S1, 1024); 		/*Pin 1 outputs a PWM wave with a duty ratio of 1024/4096 (0~4096)*/
+
+[dc](examples/dc/dc.ino)	/*4 DC motor test program*/
+
+mMotor.begin(50); 			/*Initialize the output frequency of the io port to 50Hz*/
+DCMotor_1->setSpeed(200); 	/*Set the speed to 200*/
+DCMotor_1->run(FORWARD); 
+/*Control the running state of the motor (FORWARD (front), BACKWARD (rear), BRAKE (stop))*/
+```
+
+**Wiring diagram**![MotorDriverBoard_dc](./doc/picture/EN/dc.png)
+
+[**servo**](examples/servo/servo.ino)Eight-way steering gear test program
+
+```c++
+mMotorDriver.begin(50); 		/*Initialize the output frequency of the io port to 50Hz*/
+mServo1->writeServo(0); 		/*Set the servo angle 0~180*/
+```
+
+**Wiring diagram**![MotorDriverBoard_servo](./doc/picture/EN/servo.png)
+
+**Wiring diagram**![MotorDriverBoard_servo](./doc/picture/EN/servo.png)
+
+[**stepper**](examples/stepper/stepper.ino) Stepper motor test program
+
+```c++
+Emakefun_StepperMotor *StepperMotor_1 = mMotorDriver.getStepper(1, 200);  
+/*Initialize stepper motor 1, 42 stepper motor takes a step of 1.8 degrees, so the number of steps in a circle is 200*/
+
+mMotorDriver.begin(1526); 			/*Set the frequency to the maximum 1526HZ*/
+
+StepperMotor_1->setSpeed(400);  	/*Set the number of revolutions of the stepper motor to 400 revolutions per minute*/
+
+StepperMotor_1->step(200, FORWARD, DOUBLE); 
+/*Drive the stepper motor in DOUBLE (full step) mode, FORWARD (forward) 200 steps. */
+
+  /*Stepper motor drive modes: full-step DOUBLE, single-step SINGLE, 1/2 step INTERLEAVE, 1/16 step MICROSTEP these four drive modes (please refer to relevant information for the driving principle of stepping motor). It is recommended to use 1/16 step mode. */
+```
+
+**Wiring diagram**![MotorDriverBoard_stepper](./doc/picture/EN/stepper.png)
+
+[**encoder**](examples/encoder/encoder.ino)4-channel DC motor test program
+
+```c++
+mMotorDriver.begin(); 				/*Initialize the output frequency of the io port and default to the maximum*/
+EncodeMotor_1->setSpeed(100); 		/*Set the speed to 100*/
+EncodeMotor_1->run(BACKWARD);
+/*Control the running state of the motor (FORWARD (front), BACKWARD (rear), BRAKE (stop))*/
+```
+
+使用PID控制编码电机速度
+
+```c++
+PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
+```
+
+- Input: PID input (encoding motor speed)
+- Output: PID output (encoding motor speed)
+- Setpoint: the target value of PID
+- Kp: PID proportional coefficient
+- Ki: integral coefficient of PID
+- Kd: Differential coefficient of PID
+- DIRECT: direction parameter, the encoder motor rotates forward
+- REVERSE: direction parameter, the encoder motor reverses
+
+```c++
+myPID.SetSampleTime(500); 			/*Set the PID sampling time to 500ms*/
+myPID.SetMode(AUTOMATIC);  			/*Set PID mode to AUTOMATIC*/
+```
+
+```c++
+Emakefun_EncoderMotor *EncodeMotor_1 = mMotorDriver.getEncoderMotor(1); /*Get Encoder Motor 1*/
+mMotorDriver.begin(); 				/*Initialize the output frequency of the io port and default to the maximum*/
+EncodeMotor_1->init(encoder1); 		/*Initialize encoder1 as the callback function of encoder motor 1 (calculate the pulse of the encoder disk)*/
+MsTimer2::set(500, EncoderSpeed);  	/*Timer 2 obtains the encoder motor speed regularly*/
+MsTimer2::start(); 					/*Start timer 2*/
+```
+
+![pid](./doc/picture/EN/pid.png)
+
+**Wiring diagram**
+
+## Comprehensive application
+
+[PS2 control four-wheel drive car](examples/ps2ControlCar/ps2ControlCar.ino)
+
+[PS2 control four-wheel drive mecanum wheel trolley](examples/ps2ControlMecanumWheel/ps2ControlMecanumWheel.ino)
+
+[PS2 control four-wheel drive car plus robotic arm](examples/ps2ControlCarAndRoboticArm/ps2ControlCarAndRoboticArm.ino)
+
+[Bluetooth (WIFI) control four-wheel drive car](examples/ble/ble.ino)
+
+## Graphical programming block description
+
+### MotorDriverBoard Programming graphics block
+#### [mBlock5]()
+![image]()
 #### Mixly
-![image](https://github.com/emakefun/emakefun-docs/raw/master/docs/open_source_hardware/UNO_mega2560_pic/mixly.png)
-#### Scratch 3.0
-![image](https://github.com/emakefun/emakefun-docs/raw/master/docs/open_source_hardware/UNO_mega2560_pic/Scratch3.0.png)
+![image]()
+#### MagicBlock
+![image]()
 
-## Please Contact Us
 
-Technical support email: support@emakefun.com</br>
-Sales email: ken@keywish-robot.com</br>
-
-## MotorDrvierBoardV5.0 Data Download 
-
-[MotorDrvierBoard-5.0 Data download](https://codeload.github.com/emakefun/MotorDriverBoard/zip/MotorDrvierBoardV5.0)
-
-## Programming software download
-
-Download the Arduino IDE:
-* [Mac OS X 10.8 Mountain Lion or newer](https://downloads.arduino.cc/arduino-1.8.10-macosx.zip)</br>
-* [Windows Installer, for Windows XP and up ](https://downloads.arduino.cc/arduino-1.8.10-windows.exe)</br>
-* [Linux 32 bits](https://downloads.arduino.cc/arduino-1.8.10-linux32.tar.xz)</br> 
-* [Linux 64 bits](https://downloads.arduino.cc/arduino-1.8.10-linux64.tar.xz)</br> 
-* [Linux ARM 32 bits ](https://downloads.arduino.cc/arduino-1.8.10-linuxarm.tar.xz)</br> 
-* [Linux ARM 64 bits ](https://downloads.arduino.cc/arduino-1.8.10-linuxaarch64.tar.xz)</br> 
-
-Download the MagicBlock:
-* [Mac](http://www.emakefun.com/en/download)</br>
-* [Windows](http://www.emakefun.com/en/download)</br>
-
-Download the mBlock 5:
-* [Mac](https://dl.makeblock.com/mblock5/darwin/V5.1.0.pkg)</br>
-* [Windows](https://dl.makeblock.com/mblock5/win32/V5.1.0.exe)</br>
-* [Linux](https://dl.makeblock.com/mblock5/linux/mLink-1.2.0-amd64.deb)</br>
-
-Download the mBlock 3:
-* [Mac](https://dl.makeblock.com/mblock3/mBlock_mac_V3.4.12.zip)</br>
-* [Windows7+](https://dl.makeblock.com/mblock3/mBlock_win_V3.4.12.exe)</br>
-* [Windows XP](http://download.makeblock.com/mblock/v_3_4_2/mBlock_win_V3.4.2_beta2_20161111.exe)</br>
-* [Linux](https://dl.makeblock.com/mBlock4.0/mBlock_4.0.4_amd64.deb)</br>
-
-## APP download
-
-Android :[Keywish](https://codeload.github.com/keywish/KeywishBot/zip/master)</br>
-
-# Please Contact Us
-Technical support email: support@emakefun.com</br>
-Sales email: ken@emakefun.com</br>
-The latest information download address:https://github.com/emakefun/MotorDriverBoard   </br>
