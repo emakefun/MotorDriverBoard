@@ -1,4 +1,4 @@
-﻿#include "Emakefun_MotorDriver.h"
+#include "Emakefun_MotorDriver.h"
 
 Emakefun_MotorDriver mMotorDriver = Emakefun_MotorDriver(0x40);
 
