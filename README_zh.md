@@ -27,11 +27,13 @@ MotorDrvierBoard for Arduino  UNO(Arduino Mega2560)
 ![hardware_introduction](./doc/picture/ZH/hardwareIntroduction.png)
 
 ### 供电说明
-- DC头供电
+- 通过Uno的DC（6~12）头单一电源供电，舵机供电
+
+  **PS2控制6V以上的电机时，为了确保PS2不断连，建议使用航模电池或者大电流21700锂电池，两节18650供电有压力**
 
 ![MotorDriverBoard_dc_power_supply](./doc/picture/ZH/dc_power_supply.png)
 
-- 接线柱供电
+- 接线柱供电单一电源供电，需要焊接背面电阻位
 
 ![MotorDriverBoard_terminal_power_supply](./doc/picture/ZH/terminal_power_supply.png)
 
@@ -97,12 +99,12 @@ Emakefun_StepperMotor *StepperMotor_1 = mMotorDriver.getStepper(1, 200);
 
 mMotorDriver.begin(1526); 			/*设置频率为最大 1526HZ*/
 
-StepperMotor_1->setSpeed(400);  	/*设置步进电机每分钟转的圈数为400圈*/
+StepperMotor_1->setSpeed(400);  	/*设置步进电机每分钟转的圈数为400圈,速度越快力矩越小*/
 
 StepperMotor_1->step(200, FORWARD, DOUBLE); 
 /*驱动步进电机按 DOUBLE(全步)的方式，FORWARD（前进）200步。*/
 
-  /*步进电机的驱动方式 全步DOUBLE、单步SINGLE、1/2步进INTERLEAVE、1/16步进MICROSTEP这四种驱动方式（步进电机的驱动原理请查阅相关资料）。建议用1/16步进的模式。*/
+  /*步进电机的驱动方式 全步DOUBLE、单步SINGLE、1/2步进INTERLEAVE这三种驱动方式（步进电机的驱动原理请查阅相关资料）。*/
 ```
 
 **接线图**![MotorDriverBoard_stepper](./doc/picture/ZH/stepper.png)

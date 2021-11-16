@@ -171,8 +171,8 @@ Emakefun_StepperMotor *Emakefun_MotorDriver::getStepper(uint8_t num, uint16_t st
         ain1 = 8; ain2 = 10;
         bin1 = 13; bin2 = 11;
     } else if (num == 1) {
-        ain1 = 2; ain2 = 4;
-        bin1 = 7; bin2 = 5;
+        ain1 = 5; ain2 = 7;
+        bin1 = 2; bin2 = 4;
     }
     steppers[num].AIN1pin = ain1;
     steppers[num].AIN2pin = ain2;
@@ -525,6 +525,9 @@ void Emakefun_StepperMotor::step(uint16_t steps, uint8_t dir,  uint8_t style) {
    when microstepping
 */
 /**************************************************************************/
+uint8_t chang_state = 0xF;
+uint8_t chang_interleave_arr[8] = {4, 1, 8, 2, 1, 4, 2, 8};
+
 uint8_t Emakefun_StepperMotor::onestep(uint8_t dir, uint8_t style) {
   uint8_t a, b, c, d;
   uint8_t ocrb, ocra;
@@ -603,7 +606,7 @@ uint8_t Emakefun_StepperMotor::onestep(uint8_t dir, uint8_t style) {
 #endif
 
   // release all
-  uint8_t latch_state = 0; // all motor pins to 0
+  uint8_t latch_state = 0, stp = 0;; // all motor pins to 0
   //Serial.println(step, DEC);
   if (style == MICROSTEP) {
     if ((currentstep >= 0) && (currentstep < MICROSTEPS))
@@ -615,57 +618,96 @@ uint8_t Emakefun_StepperMotor::onestep(uint8_t dir, uint8_t style) {
     if ((currentstep >= MICROSTEPS * 3) && (currentstep < MICROSTEPS * 4))
       latch_state |= 0x09;
   } else {
-    switch (currentstep / (MICROSTEPS / 2)) {
+    stp = currentstep / (MICROSTEPS / 2);
+    switch (stp) {
       case 0:
         latch_state |= 0x1; // energize coil 1 only
+        chang_state = 0xc;
         break;
       case 1:
         latch_state |= 0x3; // energize coil 1+2
+        chang_state = 0x4;
         break;
       case 2:
         latch_state |= 0x2; // energize coil 2 only
+        chang_state = 0x08;
         break;
       case 3:
         latch_state |= 0x6; // energize coil 2+3
+        chang_state = 0x8;
         break;
       case 4:
         latch_state |= 0x4; // energize coil 3 only
+        chang_state = 0x03;
         break;
       case 5:
         latch_state |= 0xC; // energize coil 3+4
+        chang_state = 0x5;
         break;
       case 6:
         latch_state |= 0x8; // energize coil 4 only
+        chang_state = 0x06;
         break;
       case 7:
         latch_state |= 0x9; // energize coil 1+4
+        chang_state = 0xA;
         break;
+    }
+    if (style == INTERLEAVE) {
+        chang_state = chang_interleave_arr[stp];
     }
   }
 #ifdef MOTORDEBUG
+  Serial.print("chang_state: 0x"); Serial.println(chang_state, HEX);
   Serial.print("Latch: 0x"); Serial.println(latch_state, HEX);
 #endif
-
-    
-    if (latch_state & 0x1) {
-      MC->setPWM(AIN2pin, 4096);
-    } else {
-      MC->setPin(AIN2pin, LOW);
+ F1_LOOP:
+    if (chang_state&0x1) {
+        if (latch_state & 0x2) {
+          //Serial.println("AIN1 1");
+          MC->setPWM(AIN1pin, 4096);
+        } else {
+          //Serial.println("AIN1 0");
+          MC->setPin(AIN1pin, LOW);
+        }
     }
-    if (latch_state & 0x2) {
-      MC->setPWM(BIN1pin, 4096);
-    } else {
-      MC->setPin(BIN1pin, LOW);
+    if (chang_state&0x2) {
+        if (latch_state & 0x4) {
+          //Serial.println("BIN1 1");
+          MC->setPWM(BIN1pin, 4096);
+        } else {
+          Serial.println("BIN1 0");
+          //MC->setPin(BIN1pin, LOW);
+        }
     }
-    if (latch_state & 0x4) {
-      MC->setPWM(AIN1pin, 4096);
-    } else {
-      MC->setPin(AIN1pin, LOW);
+    if (chang_state&0x4) {
+        if (latch_state & 0x8) {
+          //Serial.println("AIN2 1");
+          MC->setPWM(AIN2pin, 4096);
+        } else {
+          //Serial.println("AIN2 0");
+          MC->setPin(AIN2pin, LOW);
+          if (style == DOUBLE) {
+            chang_state = 1;
+            goto F1_LOOP;
+          }
+        }
     }
-    if (latch_state & 0x8) {
-      MC->setPWM(BIN2pin, 4096);
-    } else {
-      MC->setPin(BIN2pin, LOW);
+    if (chang_state&0x8) {
+        if (latch_state & 0x1) {
+          //Serial.println("BIN2 1");
+          MC->setPWM(BIN2pin, 4096);
+        } else {
+          //Serial.println("BIN2 0");
+          MC->setPin(BIN2pin, LOW);
+          if (style == SINGLE) {
+            chang_state = 1;
+            goto F1_LOOP;
+          } else if (style == DOUBLE) {
+            chang_state = 2;
+            goto F1_LOOP;
+          }
+        }
     }
-  return currentstep;
+    return currentstep;
 }
