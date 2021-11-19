@@ -1,10 +1,10 @@
 #include "Emakefun_MotorDriver.h"
 
 Emakefun_MotorDriver mMotor = Emakefun_MotorDriver(0x60);
-Emakefun_DCMotor *DCMotor_1 = mMotor.getMotor(1);
-Emakefun_DCMotor *DCMotor_2 = mMotor.getMotor(2);
-Emakefun_DCMotor *DCMotor_3 = mMotor.getMotor(3);
-Emakefun_DCMotor *DCMotor_4 = mMotor.getMotor(4);
+Emakefun_DCMotor *DCMotor_1 = mMotor.getMotor(M1);
+Emakefun_DCMotor *DCMotor_2 = mMotor.getMotor(M2);
+Emakefun_DCMotor *DCMotor_3 = mMotor.getMotor(M3);
+Emakefun_DCMotor *DCMotor_4 = mMotor.getMotor(M4);
 
 void setup()
 {

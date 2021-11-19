@@ -64,8 +64,8 @@
 #define E3 3
 #define E4 4
 
-#define STE1 1
-#define STE2 2
+#define STEPPER1 1
+#define STEPPER1 2
 
 class Emakefun_MotorDriver;
 /** Object that controls and keeps state for a Servo */

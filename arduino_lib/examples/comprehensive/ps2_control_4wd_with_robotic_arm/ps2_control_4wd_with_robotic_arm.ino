@@ -231,9 +231,14 @@ uint16_t RightHart(void)
   }
 }
 
-void reconnect()
+void Ps2Scan(void)
 {
-  ps2x.reconfig_gamepad();
+  static char count = 0;
+  if (count++ > 20)
+  {
+    ps2x.reconfig_gamepad();
+    count = 0;
+  }
   ps2x.read_gamepad();
 }
 
@@ -246,14 +251,14 @@ void setup()
   ps2x.config_gamepad(PS2_CLK, PS2_CMD, PS2_SEL, PS2_DAT, pressures, rumble);
   SetServoBaseDegree(90);
   SetServoDegree(1, 90);
-  MsTimer2::set(500, reconnect);
+  MsTimer2::set(50, Ps2Scan);
   MsTimer2::start();
 }
 
 void HandlePS2(void)
 {
   int Ps2xRightAngle, Ps2xLeftAngle;
-  ps2x.read_gamepad(false, 0);
+  //ps2x.read_gamepad(false, 0);
   if (ps2x.ButtonDataByte()) {
     if (ps2x.Button(PSB_TRIANGLE)) {
       Serial.print("PS2X PSB_TRIANGLE:");

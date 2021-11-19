@@ -2,11 +2,6 @@
 #include "PS2X_lib.h"  //for v1.6
 #include "MsTimer2.h"
 
-#define M1 1
-#define M2 2
-#define M3 3
-#define M4 4
-
 #define PS2_DAT     12
 #define PS2_CMD     11
 #define PS2_SEL     10
@@ -23,15 +18,19 @@ Emakefun_DCMotor *LeftFoward, *RightFoward, *LeftBackward, *RightBackward;
 
 int Speed;
 
-void reconnect()
+void Ps2Scan(void)
 {
-  ps2x.reconfig_gamepad();
+  static char count = 0;
+  if (count++ > 20)
+  {
+    ps2x.reconfig_gamepad();
+    count = 0;
+  }
   ps2x.read_gamepad();
 }
 
-void moto_init(int leftward, int rightfoward, int leftbackward, int rightbackward)
+void MotorInit(int leftward, int rightfoward, int leftbackward, int rightbackward)
 {
-    
     LeftFoward = mMotor.getMotor(leftward);
     RightFoward = mMotor.getMotor(rightfoward);
     LeftBackward = mMotor.getMotor(leftbackward);
@@ -152,18 +151,16 @@ void TurnRightRotate(void)
 void setup()
 {
   Serial.begin(9600);
-  moto_init(M2, M1, M4, M3);
+  MotorInit(M2, M1, M4, M3);
   //setup pins and settings: GamePad(clock, command, attention, data, Pressures?, Rumble?) check for error
   ps2x.config_gamepad(PS2_CLK, PS2_CMD, PS2_SEL, PS2_DAT, pressures, rumble);
 
-  MsTimer2::set(500, reconnect);
+  MsTimer2::set(50, Ps2Scan);
   MsTimer2::start();
 }
 
 void loop()
 {
-  ps2x.read_gamepad(); //read controller and set large motor to spin at 'vibrate' speed
-  ps2x.read_gamepad();
   if (ps2x.ButtonDataByte()) {
     if (ps2x.Button(PSB_TRIANGLE)) {
       Serial.print("PS2X PSB_TRIANGLE:");

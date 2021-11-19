@@ -2,8 +2,8 @@
 
 Emakefun_MotorDriver mMotorDriver = Emakefun_MotorDriver(0x40);
 
-Emakefun_StepperMotor *StepperMotor_1 = mMotorDriver.getStepper(1, 200);
-Emakefun_StepperMotor *StepperMotor_2 = mMotorDriver.getStepper(2, 200);
+Emakefun_StepperMotor *StepperMotor_1 = mMotorDriver.getStepper(STEPPER1, 200);
+Emakefun_StepperMotor *StepperMotor_2 = mMotorDriver.getStepper(STEPPER2, 200);
 
 void setup()
 {

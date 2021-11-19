@@ -1,0 +1,40 @@
+#######################################
+# Classes, datatypes (KEYWORD1)
+#######################################
+
+Emakefun_MotorDriver	KEYWORD1
+Emakefun_DCMotor 	KEYWORD1
+Emakefun_EncoderMotor	KEYWORD1
+Emakefun_StepperMotor 	KEYWORD1
+Emakefun_Servo		KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+FORWARD	KEYWORD2
+BACKWARD	KEYWORD2
+BRAKE		KEYWORD2
+RELEASE		KEYWORD2
+begin	KEYWORD2
+getPWM	KEYWORD2
+setPWM	KEYWORD2
+setPin	KEYWORD2
+setServoPulse	KEYWORD2
+writeServo	KEYWORD2
+writeServo	KEYWORD2
+readDegrees	KEYWORD2
+run		KEYWORD2
+setSpeed		KEYWORD2
+step		KEYWORD2
+onestep		KEYWORD2
+release		KEYWORD2
+getMotor		KEYWORD2
+getStepper	KEYWORD2
+getEncoderMotor	KEYWORD2
+getServo		KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+FREQUENCY_OSCILLATOR  LITERAL1
