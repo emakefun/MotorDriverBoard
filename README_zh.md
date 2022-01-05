@@ -1,16 +1,18 @@
 
 
-# MotorDriverBoard
+# MotorDriverBoard V5.2
 
 [English](README.md) 中文版
 
-MotorDriverBoard是由 [深圳市易创空间科技有限公司](www.emakefun.com)，专门针对Arduino Uno(兼容Mega2560)机器人，电机驱动，多路舵机控制而研发的一款多功能电机驱动扩展板。本驱动板采用I2C方式控制[PCA9685](./doc/pca9685.pdf)(16路PWM输出芯片)。所以本驱动板电机或者舵机和arduino主板IO口不存在对应关系，是通过I2C扩展PWM控制，详情请见[驱动板原理图](./doc/MotorDriverBoard_V5.1.pdf)。
+MotorDriverBoard是由 [深圳市易创空间科技有限公司](www.emakefun.com)，专门针对Arduino Uno(兼容Mega2560)机器人，电机驱动，多路舵机控制而研发的一款多功能电机驱动扩展板。本驱动板采用I2C方式控制[PCA9685](./doc/pca9685.pdf)(16路PWM输出芯片)。所以本驱动板电机或者舵机和arduino主板IO口不存在对应关系，是通过I2C扩展PWM控制，详情请见[**驱动板原理图**](./doc/MotorDriverBoard_V5.1.pdf)。
 
-MotorDriverBoard for Arduino  Uno(Arduino Mega2560) 
+**MotorDriverBoard for Arduino  Uno(Arduino Mega2560) **
 
 ![MotorDriverBoard_0](./doc/picture/ZH/MotorDriverBoard_show0.jpg)
 
 ### 快速链接
+
+[**常见问题**](#FAQ)
 
 [arduino ide库文件下载]()
 
@@ -30,7 +32,6 @@ MotorDriverBoard for Arduino  Uno(Arduino Mega2560)
 - 支持4路编码电机
 - 板载无源蜂鸣器
 - 板载1个RGB全彩灯
-- 板载红外接收头
 - 1个 i2c接口 、1个PS2X接口、1个Uart(蓝牙/wifi模块)接口 、1个NRF24L01模块接口
 - 1个超声波模块接口
 - 舵机电源可切换到外部供电
@@ -43,25 +44,44 @@ MotorDriverBoard for Arduino  Uno(Arduino Mega2560)
 ![hardware_introduction](./doc/picture/ZH/hardwareIntroduction.png)
 
 ### 供电说明
-- 通过Uno的DC（6~12）头单一电源供电，舵机供电
 
-  **PS2控制9V以上的电机时，为了确保PS2不断连，建议使用航模电池或者大电流21700锂电池，两节18650供电有压力**
+由于本驱动板为了做到更加灵活，适应不同电机，舵机驱动要求，以及整个板子能够稳定运行
+
+我们设计了如下几种供电方案，**注意驱动板必须通过锂电池或者3A以上的UPS电源供电，不能只Uno主板usb供电或者干电池供电**
+
+
+
+#### 1、只通过Uno的DC（6~12V）头单一电源给Uno主板，驱动板，舵机同时供电。
+
+  应用场景:
+
+  a、**驱动9V以下得直流电机比如TT马达积木电机灯，外加sg90/mg90这种舵机**；
+
+  b、**PS2控制9V~12V的电机时，为了确保PS2不断连，建议使用航模电池或者大电流21700锂电池，两节18650供电不稳定**。
+
+  c、电源切换开关达到**IN(DC)**位置，跳线帽**短接5V位置**
 
 ![MotorDriverBoard_dc_power_supply](./doc/picture/ZH/dc_power_supply.png)
 
-- 接线柱供电单一电源供电，需要焊接背面电阻位
+#### 2、只通过接线柱供单一电源给驱动板，Uno主板和舵机供电。将驱动板的5V电源输出到Uno主板
+
+  适应场景
+
+  a、驱动4路12V以上的电机时比如370电机，520电机，此时舵机为sg90/mg90这种小功率舵机;
+
+  b、供电超过Uno DC头12V电压，所以我们需要用接线柱供电，供电范围6~25V;
+
+  c、电源切换开关打到**EX**，跳线帽短接到**5V位置**，需要短接背面**R24电阻位**。
 
 ![MotorDriverBoard_terminal_power_supply](./doc/picture/ZH/terminal_power_supply.png)
 
-- 舵机采用驱动板载DC-DC电源供电
+#### 3、Uno主板通过DC头供电，舵机通过接线柱独立供电
 
-![MotorDriverBoard_terminal_power_supply](./doc/picture/ZH/dc_dc_servo.png) 
-![MotorDriverBoard_terminal_power_supply](./doc/picture/ZH/back.png)
+  a、外部使用MG995/MG996/DS3235/DS3238等大力矩舵机时，数量超过2个时（需要根据实际情况测试），我们需要给舵机独立供电
 
+  b、舵机供电电压电流根据舵机参数提供
 
-
-
-- 舵机采用外部供电
+  c、电源切换开关达到**IN(DC)**位置，跳线帽**短接EX位置**
 
 ![MotorDriverBoard_terminal_power_supply](./doc/picture/ZH/terminal_power_servo.png)
 
@@ -266,11 +286,38 @@ MsTimer2::start(); 					/*启动定时器2*/
 ### MotorDriverBoard 编程图形块
 #### [mBlock5]()
 
-
-
 ![image]()
 #### 米思齐
 ![image]()
 #### MagicBlock
 ![image]()
 
+## FAQ
+####  Q：驱动板arduino IO对应关系?
+##### A ：本驱动板采用I2C方式控制[PCA9685](./doc/pca9685.pdf)(16路PWM输出芯片)。所以本驱动板电机或者舵机和arduino主板IO口不存在对应关系，是通过I2C扩展PWM控制
+
+####  Q：驱动板改如何接电?
+##### A ：请先判断手里是用什么电源，什么样的电机，还有舵机，然后根据实际情况接电
+
+####  Q：驱动板驱动不了电机?
+##### A ：请先判断驱动板是否有供电，并且开关有打开，只通过usb口供电是驱动不了电机的，另外主板还得烧录对应的驱动程序
+
+####  Q：PS2遥控不了驱动板?
+##### A ：在使用驱动板的时候，如果是新手用户，请一定要一步步来熟悉使用，不要一上来就全部功能一起使用，然后问的问题很大。针对这个问题需要做如下三个测试才行
+a、驱动板是否使用7V以上锂电池供电且正常，板子上灯是否亮
+b、下载直流电机驱动测试程序**确保要上传成功**，电机接线正确，来确定板子驱动正常
+c、测试PS2接收测试程序，来证明PS2遥控器是好的
+d、前面正确后下载PS2控制四驱小车程序，并按按键控制电机
+
+####  Q：驱动板是否有原理图?
+##### A ：有，点击这里[**驱动板原理图**](./doc/MotorDriverBoard_V5.1.pdf)。
+
+####  Q：如何分析并判断驱动板是否损坏?
+
+##### A ：先外观判断是否有芯片烧黑，冒烟，等情况。如果已经很熟练操作此板子，如果程序下载正确，供电也正确，板子就是驱动不了电机，那么有三种情况
+
+1、电源切换开关接触不良，用万用表点一下确定，检测是否有5V电源输出
+
+2、4个直流电机里面其中一部分转，一部分不转，有可能对应的驱动芯片烧坏
+
+3、四个电机，舵机都不转，使用I2C 扫描程序测试，看是否能扫描到PCA968A的I2C地址，如果扫描不到PCA8685损坏
