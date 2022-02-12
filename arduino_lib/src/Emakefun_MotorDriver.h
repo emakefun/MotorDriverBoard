@@ -23,8 +23,9 @@
 #include <inttypes.h>
 
 //#define MOTORDEBUG
+#define MOTOR_DRIVER_V5_2
 
-#define MICROSTEPS 16 // 8 or 16
+#define MICROSTEPS 8 // 8 or 16
 
 #define MOTOR1_A 2
 #define MOTOR1_B 3
@@ -65,7 +66,7 @@
 #define E4 4
 
 #define STEPPER1 1
-#define STEPPER1 2
+#define STEPPER2 2
 
 class Emakefun_MotorDriver;
 /** Object that controls and keeps state for a Servo */

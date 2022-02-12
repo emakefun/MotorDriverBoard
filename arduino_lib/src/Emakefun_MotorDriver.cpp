@@ -169,10 +169,20 @@ Emakefun_StepperMotor *Emakefun_MotorDriver::getStepper(uint8_t num, uint16_t st
     uint8_t ain1, ain2, bin1, bin2;
     if (num == 0) {
         ain1 = 8; ain2 = 10;
-        bin1 = 13; bin2 = 11;
+#ifdef MOTOR_DRIVER_V5_2
+        bin1 = 11; bin2 = 13;
+#else
+		bin1 = 13; bin2 = 11;
+#endif
+
     } else if (num == 1) {
         ain1 = 5; ain2 = 7;
-        bin1 = 2; bin2 = 4;
+#ifdef MOTOR_DRIVER_V5_2
+
+        bin1 = 4; bin2 = 2;
+#else
+		bin1 = 2; bin2 = 4;
+#endif
     }
     steppers[num].AIN1pin = ain1;
     steppers[num].AIN2pin = ain2;
@@ -651,8 +661,8 @@ uint8_t Emakefun_StepperMotor::onestep(uint8_t dir, uint8_t style) {
           //Serial.println("BIN1 1");
           MC->setPWM(BIN1pin, 4096);
         } else {
-          Serial.println("BIN1 0");
-          //MC->setPin(BIN1pin, LOW);
+          //Serial.println("BIN1 0");
+          MC->setPin(BIN1pin, LOW);
         }
     }
     if (chang_state&0x4) {

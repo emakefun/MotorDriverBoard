@@ -51,7 +51,7 @@ MotorDriverBoard是由 [深圳市易创空间科技有限公司](www.emakefun.co
 
 
 
-#### 1、只通过Uno的DC（6~12V）头单一电源给Uno主板，驱动板，舵机同时供电。
+#### 1、只通过Uno的DC（7~12V）头单一电源给Uno主板，驱动板，舵机同时供电。
 
   应用场景:
 
@@ -163,20 +163,29 @@ mServo1->writeServo(S1); 		/*设置舵机角度 0~180*/
 #### [**stepper**](./arduino_lib/examples/motor_test/stepper/stepper.ino) 步进电机测试程序
 
 ```c++
+Emakefun_MotorDriver mMotorDriver = Emakefun_MotorDriver(0x60);
 Emakefun_StepperMotor *StepperMotor_1 = mMotorDriver.getStepper(1, 200);  
 /*初始化步进电机1，42步进电机走一步是1.8度，所以一圈的步数为200*/
 
-mMotorDriver.begin(1526); 			/*设置频率为最大 1526HZ*/
+mMotorDriver.begin(1600); 			/*设置频率为最大 1600*/
 
-StepperMotor_1->setSpeed(400);  	/*设置步进电机每分钟转的圈数为400圈,速度越快力矩越小*/
+StepperMotor_1->setSpeed(400);  	/*设置步进电机每分钟转的圈数为400圈, 速度越快力矩越小，这个速度不能太低，否则会抖动严重*/
 
-StepperMotor_1->step(200, FORWARD, DOUBLE); 
+StepperMotor_1->step(200, FORWARD, SINGLE); 
 /*驱动步进电机按 DOUBLE(全步)的方式，FORWARD（前进）200步。*/
 
-  /*步进电机的驱动方式 全步DOUBLE、单步SINGLE、1/2步进INTERLEAVE这三种驱动方式（步进电机的驱动原理请查阅相关资料）。*/
+/*步进电机的驱动方式 全步DOUBLE、单步SINGLE、1/2步进INTERLEAVE这三种驱动方式（步进电机的驱动原理请查阅相关资料）*/
 ```
 
-**接线图**![MotorDriverBoard_stepper](./doc/picture/ZH/stepper.png)
+**接线图**
+
+**不同步进电机的参数接线不一定一样，请一定要先确定步进电机每根线的颜色和对应A+ A- B+ B-相位（或者是A B C D）关系**
+
+下图仅供接线参考
+
+![MotorDriverBoard_stepper](./doc/picture/ZH/stepper.png)
+
+
 
 #### [**encoder**](./arduino_lib/examples/motor_test/encoder/encoder.ino)四路编码电机测试程序
 

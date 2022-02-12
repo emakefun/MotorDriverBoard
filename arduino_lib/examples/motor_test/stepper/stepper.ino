@@ -1,6 +1,6 @@
 #include "Emakefun_MotorDriver.h"
 
-Emakefun_MotorDriver mMotorDriver = Emakefun_MotorDriver(0x40);
+Emakefun_MotorDriver mMotorDriver = Emakefun_MotorDriver(0x60);
 
 Emakefun_StepperMotor *StepperMotor_1 = mMotorDriver.getStepper(STEPPER1, 200);
 Emakefun_StepperMotor *StepperMotor_2 = mMotorDriver.getStepper(STEPPER2, 200);
@@ -8,7 +8,7 @@ Emakefun_StepperMotor *StepperMotor_2 = mMotorDriver.getStepper(STEPPER2, 200);
 void setup()
 {
     Serial.begin(9600);
-    mMotorDriver.begin(1526);
+    mMotorDriver.begin(1600);
     StepperMotor_1->setSpeed(400);
     StepperMotor_2->setSpeed(400);
 }
