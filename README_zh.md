@@ -6,7 +6,7 @@
 
 MotorDriverBoard是由 [深圳市易创空间科技有限公司](www.emakefun.com)，专门针对Arduino Uno(兼容Mega2560)机器人，电机驱动，多路舵机控制而研发的一款多功能电机驱动扩展板。本驱动板采用I2C方式控制[PCA9685](./doc/pca9685.pdf)(16路PWM输出芯片)。所以本驱动板电机或者舵机和arduino主板IO口不存在对应关系，是通过I2C扩展PWM控制，详情请见[**驱动板原理图**](./doc/MotorDriverBoard_V5.1.pdf)。
 
-**MotorDriverBoard for Arduino  Uno(Arduino Mega2560) **
+**MotorDriverBoard for Arduino  Uno(Arduino Mega2560)**
 
 ![MotorDriverBoard_0](./doc/picture/ZH/MotorDriverBoard_show0.jpg)
 
@@ -14,7 +14,7 @@ MotorDriverBoard是由 [深圳市易创空间科技有限公司](www.emakefun.co
 
 [**常见问题**](#FAQ)
 
-[arduino ide库文件下载]()
+[**arduino ide库文件下载**](https://github.com/emakefun/MotorDriverBoard/releases/download/v1.0/MotorDriverBoard.zip)
 
 [mixly库下载]()
 
@@ -32,10 +32,10 @@ MotorDriverBoard是由 [深圳市易创空间科技有限公司](www.emakefun.co
 - 支持4路编码电机
 - 板载无源蜂鸣器
 - 板载1个RGB全彩灯
-- 1个 i2c接口 、1个PS2X接口、1个Uart(蓝牙/wifi模块)接口 、1个NRF24L01模块接口
+- 1个 i2c接口 、1个PS2X接口、1个Uart(蓝牙/wifi模块)接口 、1个NRF24L01无线模块接口
 - 1个超声波模块接口
 - 舵机电源可切换到外部供电
-- 软件支持Arduino IDE，Mixly，MagicBlock(Scratch3.0)
+- 软件支持Arduino IDE，Mixly，Mind+，Mblock5，MagicBlock(基于Scratch3.0可定制)
 
 ![MotorDriverBoard_1](./doc/picture/ZH/MotorDriverBoard_show1.png)
 
@@ -45,9 +45,9 @@ MotorDriverBoard是由 [深圳市易创空间科技有限公司](www.emakefun.co
 
 ### 供电说明
 
-由于本驱动板为了做到更加灵活，适应不同电机，舵机驱动要求，以及整个板子能够稳定运行
+为了将本驱动板做到使用更加灵活，适应不同电机，舵机驱动要求，以及整个板子能够稳定运行
 
-我们设计了如下几种供电方案，**注意驱动板必须通过锂电池或者3A以上的UPS电源供电，不能只Uno主板usb供电或者干电池供电**
+我们设计了如下几种供电方案，**注意驱动板必须通过锂电池或者8.4V 3A以上的UPS电源供电，不能只Uno主板usb供电或者干电池供电**
 
 
 
@@ -95,6 +95,8 @@ MotorDriverBoard是由 [深圳市易创空间科技有限公司](www.emakefun.co
 [**gpio_test**](./arduino_lib/examples/base/gpio_test/gpio_test.ino) 控制PCA9685输出口当作普通IO口输出高低电平
 
 ```c++
+Emakefun_MotorDriver gpio = Emakefun_MotorDriver(0x60);
+
 gpio.begin(1000);  		/*初始化io口的输出频率为1KHz*/
 gpio.setPin(S1, HIGH);  /*引脚S1(S1~S8)输出高电平*/
 gpio.setPin(S1, LOW);  	/*引脚S1(S1~S8)输出低电平*/
@@ -105,15 +107,9 @@ gpio.setPin(S1, LOW);  	/*引脚S1(S1~S8)输出低电平*/
 [**pwm_test**](./arduino_lib/examples/base/pwm_test/pwm_test.ino) 这个示例程序为控制PCA9685输出口输出PWM波形
 
 ```c++
+Emakefun_MotorDriver pwm = Emakefun_MotorDriver(0x60);
 pwm.begin(1500);  			/*初始化io口的输出频率为1500Hz*/
 pwm.setPin(S1, 1024); 		/*引脚1输出占空比为 1024/4096 的PWM波（0~4096）*/
-
-[dc](examples/dc/dc.ino)	/*4路直流电机测试程序*/
-
-mMotor.begin(50); 			/*初始化io口的输出频率为50Hz*/
-DCMotor_1->setSpeed(200); 	/*设置速度为200*/
-DCMotor_1->run(FORWARD); 
-/*控制电机运行状态（FORWARD(前)、BACKWARD(后)、BRAKE(停止)）*/
 ```
 
 
@@ -132,17 +128,16 @@ PS2安装请勿接反，左边是正确安装，右边为PS2接收器接反
 Emakefun_MotorDriver mMotor = Emakefun_MotorDriver(0x60);
 Emakefun_DCMotor *DCMotor_1 = mMotor.getMotor(M1);
 
-
 void setup()
 {
     Serial.begin(9600);
-    mMotor.begin(50);
+    mMotor.begin(50);   /*初始化io口的输出频率为50Hz*/
 }
 
 void loop()
 {
   // 前进
-  DCMotor_1->setSpeed(200);  //速度0~255
+  DCMotor_1->setSpeed(200);  /*设置速度为200 范围0~255 */
   DCMotor_1->run(FORWARD);   // 总共FORWARD前进，BACKWARD后退，BRAKE刹车 RELEASE释放四个状态
 }
 ```
@@ -154,6 +149,8 @@ void loop()
 #### [**servo**](./arduino_lib/examples/motor_test/servo/servo.ino)八路舵机测试程序
 
 ```c++
+Emakefun_MotorDriver mMotorDriver = Emakefun_MotorDriver(0x60);
+Emakefun_Servo *mServo1 = mMotorDriver.getServo(1);
 mMotorDriver.begin(50); 		/*初始化io口的输出频率为50Hz*/
 mServo1->writeServo(S1); 		/*设置舵机角度 0~180*/
 ```
@@ -167,9 +164,9 @@ Emakefun_MotorDriver mMotorDriver = Emakefun_MotorDriver(0x60);
 Emakefun_StepperMotor *StepperMotor_1 = mMotorDriver.getStepper(1, 200);  
 /*初始化步进电机1，42步进电机走一步是1.8度，所以一圈的步数为200*/
 
-mMotorDriver.begin(1600); 			/*设置频率为最大 1600*/
+mMotorDriver.begin(1600); 		/*设置频率为最大 1600*/
 
-StepperMotor_1->setSpeed(400);  	/*设置步进电机每分钟转的圈数为400圈, 速度越快力矩越小，这个速度不能太低，否则会抖动严重*/
+StepperMotor_1->setSpeed(400);  /*设置步进电机每分钟转的圈数为400圈, 速度越快力矩越小，这个速度不能太低，否则会抖动严重*/
 
 StepperMotor_1->step(200, FORWARD, SINGLE); 
 /*驱动步进电机按 DOUBLE(全步)的方式，FORWARD（前进）200步。*/
@@ -250,7 +247,7 @@ MsTimer2::start(); 					/*启动定时器2*/
 
 **注意**
 
-由于我们测试使用的是8.4V锂电池，大部分电池电压在7~8V之间，我们实际测速只有100RPM，采样时间为100ms，那么计算出每个周采样周期的最大采样脉冲数为100x90x12x(0.1s)/60=180Pluse/samptime。被控制量的范围为0~255，得出采样比例系数为ratio = 255/180 = 1.5。这个比例参数是可以自己定义的，你们可以根据自己的习惯来定义，我这个测试程序为了方便理解，把目标值和PWM控制量0~255关联起来，即控制目标范围也为0~255。
+由于我们测试使用的是8.4V锂电池，大部分电池电压在7\~8V之间，我们实际测速只有100RPM，采样时间为100ms，那么计算出每个周采样周期的最大采样脉冲数为100x90x12x(0.1s)/60=180Pluse/samptime。被控制量的范围为0\~255，得出采样比例系数为ratio = 255/180 = 1.5。这个比例参数是可以自己定义的，你们可以根据自己的习惯来定义，我这个测试程序为了方便理解，把目标值和PWM控制量0\~255关联起来，即控制目标范围也为0\~255。
 
 **第一步：纯比例作用整定**
 
@@ -305,8 +302,8 @@ MsTimer2::start(); 					/*启动定时器2*/
 ####  Q：驱动板arduino IO对应关系?
 ##### A ：本驱动板采用I2C方式控制[PCA9685](./doc/pca9685.pdf)(16路PWM输出芯片)。所以本驱动板电机或者舵机和arduino主板IO口不存在对应关系，是通过I2C扩展PWM控制
 
-####  Q：驱动板改如何接电?
-##### A ：请先判断手里是用什么电源，什么样的电机，还有舵机，然后根据实际情况接电
+####  Q：驱动板该如何接电?
+##### A ：请先判断手里是用什么电源，驱动什么样的电机，需要多大电压和电流，还有舵机，然后根据实际情况采用对应的电池，不建议使用干电池供电
 
 ####  Q：驱动板驱动不了电机?
 ##### A ：请先判断驱动板是否有供电，并且开关有打开，只通过usb口供电是驱动不了电机的，另外主板还得烧录对应的驱动程序
