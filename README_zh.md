@@ -122,7 +122,7 @@ pwm mixly测试程序如下图:
 
 [pwm mixly测试程序下载](./example/mixly/pwm_test.zip)
 
-**[ps2_test](./arduino_lib/examples/base/ps2_test/ps2_test.ino)**PS2手柄测试程序
+[**ps2_test**](./arduino_lib/examples/base/ps2_test/ps2_test.ino)PS2手柄测试程序
 
 PS2手柄引脚说明：
 
@@ -337,8 +337,6 @@ MsTimer2::start(); 					/*启动定时器2*/
 ### MotorDriverBoard 编程图形块
 #### [mBlock5]()
 
-![image]()
-#### 米思齐
 ![image]()
 #### MagicBlock
 ![image]()
