@@ -70,7 +70,7 @@ Blockly.Arduino.md_stopDCmotor = function(){
 Blockly.Arduino.md_initENmotor = function(){
   var dropdown_ENPorts = this.getFieldValue('ENPorts');
   Blockly.Arduino.definitions_['object'+dropdown_ENPorts+''] = 'Emakefun_EncoderMotor *EncodeMotor_'+dropdown_ENPorts+' = mMotorDriver.getEncoderMotor(E'+dropdown_ENPorts+');\n'
-  Blockly.Arduino.definitions_['objectStaticFunc'] = 'static void encoder' + dropdown_ENPorts + '(void){\n  if(digitalRead(EncodeMotor_' + dropdown_ENPorts + '->ENCODER2pin) == LOW) {\n    EncodeMotor_' + dropdown_ENPorts + '->EncoderPulse++;\n  } else {\n    EncodeMotor_' + dropdown_ENPorts + '->EncoderPulse--;\n  }\n}\n';
+  Blockly.Arduino.definitions_['objectStaticFunc_' + dropdown_ENPorts] = 'static void encoder' + dropdown_ENPorts + '(void){\n  if(digitalRead(EncodeMotor_' + dropdown_ENPorts + '->ENCODER2pin) == LOW) {\n    EncodeMotor_' + dropdown_ENPorts + '->EncoderPulse++;\n  } else {\n    EncodeMotor_' + dropdown_ENPorts + '->EncoderPulse--;\n  }\n}\n';
   Blockly.Arduino.setups_['md_m4init'] = "mMotorDriver.begin();\n";
   var code = ''
  return code;

@@ -16,7 +16,7 @@ MotorDriverBoard是由 [深圳市易创空间科技有限公司](www.emakefun.co
 
 [**arduino ide库文件下载**](https://github.com/emakefun/MotorDriverBoard/releases/download/v1.0/MotorDriverBoard.zip)
 
-[mixly库下载](https://github.com/emakefun/MotorDriverBoard/releases/download/v1.0/MotorDriverBoard_Mixly.zip)
+[**mixly库下载**](https://github.com/emakefun/MotorDriverBoard/releases/download/v1.0/MotorDriverBoard_Mixly.zip)
 
 [mblock5库下载]()
 
@@ -102,7 +102,11 @@ gpio.setPin(S1, HIGH);  /*引脚S1(S1~S8)输出高电平*/
 gpio.setPin(S1, LOW);  	/*引脚S1(S1~S8)输出低电平*/
 ```
 
-  
+ gpio mixly测试程序如下图:
+
+![gpio_test](./doc/picture/ZH/gpio_test.png)
+
+[gpio mixly测试程序下载](./example/mixly/gpio_test.zip)
 
 [**pwm_test**](./arduino_lib/examples/base/pwm_test/pwm_test.ino) 这个示例程序为控制PCA9685输出口输出PWM波形
 
@@ -112,7 +116,11 @@ pwm.begin(1500);  			/*初始化io口的输出频率为1500Hz*/
 pwm.setPin(S1, 1024); 		/*引脚1输出占空比为 1024/4096 的PWM波（0~4096）*/
 ```
 
+pwm mixly测试程序如下图:
 
+![pwm_test](./doc/picture/ZH/pwm_test.png)
+
+[pwm mixly测试程序下载](./example/mixly/pwm_test.zip)
 
 **[ps2_test](./arduino_lib/examples/base/ps2_test/ps2_test.ino)**PS2手柄测试程序
 
@@ -128,6 +136,12 @@ PS2手柄引脚说明：
 PS2安装请勿接反，左边是正确安装，右边为PS2接收器接反
 
 ![Ps2](./doc/picture/ZH/Ps2.png)
+
+PS2 mixly测试程序如下图:
+
+![ps2_test](./doc/picture/ZH/ps2_test.png)
+
+[PS2 mixly测试程序下载](./example/mixly/ps2_test.zip)
 
 ## 电机测试示例
 
@@ -153,7 +167,11 @@ void loop()
 
 **接线图**![MotorDriverBoard_dc](./doc/picture/ZH/dc.png)
 
+直流电机mixly测试程序如下图:
 
+![dc_test](./doc/picture/ZH/dc_test.png)
+
+[直流电机mixly测试程序下载](./example/mixly/dc_test.zip)
 
 #### [**servo**](./arduino_lib/examples/motor_test/servo/servo.ino)八路舵机测试程序
 
@@ -165,6 +183,12 @@ mServo1->writeServo(S1); 		/*设置舵机角度 0~180*/
 ```
 
 **接线图**![MotorDriverBoard_servo](./doc/picture/ZH/servo.png)
+
+舵机mixly测试程序如下图:
+
+![servo_test](./doc/picture/ZH/servo_test.png)
+
+[舵机mixly测试程序下载](./example/mixly/servo_test.zip)
 
 #### [**stepper**](./arduino_lib/examples/motor_test/stepper/stepper.ino) 步进电机测试程序
 
@@ -178,7 +202,7 @@ mMotorDriver.begin(1600); 		/*设置频率为最大 1600*/
 StepperMotor_1->setSpeed(400);  /*设置步进电机每分钟转的圈数为400圈, 速度越快力矩越小，这个速度不能太低，否则会抖动严重*/
 
 StepperMotor_1->step(200, FORWARD, SINGLE); 
-/*驱动步进电机按 DOUBLE(全步)的方式，FORWARD（前进）200步。*/
+/*驱动步进电机按 SINGLE(单步)的方式，FORWARD（前进）200步。*/
 
 /*步进电机的驱动方式 全步DOUBLE、单步SINGLE、1/2步进INTERLEAVE这三种驱动方式（步进电机的驱动原理请查阅相关资料）*/
 ```
@@ -192,6 +216,12 @@ StepperMotor_1->step(200, FORWARD, SINGLE);
 ![MotorDriverBoard_stepper](./doc/picture/ZH/stepper.png)
 
 
+
+步进电机mixly测试程序如下图:
+
+![stepper_test](./doc/picture/ZH/stepper_test.png)
+
+[步进电机mixly测试程序下载](./example/mixly/stepper_test.zip)
 
 #### [**encoder**](./arduino_lib/examples/motor_test/encoder/encoder.ino)四路编码电机测试程序
 
@@ -283,6 +313,12 @@ MsTimer2::start(); 					/*启动定时器2*/
 编码电机我们使用的是6pin的GH1.25转PH2.0线材接线如下：
 
 ![encoder](./doc/picture/ZH/encoder.png)
+
+编码电机mixly测试程序如下图:
+
+![encoder_test](./doc/picture/ZH/encoder_test.png)
+
+[编码电机mixly测试程序下载](./example/mixly/encoder_test.zip)
 
 ## 综合应用
 
