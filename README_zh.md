@@ -313,16 +313,16 @@ MsTimer2::start(); 					/*启动定时器2*/
 | 9    | ![run_encoder](./doc/picture/ZH/mixly/run_encoder.png)       | 设置编码电机运动方向和速度，方向分为正/反转，速度范围为0-255 |
 | 10   | ![stop_encoder](./doc/picture/ZH/mixly/stop_encoder.png)     | 停止编码电机                                                 |
 | 11   | ![stepper_init](./doc/picture/ZH/mixly/stepper_init.png)     | `初始化步进电机`，不同的步进电机转一圈的步数是不同的，并设置每分钟需要转的圈数，即旋转速度 |
-| 12   | ![run_stepper](./doc/picture/ZH/mixly/run_stepper.png)       | 设置步进电机运动方向、驱动方式和运动步数；方向分为正、反转，驱动方式分为全步、半步和单步；运动步数即需要运动步数 |
+| 12   | <img src="./doc/picture/ZH/mixly/run_stepper.png" alt="run_stepper" style="zoom:200%;" /> | 设置步进电机运动方向、驱动方式和运动步数；方向分为正、反转，驱动方式分为全步、半步和单步；运动步数即需要运动步数 |
 | 13   | ![stop_stepper](E:\github\MotorDriverBoard\doc\picture\ZH\mixly\stop_stepper.png) | 停止步进电机                                                 |
 | 14   | ![servo_init](./doc/picture/ZH/mixly/servo_init.png)         | 初始化舵机                                                   |
 | 15   | ![run_servo](./doc/picture/ZH/mixly/run_servo.png)           | 设置选择的舵机的旋转角度和旋转的速度，速度范围为0-100        |
 
-**注:** PS2模块使用Mixly自带的模块。
+<font color="red" size="5">**注:**</font> PS2模块请使用Mixly自带的模块。
 
 #### mBlock5
 
-1.[mBlock5库下载](https://github.com/emakefun/MotorDriverBoard/releases/download/v1.0/MotorDriverBoard_Mblock5.zip)
+1.[mBlock5库和案例下载](https://github.com/emakefun/MotorDriverBoard/releases/download/v1.0/MotorDriverBoard_Mblock5.zip)
 
 2.积木描述
 
@@ -338,13 +338,13 @@ MsTimer2::start(); 					/*启动定时器2*/
 | 8    | ![init_encoder](./doc/picture/ZH/mblock/init_encoder.png)    | 初始化编码电机，编码电机有四个，分为E1\E2\E3\E4              |
 | 9    | ![run_encoder](./doc/picture/ZH/mblock/run_encoder.png)      | 设置编码电机运动方向和速度，方向分为正/反转，速度范围为0-255 |
 | 10   | ![stop_encoder](./doc/picture/ZH/mblock/stop_encoder.png)    | 停止编码电机                                                 |
-| 11   | ![stepper_init](./doc/picture/ZH/mblock/stepper_init.png)    | `初始化步进电机`，不同的步进电机转一圈的步数是不同的，并设置每分钟需要转的圈数，即旋转速度 |
+| 11   | <img src="./doc/picture/ZH/mblock/stepper_init.png" alt="stepper_init" style="zoom:200%;" /> | `初始化步进电机`，不同的步进电机转一圈的步数是不同的，并设置每分钟需要转的圈数，即旋转速度 |
 | 12   | ![run_stepper](./doc/picture/ZH/mblock/run_stepper.png)      | 设置步进电机运动方向、驱动方式和运动步数；方向分为正、反转，驱动方式分为全步、半步和单步；运动步数即需要运动步数 |
 | 13   | ![stop_stepper](E:\github\MotorDriverBoard\doc\picture\ZH\mblock\stop_stepper.png) | 停止步进电机                                                 |
 | 14   | ![servo_init](./doc/picture/ZH/mblock/servo_init.png)        | 初始化舵机                                                   |
 | 15   | ![run_servo](./doc/picture/ZH/mblock/run_servo.png)          | 设置选择的舵机的旋转角度和旋转的速度，速度范围为0-100        |
 
-**注:**PS2、RGB、蜂鸣器等模块可以去Mblock扩展库找对应的扩展，这里不做解释。
+<font color="red" size="5">**注:**</font> PS2、RGB、蜂鸣器等模块可以去Mblock扩展库找对应的扩展，这里不做解释。
 
 #### Mind+
 
