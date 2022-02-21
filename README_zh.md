@@ -18,7 +18,7 @@ MotorDriverBoard是由 [深圳市易创空间科技有限公司](www.emakefun.co
 
 [**mixly库下载**](https://github.com/emakefun/MotorDriverBoard/releases/download/v1.0/MotorDriverBoard_Mixly.zip)
 
-[mblock5库下载]()
+[**mblock5库下载**](https://github.com/emakefun/MotorDriverBoard/releases/download/v1.0/MotorDriverBoard_Mblock5.zip)
 
 [mind+库下载]()
 
@@ -102,12 +102,6 @@ gpio.setPin(S1, HIGH);  /*引脚S1(S1~S8)输出高电平*/
 gpio.setPin(S1, LOW);  	/*引脚S1(S1~S8)输出低电平*/
 ```
 
- gpio mixly测试程序如下图:
-
-![gpio_test](./doc/picture/ZH/gpio_test.png)
-
-[gpio mixly测试程序下载](./example/mixly/gpio_test.zip)
-
 [**pwm_test**](./arduino_lib/examples/base/pwm_test/pwm_test.ino) 这个示例程序为控制PCA9685输出口输出PWM波形
 
 ```c++
@@ -115,12 +109,6 @@ Emakefun_MotorDriver pwm = Emakefun_MotorDriver(0x60);
 pwm.begin(1500);  			/*初始化io口的输出频率为1500Hz*/
 pwm.setPin(S1, 1024); 		/*引脚1输出占空比为 1024/4096 的PWM波（0~4096）*/
 ```
-
-pwm mixly测试程序如下图:
-
-![pwm_test](./doc/picture/ZH/pwm_test.png)
-
-[pwm mixly测试程序下载](./example/mixly/pwm_test.zip)
 
 [**ps2_test**](./arduino_lib/examples/base/ps2_test/ps2_test.ino)PS2手柄测试程序
 
@@ -136,12 +124,6 @@ PS2手柄引脚说明：
 PS2安装请勿接反，左边是正确安装，右边为PS2接收器接反
 
 ![Ps2](./doc/picture/ZH/Ps2.png)
-
-PS2 mixly测试程序如下图:
-
-![ps2_test](./doc/picture/ZH/ps2_test.png)
-
-[PS2 mixly测试程序下载](./example/mixly/ps2_test.zip)
 
 ## 电机测试示例
 
@@ -167,12 +149,6 @@ void loop()
 
 **接线图**![MotorDriverBoard_dc](./doc/picture/ZH/dc.png)
 
-直流电机mixly测试程序如下图:
-
-![dc_test](./doc/picture/ZH/dc_test.png)
-
-[直流电机mixly测试程序下载](./example/mixly/dc_test.zip)
-
 #### [**servo**](./arduino_lib/examples/motor_test/servo/servo.ino)八路舵机测试程序
 
 ```c++
@@ -183,12 +159,6 @@ mServo1->writeServo(S1); 		/*设置舵机角度 0~180*/
 ```
 
 **接线图**![MotorDriverBoard_servo](./doc/picture/ZH/servo.png)
-
-舵机mixly测试程序如下图:
-
-![servo_test](./doc/picture/ZH/servo_test.png)
-
-[舵机mixly测试程序下载](./example/mixly/servo_test.zip)
 
 #### [**stepper**](./arduino_lib/examples/motor_test/stepper/stepper.ino) 步进电机测试程序
 
@@ -216,12 +186,6 @@ StepperMotor_1->step(200, FORWARD, SINGLE);
 ![MotorDriverBoard_stepper](./doc/picture/ZH/stepper.png)
 
 
-
-步进电机mixly测试程序如下图:
-
-![stepper_test](./doc/picture/ZH/stepper_test.png)
-
-[步进电机mixly测试程序下载](./example/mixly/stepper_test.zip)
 
 #### [**encoder**](./arduino_lib/examples/motor_test/encoder/encoder.ino)四路编码电机测试程序
 
@@ -314,12 +278,6 @@ MsTimer2::start(); 					/*启动定时器2*/
 
 ![encoder](./doc/picture/ZH/encoder.png)
 
-编码电机mixly测试程序如下图:
-
-![encoder_test](./doc/picture/ZH/encoder_test.png)
-
-[编码电机mixly测试程序下载](./example/mixly/encoder_test.zip)
-
 ## 综合应用
 
 [PS2控制四驱小车](./examples/ps2ControlCar/ps2ControlCar.ino)
@@ -335,11 +293,65 @@ MsTimer2::start(); 					/*启动定时器2*/
 ## 图像化编程块说明
 
 ### MotorDriverBoard 编程图形块
-#### [mBlock5]()
 
-![image]()
+#### Mixly块表述
+
+1.[Mixly扩展包下载](https://github.com/emakefun/MotorDriverBoard/releases/download/v1.0/MotorDriverBoard_Mixly.zip)
+
+2. 积木描述
+
+| 序号 | 积木                                                         | 说明                                                         |
+| ---- | :----------------------------------------------------------- | ------------------------------------------------------------ |
+| 1    | ![mixly_init](./doc/picture/ZH/mixly/mixly_init.png)         | 初始化积木，所有积木的前提                                   |
+| 2    | ![set_freq](./doc/picture/ZH/mixly/set_freq.png)             | 设置IO口输出频率，输出范围1-1600HZ                           |
+| 3    | ![set_mode](./doc/picture/ZH/mixly/set_mode.png)             | 控制IO口输出高低电平，IO口有八个，分别为S1-S8                |
+| 4    | <img src="./doc/picture/ZH/mixly/set_pwm.png" alt="set_pwm" style="zoom:150%;" /> | 控制IO口输出PWM，输出范围0-4096                              |
+| 5    | ![dc_init](./doc/picture/ZH/mixly/dc_init.png)               | 初始化直流电机接口，电机包含M1\M2\M3\M4四个                  |
+| 6    | ![run_dc](./doc/picture/ZH/mixly/run_dc.png)                 | 设置直流电机的转动方向和速度，方向分为正转、反转、刹车、释放，速度范围为0-255 |
+| 7    | ![stop_dc](./doc/picture/ZH/mixly/stop_dc.png)               | 停止直流电机                                                 |
+| 8    | ![init_encoder](./doc/picture/ZH/mixly/init_encoder.png)     | 初始化编码电机，编码电机有四个，分为E1\E2\E3\E4              |
+| 9    | ![run_encoder](./doc/picture/ZH/mixly/run_encoder.png)       | 设置编码电机运动方向和速度，方向分为正/反转，速度范围为0-255 |
+| 10   | ![stop_encoder](./doc/picture/ZH/mixly/stop_encoder.png)     | 停止编码电机                                                 |
+| 11   | ![stepper_init](./doc/picture/ZH/mixly/stepper_init.png)     | `初始化步进电机`，不同的步进电机转一圈的步数是不同的，并设置每分钟需要转的圈数，即旋转速度 |
+| 12   | ![run_stepper](./doc/picture/ZH/mixly/run_stepper.png)       | 设置步进电机运动方向、驱动方式和运动步数；方向分为正、反转，驱动方式分为全步、半步和单步；运动步数即需要运动步数 |
+| 13   | ![stop_stepper](E:\github\MotorDriverBoard\doc\picture\ZH\mixly\stop_stepper.png) | 停止步进电机                                                 |
+| 14   | ![servo_init](./doc/picture/ZH/mixly/servo_init.png)         | 初始化舵机                                                   |
+| 15   | ![run_servo](./doc/picture/ZH/mixly/run_servo.png)           | 设置选择的舵机的旋转角度和旋转的速度，速度范围为0-100        |
+
+**注:** PS2模块使用Mixly自带的模块。
+
+#### mBlock5
+
+1.[mBlock5库下载](https://github.com/emakefun/MotorDriverBoard/releases/download/v1.0/MotorDriverBoard_Mblock5.zip)
+
+2.积木描述
+
+| 序号 | 积木                                                         | 说明                                                         |
+| ---- | :----------------------------------------------------------- | ------------------------------------------------------------ |
+| 1    | ![mixly_init](./doc/picture/ZH/mblock/init.png)              | 初始化积木，所有积木的前提                                   |
+| 2    | ![set_freq](./doc/picture/ZH/mblock/set_freq.png)            | 设置IO口输出频率，输出范围1-1600HZ                           |
+| 3    | ![set_mode](./doc/picture/ZH/mblock/set_mode.png)            | 控制IO口输出高低电平，IO口有八个，分别为S1-S8                |
+| 4    | <img src="./doc/picture/ZH/mblock/set_pwm.png" alt="set_pwm" style="zoom:150%;" /> | 控制IO口输出PWM，输出范围0-4096                              |
+| 5    | ![dc_init](./doc/picture/ZH/mblock/dc_init.png)              | 初始化直流电机接口，电机包含M1\M2\M3\M4四个                  |
+| 6    | ![run_dc](./doc/picture/ZH/mblock/run_dc.png)                | 设置直流电机的转动方向和速度，方向分为正转、反转、刹车、释放，速度范围为0-255 |
+| 7    | ![stop_dc](./doc/picture/ZH/mblock/stop_dc.png)              | 停止直流电机                                                 |
+| 8    | ![init_encoder](./doc/picture/ZH/mblock/init_encoder.png)    | 初始化编码电机，编码电机有四个，分为E1\E2\E3\E4              |
+| 9    | ![run_encoder](./doc/picture/ZH/mblock/run_encoder.png)      | 设置编码电机运动方向和速度，方向分为正/反转，速度范围为0-255 |
+| 10   | ![stop_encoder](./doc/picture/ZH/mblock/stop_encoder.png)    | 停止编码电机                                                 |
+| 11   | ![stepper_init](./doc/picture/ZH/mblock/stepper_init.png)    | `初始化步进电机`，不同的步进电机转一圈的步数是不同的，并设置每分钟需要转的圈数，即旋转速度 |
+| 12   | ![run_stepper](./doc/picture/ZH/mblock/run_stepper.png)      | 设置步进电机运动方向、驱动方式和运动步数；方向分为正、反转，驱动方式分为全步、半步和单步；运动步数即需要运动步数 |
+| 13   | ![stop_stepper](E:\github\MotorDriverBoard\doc\picture\ZH\mblock\stop_stepper.png) | 停止步进电机                                                 |
+| 14   | ![servo_init](./doc/picture/ZH/mblock/servo_init.png)        | 初始化舵机                                                   |
+| 15   | ![run_servo](./doc/picture/ZH/mblock/run_servo.png)          | 设置选择的舵机的旋转角度和旋转的速度，速度范围为0-100        |
+
+**注:**PS2、RGB、蜂鸣器等模块可以去Mblock扩展库找对应的扩展，这里不做解释。
+
+#### Mind+
+
+敬请期待
+
 #### MagicBlock
-![image]()
+敬请期待
 
 ## FAQ
 ####  Q：驱动板arduino IO对应关系?

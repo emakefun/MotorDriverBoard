@@ -111,7 +111,7 @@ Blockly.Blocks.md_dcmotor = {
         .appendField(new Blockly.FieldDropdown(MOTORDRIVERBOARD_DCPORTS), "DCPorts")
 		 .appendField(Blockly.MOTORDRIVERBOARD_DCDIRECTIONS)
 		 .appendField(new Blockly.FieldDropdown(MOTORDRIVERBOARD_DCDIRECTION), "DCDirections")
-         .appendField(Blockly.MOTORDRIVERBOARD_SPEED);
+         .appendField(Blockly.MOTORDRIVERBOARD_NRFSPEED);
 	   this.appendValueInput("Speed", Number)
         .setCheck(Number)
         .setAlign(Blockly.ALIGN_RIGHT);
@@ -155,7 +155,7 @@ Blockly.Blocks.md_enmotor = {
         .appendField(new Blockly.FieldDropdown(MOTORDRIVERBOARD_ENPORTS), "ENPorts")
 		 .appendField(Blockly.MOTORDRIVERBOARD_ENDIRECTIONS)
 		 .appendField(new Blockly.FieldDropdown(MOTORDRIVERBOARD_ENDIRECTION), "ENDirections")
-         .appendField(Blockly.MOTORDRIVERBOARD_SPEED);
+         .appendField(Blockly.MOTORDRIVERBOARD_NRFSPEED);
 	   this.appendValueInput("Speed", Number)
         .setCheck(Number)
         .setAlign(Blockly.ALIGN_RIGHT);
