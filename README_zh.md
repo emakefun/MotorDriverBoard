@@ -296,13 +296,15 @@ MsTimer2::start(); 					/*启动定时器2*/
 
 #### Mixly块表述
 
-1.[Mixly扩展包下载](https://github.com/emakefun/MotorDriverBoard/releases/download/v1.0/MotorDriverBoard_Mixly.zip)
+1.[Mixly扩展包和案例下载](https://github.com/emakefun/MotorDriverBoard/releases/download/v1.0/MotorDriverBoard_Mixly.zip)
 
-2. 积木描述
+![download](./doc/picture/ZH/mixly/download.png)
+
+2.积木描述
 
 | 序号 | 积木                                                         | 说明                                                         |
 | ---- | :----------------------------------------------------------- | ------------------------------------------------------------ |
-| 1    | ![mixly_init](./doc/picture/ZH/mixly/mixly_init.png)         | 初始化积木，所有积木的前提                                   |
+| 1    | ![mixly_init](./doc/picture/ZH/mixly/mixly_init.png)         | 初始化积木，使用所有积木的前提                               |
 | 2    | ![set_freq](./doc/picture/ZH/mixly/set_freq.png)             | 设置IO口输出频率，输出范围1-1600HZ                           |
 | 3    | ![set_mode](./doc/picture/ZH/mixly/set_mode.png)             | 控制IO口输出高低电平，IO口有八个，分别为S1-S8                |
 | 4    | <img src="./doc/picture/ZH/mixly/set_pwm.png" alt="set_pwm" style="zoom:150%;" /> | 控制IO口输出PWM，输出范围0-4096                              |
@@ -314,21 +316,23 @@ MsTimer2::start(); 					/*启动定时器2*/
 | 10   | ![stop_encoder](./doc/picture/ZH/mixly/stop_encoder.png)     | 停止编码电机                                                 |
 | 11   | ![stepper_init](./doc/picture/ZH/mixly/stepper_init.png)     | `初始化步进电机`，不同的步进电机转一圈的步数是不同的，并设置每分钟需要转的圈数，即旋转速度 |
 | 12   | <img src="./doc/picture/ZH/mixly/run_stepper.png" alt="run_stepper" style="zoom:200%;" /> | 设置步进电机运动方向、驱动方式和运动步数；方向分为正、反转，驱动方式分为全步、半步和单步；运动步数即需要运动步数 |
-| 13   | ![stop_stepper](E:\github\MotorDriverBoard\doc\picture\ZH\mixly\stop_stepper.png) | 停止步进电机                                                 |
+| 13   | ![stop_stepper](./doc/picture/ZH/mixly/stop_stepper.png)     | 停止步进电机                                                 |
 | 14   | ![servo_init](./doc/picture/ZH/mixly/servo_init.png)         | 初始化舵机                                                   |
 | 15   | ![run_servo](./doc/picture/ZH/mixly/run_servo.png)           | 设置选择的舵机的旋转角度和旋转的速度，速度范围为0-100        |
 
-<font color="red" size="5">**注:**</font> PS2模块请使用Mixly自带的模块。
+<font color="red" size="5">**注:**</font> PS2、RGB等、蜂鸣器等模块模块请使用Mixly自带的模块。
 
 #### mBlock5
 
 1.[mBlock5库和案例下载](https://github.com/emakefun/MotorDriverBoard/releases/download/v1.0/MotorDriverBoard_Mblock5.zip)
 
+![download](./doc/picture/ZH/mblock/download.png)
+
 2.积木描述
 
 | 序号 | 积木                                                         | 说明                                                         |
 | ---- | :----------------------------------------------------------- | ------------------------------------------------------------ |
-| 1    | ![mixly_init](./doc/picture/ZH/mblock/init.png)              | 初始化积木，所有积木的前提                                   |
+| 1    | ![mixly_init](./doc/picture/ZH/mblock/init.png)              | 初始化积木，使用所有积木的前提                               |
 | 2    | ![set_freq](./doc/picture/ZH/mblock/set_freq.png)            | 设置IO口输出频率，输出范围1-1600HZ                           |
 | 3    | ![set_mode](./doc/picture/ZH/mblock/set_mode.png)            | 控制IO口输出高低电平，IO口有八个，分别为S1-S8                |
 | 4    | <img src="./doc/picture/ZH/mblock/set_pwm.png" alt="set_pwm" style="zoom:150%;" /> | 控制IO口输出PWM，输出范围0-4096                              |
@@ -340,11 +344,11 @@ MsTimer2::start(); 					/*启动定时器2*/
 | 10   | ![stop_encoder](./doc/picture/ZH/mblock/stop_encoder.png)    | 停止编码电机                                                 |
 | 11   | <img src="./doc/picture/ZH/mblock/stepper_init.png" alt="stepper_init" style="zoom:200%;" /> | `初始化步进电机`，不同的步进电机转一圈的步数是不同的，并设置每分钟需要转的圈数，即旋转速度 |
 | 12   | ![run_stepper](./doc/picture/ZH/mblock/run_stepper.png)      | 设置步进电机运动方向、驱动方式和运动步数；方向分为正、反转，驱动方式分为全步、半步和单步；运动步数即需要运动步数 |
-| 13   | ![stop_stepper](E:\github\MotorDriverBoard\doc\picture\ZH\mblock\stop_stepper.png) | 停止步进电机                                                 |
+| 13   | ![stop_stepper](./doc/picture/ZH/mblock/stop_stepper.png)    | 停止步进电机                                                 |
 | 14   | ![servo_init](./doc/picture/ZH/mblock/servo_init.png)        | 初始化舵机                                                   |
 | 15   | ![run_servo](./doc/picture/ZH/mblock/run_servo.png)          | 设置选择的舵机的旋转角度和旋转的速度，速度范围为0-100        |
 
-<font color="red" size="5">**注:**</font> PS2、RGB、蜂鸣器等模块可以去Mblock扩展库找对应的扩展，这里不做解释。
+<font color="red" size="5">**注:**</font> PS2、RGB灯、蜂鸣器等模块可以去Mblock扩展库找对应的扩展，这里不做解释。
 
 #### Mind+
 
