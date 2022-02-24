@@ -87,7 +87,7 @@ Application scenarios
 
 [**Download arduino library**]()Place it in the libraries directory under the Arduino IDE installation directory, and then open the example program by clicking File-->Examples-->Emakefun_MotorDriverBoard.
 
-![examples](./doc/picture\ZH/examples.png)
+![examples](./doc/picture/ZH/examples.png)
 
 
 
