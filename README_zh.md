@@ -4,7 +4,7 @@
 
 [English](README.md) 中文版
 
-MotorDriverBoard是由 [深圳市易创空间科技有限公司](www.emakefun.com)，专门针对Arduino Uno(兼容Mega2560)机器人，电机驱动，多路舵机控制而研发的一款多功能电机驱动扩展板。本驱动板采用I2C方式控制[PCA9685](./doc/pca9685.pdf)(16路PWM输出芯片)。所以本驱动板电机或者舵机和arduino主板IO口不存在对应关系，是通过I2C扩展PWM控制，详情请见[**驱动板原理图**](./doc/MotorDriverBoard_V5.1.pdf)。
+MotorDriverBoard是由 [深圳市易创空间科技有限公司](www.emakefun.com)，专门针对Arduino Uno(兼容Mega2560)机器人，电机驱动，多路舵机控制而研发的一款多功能电机驱动扩展板。本驱动板采用I2C方式控制[PCA9685](./doc/PCA9685.pdf)(16路PWM输出芯片)。所以本驱动板电机或者舵机和arduino主板IO口不存在对应关系，是通过I2C扩展PWM控制，详情请见[**驱动板原理图**](./doc/MotorDriverBoard_V5.1.pdf)。
 
 **MotorDriverBoard for Arduino  Uno(Arduino Mega2560)**
 
@@ -87,7 +87,7 @@ MotorDriverBoard是由 [深圳市易创空间科技有限公司](www.emakefun.co
 
 ## 驱动库使用
 
-[**下载arduino库**]()放置Arduino IDE安装目录下的libraries目录下，然后从文件-->示例-->Emakefun_MotorDriverBoard![examples](./doc/picture/ZH/examples.png)
+[**下载arduino库**]()放置Arduino IDE安装目录下的libraries目录下，然后通过点击文件-->示例-->Emakefun_MotorDriverBoard，打开示例程序。![examples](./doc/picture/ZH/examples.png)
 
 
 
@@ -280,13 +280,13 @@ MsTimer2::start(); 					/*启动定时器2*/
 
 ## 综合应用
 
-[PS2控制四驱小车](./examples/ps2ControlCar/ps2ControlCar.ino)
+[PS2控制四驱小车](./arduino_lib/examples/comprehensive/ps2_control_4wd/ps2_control_4wd.ino)
 
-[PS2控制四驱麦克纳姆轮小车](examples/ps2ControlMecanumWheel/ps2ControlMecanumWheel.ino)
+[PS2控制四驱麦克纳姆轮小车](./arduino_lib/examples/comprehensive/ps2_control_mecanum_wheel_car/ps2_control_mecanum_wheel_car.ino)
 
-[PS2控制四驱小车加机械臂](examples/ps2ControlCarAndRoboticArm/ps2ControlCarAndRoboticArm.ino)
+[PS2控制四驱小车加机械臂](./arduino_lib/examples/comprehensive/ps2_control_4wd_with_robotic_arm/ps2_control_4wd_with_robotic_arm.ino)
 
-[蓝牙(WIFI)控制四驱小车](./arduino_lib/examples/ble/ble.ino)
+[蓝牙(WIFI)控制四驱小车](./arduino_lib/examples/comprehensive/bluetooth_wifi_control/bluetooth_wifi_control.ino)
 
 蓝牙或者wifi模块请使用数据透传模块，连接到arduino的硬件串口引脚上（0-RXD，1-TXD）
 
@@ -359,7 +359,7 @@ MsTimer2::start(); 					/*启动定时器2*/
 
 ## FAQ
 ####  Q：驱动板arduino IO对应关系?
-##### A ：本驱动板采用I2C方式控制[PCA9685](./doc/pca9685.pdf)(16路PWM输出芯片)。所以本驱动板电机或者舵机和arduino主板IO口不存在对应关系，是通过I2C扩展PWM控制
+##### A ：本驱动板采用I2C方式控制[PCA9685](./doc/PCA9685.pdf)(16路PWM输出芯片)。所以本驱动板电机或者舵机和arduino主板IO口不存在对应关系，是通过I2C扩展PWM控制
 
 ####  Q：驱动板该如何接电?
 ##### A ：请先判断手里是用什么电源，驱动什么样的电机，需要多大电压和电流，还有舵机，然后根据实际情况采用对应的电池，不建议使用干电池供电
