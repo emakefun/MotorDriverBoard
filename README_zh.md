@@ -311,7 +311,7 @@ MsTimer2::start(); 					/*启动定时器2*/
 | 5    | ![dc_init](./doc/picture/ZH/mixly/dc_init.png)               | 初始化直流电机接口，电机包含M1\M2\M3\M4四个                  |
 | 6    | ![run_dc](./doc/picture/ZH/mixly/run_dc.png)                 | 设置直流电机的转动方向和速度，方向分为正转、反转、刹车、释放，速度范围为0-255 |
 | 7    | ![stop_dc](./doc/picture/ZH/mixly/stop_dc.png)               | 停止直流电机                                                 |
-| 8    | ![init_encoder](./doc/picture/ZH/mixly/init_encoder.png)     | 初始化编码电机，编码电机有四个，分为E1\E2\E3\E4              |
+| 8    | ![init_encoder](./doc/picture/ZH/mixly/init_encoder.png)     | 初始化编码电机，编码电机有四个，分为Encoder1\Encoder2\Encoder3\Encoder4 |
 | 9    | ![run_encoder](./doc/picture/ZH/mixly/run_encoder.png)       | 设置编码电机运动方向和速度，方向分为正/反转，速度范围为0-255 |
 | 10   | ![stop_encoder](./doc/picture/ZH/mixly/stop_encoder.png)     | 停止编码电机                                                 |
 | 11   | ![stepper_init](./doc/picture/ZH/mixly/stepper_init.png)     | `初始化步进电机`，不同的步进电机转一圈的步数是不同的，并设置每分钟需要转的圈数，即旋转速度 |
@@ -339,7 +339,7 @@ MsTimer2::start(); 					/*启动定时器2*/
 | 5    | ![dc_init](./doc/picture/ZH/mblock/dc_init.png)              | 初始化直流电机接口，电机包含M1\M2\M3\M4四个                  |
 | 6    | ![run_dc](./doc/picture/ZH/mblock/run_dc.png)                | 设置直流电机的转动方向和速度，方向分为正转、反转、刹车、释放，速度范围为0-255 |
 | 7    | ![stop_dc](./doc/picture/ZH/mblock/stop_dc.png)              | 停止直流电机                                                 |
-| 8    | ![init_encoder](./doc/picture/ZH/mblock/init_encoder.png)    | 初始化编码电机，编码电机有四个，分为E1\E2\E3\E4              |
+| 8    | ![init_encoder](./doc/picture/ZH/mblock/init_encoder.png)    | 初始化编码电机，编码电机有四个，分为Encoder1\Encoder2\Encoder3\Encoder4 |
 | 9    | ![run_encoder](./doc/picture/ZH/mblock/run_encoder.png)      | 设置编码电机运动方向和速度，方向分为正/反转，速度范围为0-255 |
 | 10   | ![stop_encoder](./doc/picture/ZH/mblock/stop_encoder.png)    | 停止编码电机                                                 |
 | 11   | <img src="./doc/picture/ZH/mblock/stepper_init.png" alt="stepper_init" style="zoom:200%;" /> | `初始化步进电机`，不同的步进电机转一圈的步数是不同的，并设置每分钟需要转的圈数，即旋转速度 |
