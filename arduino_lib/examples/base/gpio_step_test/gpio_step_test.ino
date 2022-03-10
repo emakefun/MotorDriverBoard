@@ -5,6 +5,7 @@
 #define IN3 4  //B+
 #define IN4 2  //B-
 #define TIME 1000
+Emakefun_MotorDriver gpio = Emakefun_MotorDriver(0x60);
 
 void setup() {
   Serial.begin(9600);
