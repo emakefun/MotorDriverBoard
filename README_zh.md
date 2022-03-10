@@ -4,7 +4,7 @@
 
 [English](README.md) 中文版
 
-MotorDriverBoard是由 [深圳市易创空间科技有限公司](www.emakefun.com)，专门针对Arduino Uno(兼容Mega2560)机器人，电机驱动，多路舵机控制而研发的一款多功能电机驱动扩展板。本驱动板采用I2C方式控制[PCA9685](./doc/pca9685.pdf)(16路PWM输出芯片)。所以本驱动板电机或者舵机和arduino主板IO口不存在对应关系，是通过I2C扩展PWM控制，详情请见[**驱动板原理图**](./doc/MotorDriverBoard_V5.1.pdf)。
+MotorDriverBoard是由 [深圳市易创空间科技有限公司](www.emakefun.com)，专门针对Arduino Uno(兼容Mega2560)机器人，电机驱动，多路舵机控制而研发的一款多功能电机驱动扩展板。本驱动板采用I2C方式控制[PCA9685](./doc/PCA9685.pdf)(16路PWM输出芯片)。所以本驱动板电机或者舵机和arduino主板IO口不存在对应关系，是通过I2C扩展PWM控制，详情请见[**驱动板原理图**](./doc/MotorDriverBoard_V5.1.pdf)。
 
 **MotorDriverBoard for Arduino  Uno(Arduino Mega2560)**
 
@@ -16,9 +16,9 @@ MotorDriverBoard是由 [深圳市易创空间科技有限公司](www.emakefun.co
 
 [**arduino ide库文件下载**](https://github.com/emakefun/MotorDriverBoard/releases/download/v1.0/MotorDriverBoard.zip)
 
-[mixly库下载]()
+[**mixly库下载**](https://github.com/emakefun/MotorDriverBoard/releases/download/v1.0/MotorDriverBoard_Mixly.zip)
 
-[mblock5库下载]()
+[**mblock5库下载**](https://github.com/emakefun/MotorDriverBoard/releases/download/v1.0/MotorDriverBoard_Mblock5.zip)
 
 [mind+库下载]()
 
@@ -30,8 +30,8 @@ MotorDriverBoard是由 [深圳市易创空间科技有限公司](www.emakefun.co
 - 支持驱动8路舵机，带自恢复保险丝，防止舵机堵转
 - 支持驱动2路4线步进电机
 - 支持4路编码电机
-- 板载无源蜂鸣器
-- 板载1个RGB全彩灯
+- 板载无源蜂鸣器(**A0**)
+- 板载1个RGB全彩灯(**A1**)
 - 1个 i2c接口 、1个PS2X接口、1个Uart(蓝牙/wifi模块)接口 、1个NRF24L01无线模块接口
 - 1个超声波模块接口
 - 舵机电源可切换到外部供电
@@ -87,7 +87,7 @@ MotorDriverBoard是由 [深圳市易创空间科技有限公司](www.emakefun.co
 
 ## 驱动库使用
 
-[**下载arduino库**]()放置Arduino IDE安装目录下的libraries目录下，然后从文件-->示例-->Emakefun_MotorDriverBoard![examples](./doc/picture/ZH/examples.png)
+[**下载arduino库**]()放置Arduino IDE安装目录下的libraries目录下，然后通过点击文件-->示例-->Emakefun_MotorDriverBoard，打开示例程序。![examples](./doc/picture/ZH/examples.png)
 
 
 
@@ -102,8 +102,6 @@ gpio.setPin(S1, HIGH);  /*引脚S1(S1~S8)输出高电平*/
 gpio.setPin(S1, LOW);  	/*引脚S1(S1~S8)输出低电平*/
 ```
 
-  
-
 [**pwm_test**](./arduino_lib/examples/base/pwm_test/pwm_test.ino) 这个示例程序为控制PCA9685输出口输出PWM波形
 
 ```c++
@@ -112,9 +110,16 @@ pwm.begin(1500);  			/*初始化io口的输出频率为1500Hz*/
 pwm.setPin(S1, 1024); 		/*引脚1输出占空比为 1024/4096 的PWM波（0~4096）*/
 ```
 
+[**ps2_test**](./arduino_lib/examples/base/ps2_test/ps2_test.ino)PS2手柄测试程序
 
+PS2手柄引脚说明：
 
-**[ps2_test](./arduino_lib/examples/base/ps2_test/ps2_test.ino)**PS2手柄测试程序
+| PS2手柄引脚 | Arduino引脚 |
+| ----------- | ----------- |
+| DAT         | D12         |
+| CMD         | D11         |
+| SEL/ATT     | D10         |
+| CLK         | D13         |
 
 PS2安装请勿接反，左边是正确安装，右边为PS2接收器接反
 
@@ -144,8 +149,6 @@ void loop()
 
 **接线图**![MotorDriverBoard_dc](./doc/picture/ZH/dc.png)
 
-
-
 #### [**servo**](./arduino_lib/examples/motor_test/servo/servo.ino)八路舵机测试程序
 
 ```c++
@@ -169,7 +172,7 @@ mMotorDriver.begin(1600); 		/*设置频率为最大 1600*/
 StepperMotor_1->setSpeed(400);  /*设置步进电机每分钟转的圈数为400圈, 速度越快力矩越小，这个速度不能太低，否则会抖动严重*/
 
 StepperMotor_1->step(200, FORWARD, SINGLE); 
-/*驱动步进电机按 DOUBLE(全步)的方式，FORWARD（前进）200步。*/
+/*驱动步进电机按 SINGLE(单步)的方式，FORWARD（前进）200步。*/
 
 /*步进电机的驱动方式 全步DOUBLE、单步SINGLE、1/2步进INTERLEAVE这三种驱动方式（步进电机的驱动原理请查阅相关资料）*/
 ```
@@ -277,30 +280,86 @@ MsTimer2::start(); 					/*启动定时器2*/
 
 ## 综合应用
 
-[PS2控制四驱小车](./examples/ps2ControlCar/ps2ControlCar.ino)
+[PS2控制四驱小车](./arduino_lib/examples/comprehensive/ps2_control_4wd/ps2_control_4wd.ino)
 
-[PS2控制四驱麦克纳姆轮小车](examples/ps2ControlMecanumWheel/ps2ControlMecanumWheel.ino)
+[PS2控制四驱麦克纳姆轮小车](./arduino_lib/examples/comprehensive/ps2_control_mecanum_wheel_car/ps2_control_mecanum_wheel_car.ino)
 
-[PS2控制四驱小车加机械臂](examples/ps2ControlCarAndRoboticArm/ps2ControlCarAndRoboticArm.ino)
+[PS2控制四驱小车加机械臂](./arduino_lib/examples/comprehensive/ps2_control_4wd_with_robotic_arm/ps2_control_4wd_with_robotic_arm.ino)
 
-[蓝牙(WIFI)控制四驱小车](./arduino_lib/examples/ble/ble.ino)
+[蓝牙(WIFI)控制四驱小车](./arduino_lib/examples/comprehensive/bluetooth_wifi_control/bluetooth_wifi_control.ino)
 
 蓝牙或者wifi模块请使用数据透传模块，连接到arduino的硬件串口引脚上（0-RXD，1-TXD）
 
 ## 图像化编程块说明
 
 ### MotorDriverBoard 编程图形块
-#### [mBlock5]()
 
-![image]()
-#### 米思齐
-![image]()
+#### Mixly块表述
+
+1.[Mixly扩展包和案例下载](https://github.com/emakefun/MotorDriverBoard/releases/download/v1.0/MotorDriverBoard_Mixly.zip)
+
+![download](./doc/picture/ZH/mixly/download.png)
+
+2.积木描述
+
+| 序号 | 积木                                                         | 说明                                                         |
+| ---- | :----------------------------------------------------------- | ------------------------------------------------------------ |
+| 1    | ![mixly_init](./doc/picture/ZH/mixly/mixly_init.png)         | 初始化积木，使用所有积木的前提                               |
+| 2    | ![set_freq](./doc/picture/ZH/mixly/set_freq.png)             | 设置IO口输出频率，输出范围1-1600HZ                           |
+| 3    | ![set_mode](./doc/picture/ZH/mixly/set_mode.png)             | 控制IO口输出高低电平，IO口有八个，分别为S1-S8                |
+| 4    | <img src="./doc/picture/ZH/mixly/set_pwm.png" alt="set_pwm" style="zoom:150%;" /> | 控制IO口输出PWM，输出范围0-4096                              |
+| 5    | ![dc_init](./doc/picture/ZH/mixly/dc_init.png)               | 初始化直流电机接口，电机包含M1\M2\M3\M4四个                  |
+| 6    | ![run_dc](./doc/picture/ZH/mixly/run_dc.png)                 | 设置直流电机的转动方向和速度，方向分为正转、反转、刹车、释放，速度范围为0-255 |
+| 7    | ![stop_dc](./doc/picture/ZH/mixly/stop_dc.png)               | 停止直流电机                                                 |
+| 8    | ![init_encoder](./doc/picture/ZH/mixly/init_encoder.png)     | 初始化编码电机，编码电机有四个，分为Encoder1\Encoder2\Encoder3\Encoder4 |
+| 9    | ![run_encoder](./doc/picture/ZH/mixly/run_encoder.png)       | 设置编码电机运动方向和速度，方向分为正/反转，速度范围为0-255 |
+| 10   | ![stop_encoder](./doc/picture/ZH/mixly/stop_encoder.png)     | 停止编码电机                                                 |
+| 11   | ![stepper_init](./doc/picture/ZH/mixly/stepper_init.png)     | `初始化步进电机`，不同的步进电机转一圈的步数是不同的，并设置每分钟需要转的圈数，即旋转速度 |
+| 12   | <img src="./doc/picture/ZH/mixly/run_stepper.png" alt="run_stepper" style="zoom:200%;" /> | 设置步进电机运动方向、驱动方式和运动步数；方向分为正、反转，驱动方式分为全步、半步和单步；运动步数即需要运动步数 |
+| 13   | ![stop_stepper](./doc/picture/ZH/mixly/stop_stepper.png)     | 停止步进电机                                                 |
+| 14   | ![servo_init](./doc/picture/ZH/mixly/servo_init.png)         | 初始化舵机                                                   |
+| 15   | ![run_servo](./doc/picture/ZH/mixly/run_servo.png)           | 设置选择的舵机的旋转角度和旋转的速度，速度范围为0-100        |
+
+<font color="red" size="5">**注:**</font> PS2、RGB等、蜂鸣器等模块模块请使用Mixly自带的模块。
+
+#### mBlock5
+
+1.[mBlock5库和案例下载](https://github.com/emakefun/MotorDriverBoard/releases/download/v1.0/MotorDriverBoard_Mblock5.zip)
+
+![download](./doc/picture/ZH/mblock/download.png)
+
+2.积木描述
+
+| 序号 | 积木                                                         | 说明                                                         |
+| ---- | :----------------------------------------------------------- | ------------------------------------------------------------ |
+| 1    | ![mixly_init](./doc/picture/ZH/mblock/init.png)              | 初始化积木，使用所有积木的前提                               |
+| 2    | ![set_freq](./doc/picture/ZH/mblock/set_freq.png)            | 设置IO口输出频率，输出范围1-1600HZ                           |
+| 3    | ![set_mode](./doc/picture/ZH/mblock/set_mode.png)            | 控制IO口输出高低电平，IO口有八个，分别为S1-S8                |
+| 4    | <img src="./doc/picture/ZH/mblock/set_pwm.png" alt="set_pwm" style="zoom:150%;" /> | 控制IO口输出PWM，输出范围0-4096                              |
+| 5    | ![dc_init](./doc/picture/ZH/mblock/dc_init.png)              | 初始化直流电机接口，电机包含M1\M2\M3\M4四个                  |
+| 6    | ![run_dc](./doc/picture/ZH/mblock/run_dc.png)                | 设置直流电机的转动方向和速度，方向分为正转、反转、刹车、释放，速度范围为0-255 |
+| 7    | ![stop_dc](./doc/picture/ZH/mblock/stop_dc.png)              | 停止直流电机                                                 |
+| 8    | ![init_encoder](./doc/picture/ZH/mblock/init_encoder.png)    | 初始化编码电机，编码电机有四个，分为Encoder1\Encoder2\Encoder3\Encoder4 |
+| 9    | ![run_encoder](./doc/picture/ZH/mblock/run_encoder.png)      | 设置编码电机运动方向和速度，方向分为正/反转，速度范围为0-255 |
+| 10   | ![stop_encoder](./doc/picture/ZH/mblock/stop_encoder.png)    | 停止编码电机                                                 |
+| 11   | <img src="./doc/picture/ZH/mblock/stepper_init.png" alt="stepper_init" style="zoom:200%;" /> | `初始化步进电机`，不同的步进电机转一圈的步数是不同的，并设置每分钟需要转的圈数，即旋转速度 |
+| 12   | ![run_stepper](./doc/picture/ZH/mblock/run_stepper.png)      | 设置步进电机运动方向、驱动方式和运动步数；方向分为正、反转，驱动方式分为全步、半步和单步；运动步数即需要运动步数 |
+| 13   | ![stop_stepper](./doc/picture/ZH/mblock/stop_stepper.png)    | 停止步进电机                                                 |
+| 14   | ![servo_init](./doc/picture/ZH/mblock/servo_init.png)        | 初始化舵机                                                   |
+| 15   | ![run_servo](./doc/picture/ZH/mblock/run_servo.png)          | 设置选择的舵机的旋转角度和旋转的速度，速度范围为0-100        |
+
+<font color="red" size="5">**注:**</font> PS2、RGB灯、蜂鸣器等模块可以去Mblock扩展库找对应的扩展，这里不做解释。
+
+#### Mind+
+
+敬请期待
+
 #### MagicBlock
-![image]()
+敬请期待
 
 ## FAQ
 ####  Q：驱动板arduino IO对应关系?
-##### A ：本驱动板采用I2C方式控制[PCA9685](./doc/pca9685.pdf)(16路PWM输出芯片)。所以本驱动板电机或者舵机和arduino主板IO口不存在对应关系，是通过I2C扩展PWM控制
+##### A ：本驱动板采用I2C方式控制[PCA9685](./doc/PCA9685.pdf)(16路PWM输出芯片)。所以本驱动板电机或者舵机和arduino主板IO口不存在对应关系，是通过I2C扩展PWM控制
 
 ####  Q：驱动板该如何接电?
 ##### A ：请先判断手里是用什么电源，驱动什么样的电机，需要多大电压和电流，还有舵机，然后根据实际情况采用对应的电池，不建议使用干电池供电

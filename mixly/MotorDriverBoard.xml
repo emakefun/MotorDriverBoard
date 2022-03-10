@@ -1,0 +1,146 @@
+<!-- type="company" block="block/MotorDriverBoard.js" generator="generator/MotorDriverBoard.js"  lib="MotorDriverBoard" media="media/MotorDriverBoard" language="language/MotorDriverBoard"-->
+<script type="text/javascript" src="../../blocks/company/MotorDriverBoard.js"></script>
+<script type="text/javascript" src="../../generators/arduino/company/MotorDriverBoard.js"></script>
+<category id="catMakeBlock" name="MotorDriverBoard" colour="120">
+	<!--第0个图形块：MotorDriverBoard初始化下拉-->
+		<block type="md_setup"></block>
+	<!-- IO口设置输出频率 -->
+		<block type = "md_setFreq">
+			<value name="freq">
+				<shadow type="math_number">
+					<field name="NUM">1000</field>
+				</shadow>
+			</value>
+		</block>
+
+	<!-- 控制IO口输出高低电平 -->
+		<block type="md_gpio"></block>
+	<!-- 设置IO口PWM输出 -->
+		<block type="md_pwm">
+			<value name="pwm">
+				<shadow type="math_number">
+					<field name="NUM">1024</field>
+				</shadow>
+			</value>
+		</block>
+
+		<block type="md_initdcmotor"></block>
+	<!--第一个图形块：直流电机下拉（下拉没有value），正反转（下拉），速度（输入,有value）-->
+	    <block type="md_dcmotor">
+			<value name="Speed">
+				<shadow type="math_number">
+					<field name="NUM">0</field>
+				</shadow>
+			</value>
+	    </block>
+
+<!--第二个图形块：停止直流电机 下拉（下拉没有value）-->
+		<block type="md_stopDCmotor"></block>
+		<block type="md_initENmotor"></block>
+<!--第三个图形块：编码电机下拉（下拉没有value），正反转（下拉），速度（输入,有value）-->
+		<block type="md_enmotor">
+			<value name="Speed">
+				<shadow type="math_number">
+					<field name="NUM">0</field>
+				</shadow>
+			</value>
+		</block>
+<!--第四个图形块：停止编码电机 下拉（下拉没有value）-->
+		<block type="md_stopENmotor"></block>
+		<block type="md_initstmotor">
+			<value name="Steps">
+				<shadow type="math_number">
+					<field name="NUM">100</field>
+				</shadow>
+			</value>
+			<value name="freq">
+				<shadow type="math_number">
+					<field name="NUM">200</field>
+				</shadow>
+			</value>
+		</block>
+<!--第五个图形块：步进电机下拉，步数value，方向下拉，方式下拉-->
+		<block type="md_stmotor">
+			<value name="Steps">
+				<shadow type="math_number">
+					<field name="NUM">100</field>
+				</shadow>
+			</value>
+		</block>
+
+		<block type="md_stopstmotor"></block>
+
+		<!--第二十四个图形块：舵机 接口下拉  角度value-->
+		<block type="md_initservo"></block>
+		<block type="md_servo">
+			<value name="angle">
+				<shadow type="math_number">
+					<field name="NUM">90</field>
+				</shadow>
+			</value>
+			<value name="speed">
+				<shadow type="math_number">
+					<field name="NUM">10</field>
+				</shadow>
+			</value>
+		</block>
+		<!-- <block type="md_initRGB"></block> -->
+<!--第六个图形块：设置RGB灯颜色（下拉，红，绿，蓝，黄，紫，白，黑）亮度-->
+		<!-- <block type="md_RGB">
+			<value name="brightnesss">
+				<shadow type="math_number">
+					<field name="NUM">255</field>
+				</shadow>
+			</value>
+		</block> -->
+		<!-- <block type="md_setColor">
+			<value name="red">
+				<shadow type="math_number">
+					<field name="NUM">100</field>
+				</shadow>
+			</value>
+			<value name="green">
+				<shadow type="math_number">
+					<field name="NUM">100</field>
+				</shadow>
+			</value>
+			<value name="blue">
+				<shadow type="math_number">
+					<field name="NUM">100</field>
+				</shadow>
+			</value>
+					<value name="brightnessss">
+				<shadow type="math_number">
+					<field name="NUM">255</field>
+				</shadow>
+			</value>
+		</block> -->
+
+<!--第七个图形块：播放声音 下拉-->
+<!-- <block type="md_initSounds"></block> -->
+		<!-- <block type= "md_playSounds"></block> -->
+<!--第八个图形块：超声波初始化-->
+		<!-- <block type= "md_initultrasonic"></block> -->
+<!--第九个图形块：读取超声波距离-->
+		<!-- <block type="md_readUltrasonicDistance"></block> -->
+<!--第十个图形块：红外接收初始化-->
+		<!-- <block type="md_initirremote"></block> -->
+		<!-- <block type="md_isirremote"></block> -->
+<!--第十一个图形块：红外遥控按键（下拉，返回boolean）-->
+		<!-- <block type="md_irKeyPress"></block> -->
+<!--第十一个图形块：普通红外遥控按键（下拉，返回boolean）-->
+		<!-- <block type="md_irKeyPress2"></block> -->
+<!--第十七个图形块：PS2手柄初始化-->
+		<!-- <block type="md_PS2init"></block> -->
+<!--获取摇杆角度（下拉）-->
+		<!-- <block type="md_ps2getvalue"></block> -->
+<!--第十八个图形块：PS2键被按下（下拉）-->
+		<!-- <block type="md_WhichPS2KeyPressed"></block> -->
+
+<!--第二十个图形块：ps2手柄按下 下拉无value-->
+		<!-- <block type="md_ps2keypress"></block> -->
+<!--第二十一个图形块：ps2手柄松开 下拉无value
+		<block type="md_ps2keyunpress"></block>-->
+<!--第二十二个图形块：获取摇杆值（下拉）-->
+		<!-- <block type="md_ps2getvibrate"></block> -->
+</category>
