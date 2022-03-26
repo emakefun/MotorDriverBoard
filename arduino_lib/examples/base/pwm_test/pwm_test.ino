@@ -8,10 +8,12 @@ void setup() {
 }
 
 void loop() {
-  pwm.setPin(S1, 0);
-  delay(1000);
-  pwm.setPin(S1, 1024);
-  delay(1000);
-  pwm.setPin(S1, 4096);
-  delay(1000);
+  pwm.setPWM(S1, 0);
+  delay(10000);
+  pwm.setPWM(S1, 1024);
+  delay(10000);
+  pwm.setPWM(S1, 2048);
+  delay(10000);
+  pwm.setPWM(S1, 4096);
+  delay(10000);
 }
