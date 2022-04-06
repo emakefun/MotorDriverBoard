@@ -211,13 +211,13 @@ Emakefun_Servo *Emakefun_MotorDriver::getServo(uint8_t num) {
     } else if (num == 3) {
       pwm = 15;
     } else if (num == 4) {
-      pwm = 9;
-    } else if (num == 5) {
-      pwm = 12;
-    } else if (num == 6) {
       pwm = 3;
-    } else if (num == 7) {
+    } else if (num == 5) {
       pwm = 6;
+    } else if (num == 6) {
+      pwm = 9;
+    } else if (num == 7) {
+      pwm = 12;
     }
       servos[num].PWMpin = pwm;
     }
