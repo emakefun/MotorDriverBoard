@@ -311,11 +311,11 @@ void Emakefun_DCMotor::run(uint8_t cmd) {
     switch (cmd) {
         case FORWARD:
             MC->setPin(IN2pin, LOW);
-            MC->setPin(IN1pin, MC->DcSpeed);
+            MC->setPWM(IN1pin, MC->DcSpeed);
             break;
         case BACKWARD:
             MC->setPin(IN1pin, LOW);
-            MC->setPin(IN2pin, MC->DcSpeed);
+            MC->setPWM(IN2pin, MC->DcSpeed);
             break;
         case RELEASE:
             MC->setPin(IN1pin, LOW);
