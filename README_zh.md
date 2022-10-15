@@ -160,7 +160,9 @@ mMotorDriver.begin(50); 		/*初始化io口的输出频率为50Hz*/
 mServo1->writeServo(S1); 		/*设置舵机角度 0~180*/
 ```
 
-**接线图**![MotorDriverBoard_servo](./doc/picture/ZH/servo.png)
+**接线图**![](./doc/picture/ZH/servo.png)
+
+##### 注：当使用舵机的时候，mMotorDriver.begin(50);必须设置频率为50HZ。
 
 #### [**stepper**](./arduino_lib/examples/motor_test/stepper/stepper.ino) 步进电机测试程序
 
