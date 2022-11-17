@@ -1,6 +1,5 @@
 #include "Emakefun_MotorDriver.h"
 #include "PS2X_lib.h"  //for v1.6
-#include "MsTimer2.h"
 
 #define PS2_DAT     12
 #define PS2_CMD     11
@@ -17,17 +16,6 @@ Emakefun_MotorDriver mMotor = Emakefun_MotorDriver(0x60);
 Emakefun_DCMotor *LeftFoward, *RightFoward, *LeftBackward, *RightBackward;
 
 int Speed;
-
-void Ps2Scan(void)
-{
-  static char count = 0;
-  if (count++ > 20)
-  {
-    ps2x.reconfig_gamepad();
-    count = 0;
-  }
-  ps2x.read_gamepad();
-}
 
 void MotorInit(int leftward, int rightfoward, int leftbackward, int rightbackward)
 {
@@ -155,8 +143,6 @@ void setup()
   //setup pins and settings: GamePad(clock, command, attention, data, Pressures?, Rumble?) check for error
   ps2x.config_gamepad(PS2_CLK, PS2_CMD, PS2_SEL, PS2_DAT, pressures, rumble);
 
-  MsTimer2::set(50, Ps2Scan);
-  MsTimer2::start();
 }
 
 void loop()

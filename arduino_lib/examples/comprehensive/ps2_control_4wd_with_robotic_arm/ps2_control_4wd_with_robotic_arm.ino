@@ -1,6 +1,5 @@
 #include "Emakefun_MotorDriver.h"
 #include "PS2X_lib.h"  //for v1.6
-#include "MsTimer2.h"
 
 #define M1 1
 #define M2 2
@@ -231,17 +230,6 @@ uint16_t RightHart(void)
   }
 }
 
-void Ps2Scan(void)
-{
-  static char count = 0;
-  if (count++ > 20)
-  {
-    ps2x.reconfig_gamepad();
-    count = 0;
-  }
-  ps2x.read_gamepad();
-}
-
 void setup()
 {
   Serial.begin(9600);
@@ -251,8 +239,6 @@ void setup()
   ps2x.config_gamepad(PS2_CLK, PS2_CMD, PS2_SEL, PS2_DAT, pressures, rumble);
   SetServoBaseDegree(90);
   SetServoDegree(1, 90);
-  MsTimer2::set(50, Ps2Scan);
-  MsTimer2::start();
 }
 
 void HandlePS2(void)
