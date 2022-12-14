@@ -37,7 +37,7 @@ MotorDrvierBoard for Arduino  UNO(Arduino Mega2560)
 
 ## Hardware function introduction
 ### Front display
-![hardwareIntroduction](./doc/picture/EN/20220224201123.jpg)
+![hardwareIntroduction](./doc/picture/EN/hardwareIntroduction.jpg)
 
 In order to make the use of this driver board more flexible, to adapt to the requirements of different motors and servo drives, and to make the entire board run stably
 
@@ -55,7 +55,9 @@ Application Scenario:
 
   c. The power switch reaches the **IN(DC)** position, and the jumper cap **short-circuits the 5V position**
 
-![bc1c28a8f20e1997ea80820f512e163](./doc/picture/EN/bc1c28a8f20e1997ea80820f512e163.jpg)
+![power_supply1](./doc/picture/EN/power_supply.png)
+
+
 
 #### 2、Only provide a single power supply to the driver board, Uno main board and steering gear through the binding post. Output the 5V power supply of the driver board to the Uno motherboard
 
@@ -67,7 +69,7 @@ Application scenarios
 
    c. The power switch is turned to **EX**, the jumper cap is shorted to the **5V position**, and the **R24 resistor position** on the back needs to be shorted.
 
-![c99de707b2ab788175650f1405d1c63](./doc/picture/EN/c99de707b2ab788175650f1405d1c63.jpg)
+![extra_power_supply](./doc/picture/EN/extra_power_supply.png)
 
 
 
@@ -172,7 +174,7 @@ mServo1->writeServo(0); 		/*Set the servo angle 0~180*/
 
 **Wiring diagram display**
 
-![892ad4f324997e94a7a6dbce21def4d](./doc/picture/EN/892ad4f324997e94a7a6dbce21def4d.jpg)
+![servo](./doc/picture/EN/servo.png)
 
 
 

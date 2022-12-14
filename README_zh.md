@@ -10,7 +10,7 @@ MotorDriverBoard是由 [深圳市易创空间科技有限公司](www.emakefun.co
 
 **MotorDriverBoard for Arduino  Uno(Arduino Mega2560)**
 
-![MotorDriverBoard_0](E:/github/emakefun-docs/docs/open_source_hardware/doc/picture/ZH/MotorDriverBoard_show0.jpg)
+![MotorDriverBoard_0](./doc/picture/ZH/MotorDriverBoard_show0.jpg)
 
 ### 快速链接
 
@@ -39,13 +39,13 @@ MotorDriverBoard是由 [深圳市易创空间科技有限公司](www.emakefun.co
 - 舵机电源可切换到外部供电
 - 软件支持Arduino IDE，Mixly，Mind+，Mblock5，MagicBlock(基于Scratch3.0可定制)
 
-![MotorDriverBoard_1](E:/github/emakefun-docs/docs/open_source_hardware/doc/picture/ZH/MotorDriverBoard_show1.png)
+![MotorDriverBoard_1](./doc/picture/ZH/MotorDriverBoard_show1.png)
 
 ## 硬件功能介绍
 
 ### 正面
 
-![hardware_introduction](E:/github/emakefun-docs/docs/open_source_hardware/doc/picture/ZH/hardwareIntroduction.png)
+![hardware_introduction](./doc/picture/ZH/hardwareIntroduction.png)
 
 ### 供电说明
 
@@ -65,7 +65,7 @@ MotorDriverBoard是由 [深圳市易创空间科技有限公司](www.emakefun.co
 
   c、电源切换开关达到**IN(DC)**位置，跳线帽**短接5V位置**
 
-![MotorDriverBoard_dc_power_supply](E:/github/emakefun-docs/docs/open_source_hardware/doc/picture/ZH/dc_power_supply.png)
+![MotorDriverBoard_dc_power_supply](./doc/picture/ZH/dc_power_supply.png)
 
 #### 2、只通过接线柱供单一电源给驱动板，Uno主板和舵机供电。将驱动板的5V电源输出到Uno主板
 
@@ -77,7 +77,7 @@ MotorDriverBoard是由 [深圳市易创空间科技有限公司](www.emakefun.co
 
   c、电源切换开关打到**EX**，跳线帽短接到**5V位置**，需要短接背面**R24电阻位**。
 
-![MotorDriverBoard_terminal_power_supply](E:/github/emakefun-docs/docs/open_source_hardware/doc/picture/ZH/terminal_power_supply.png)
+![MotorDriverBoard_terminal_power_supply](./doc/picture/ZH/terminal_power_supply.png)
 
 #### 3、Uno主板通过DC头供电，舵机通过接线柱独立供电
 
@@ -87,11 +87,11 @@ MotorDriverBoard是由 [深圳市易创空间科技有限公司](www.emakefun.co
 
   c、电源切换开关达到**IN(DC)**位置，跳线帽**短接EX位置**
 
-![MotorDriverBoard_terminal_power_supply](E:/github/emakefun-docs/docs/open_source_hardware/doc/picture/ZH/terminal_power_servo.png)
+![MotorDriverBoard_terminal_power_supply](./doc/picture/ZH/terminal_power_servo.png)
 
 ## 驱动库使用
 
-[**下载Arduino库**](https://github.com/emakefun/MotorDriverBoard/releases/download/v1.0/MotorDriverBoard.zip) 解压放置Arduino IDE安装目录下的libraries目录下，然后通过点击文件-->示例-->Emakefun_MotorDriverBoard，打开示例程序。![examples](E:/github/emakefun-docs/docs/open_source_hardware/doc/picture/ZH/examples.png)
+[**下载Arduino库**](https://github.com/emakefun/MotorDriverBoard/releases/download/v1.0/MotorDriverBoard.zip) 解压放置Arduino IDE安装目录下的libraries目录下，然后通过点击文件-->示例-->Emakefun_MotorDriverBoard，打开示例程序。![examples](./doc/picture/ZH/examples.png)
 
 
 
@@ -128,7 +128,7 @@ PS2手柄引脚说明：
 
 PS2安装请勿接反，左边是正确安装，右边为PS2接收器接反
 
-![Ps2](E:/github/emakefun-docs/docs/open_source_hardware/doc/picture/ZH/Ps2.png)
+![Ps2](./doc/picture/ZH/Ps2.png)
 
 ## 电机测试示例
 
@@ -152,7 +152,7 @@ void loop()
 }
 ```
 
-**接线图**![MotorDriverBoard_dc](E:/github/emakefun-docs/docs/open_source_hardware/doc/picture/ZH/dc.png)
+**接线图**![MotorDriverBoard_dc](./doc/picture/ZH/dc.png)
 
 #### [**Servo**](./arduino_lib/examples/motor_test/servo/servo.ino)八路舵机测试程序
 
@@ -163,7 +163,7 @@ mMotorDriver.begin(50); 		/*初始化io口的输出频率为50Hz*/
 mServo1->writeServo(S1); 		/*设置舵机角度 0~180*/
 ```
 
-**接线图**![MotorDriverBoard_servo](E:/github/emakefun-docs/docs/open_source_hardware/doc/picture/ZH/servo.png)
+**接线图**![MotorDriverBoard_servo](./doc/picture/ZH/servo.png)
 
 #### [**Stepper**](./arduino_lib/examples/motor_test/stepper/stepper.ino) 步进电机测试程序
 
@@ -188,7 +188,7 @@ StepperMotor_1->step(200, FORWARD, SINGLE);
 
 下图仅供接线参考
 
-![MotorDriverBoard_stepper](E:/github/emakefun-docs/docs/open_source_hardware/doc/picture/ZH/stepper.png)
+![MotorDriverBoard_stepper](./doc/picture/ZH/stepper.png)
 
 
 
@@ -262,7 +262,7 @@ MsTimer2::start(); 					/*启动定时器2*/
 由于是第一次进行PID参数整定，电机速度整定到100为目标，在程序中输入设定值。先把系统设定为纯比例作用，即只有比例增益Kp不为0，积分增益Ki和微分增益Kd都暂时设定为0。因为是这个小车第一次整定参数，也不知道什么比例增益比较好。比例作用从弱到强调节，随便写了个自认为不大的值3，**打开工具-->串口绘图器**。运行结果令我大吃一惊，电机以一定的周期在转和不转之间震荡。根据现象得知，肯定是比例作用已经非常大了，因此赶紧将比例增益调整为2，小车的电机不再出现剧烈的“抽搐”，开始以一种比较缓慢的姿态转动，但通过观察输出波形，还是存在较小的波动，并且经过1，2分钟之后，还是会有大幅度震荡。但与之前较大比例作用下的震荡相比，显然“温柔”多了。于是继续降低比例作用，直至Kp = 1时，输出波形已经相较其他参数下稳定很多了，如下图：
 
 
-![pid](E:/github/emakefun-docs/docs/open_source_hardware/doc/picture/ZH/pid_p.png)
+![pid](./doc/picture/ZH/pid_p.png)
 
 
 
@@ -270,7 +270,7 @@ MsTimer2::start(); 					/*启动定时器2*/
 
 由上图可看出，一个适合的比例作用可以使系统趋于稳定，但却无法消除静态偏差，因此需要引入积分作用，其最大的好处就是可以消除静态偏差。笔者继续采用由小逐渐加大积分增益的方式。当设定Ki = 5时，由图可见
 
-![pid](E:/github/emakefun-docs/docs/open_source_hardware/doc/picture/ZH/pid_i.png)
+![pid](./doc/picture/ZH/pid_i.png)
 
 静态偏差逐渐减小，输出的速度越来越接近设定的速度100的目标，不过调节速度太慢，还是不能满足需求。
 于是还需要继续加积分作用，当Ki = 6时，可以看出，系统反应速度已经很快，可以在0.1秒内
@@ -281,7 +281,7 @@ MsTimer2::start(); 					/*启动定时器2*/
 
 编码电机我们使用的是6pin的GH1.25转PH2.0线材接线如下：
 
-![encoder](E:/github/emakefun-docs/docs/open_source_hardware/doc/picture/ZH/encoder.png)
+![encoder](./doc/picture/ZH/encoder.png)
 
 ## 综合应用
 
@@ -326,6 +326,8 @@ MsTimer2::start(); 					/*启动定时器2*/
    步骤一
 
    ![mixly guanliku](./doc/picture/ZH/mixly/mixly guanliku.png)
+
+   
 
    步骤二
 
