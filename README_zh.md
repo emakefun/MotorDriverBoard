@@ -379,7 +379,7 @@ MsTimer2::start(); 					/*启动定时器2*/
 
    1.2  将解压后的ext_motordriverboard.mext扩展包拖到Mblock5软件里面，能看到以下界面，证明安装成功。
 
-   ![mblock install success](./doc/picture/ZH/mblock/mblock install success.png)
+   ![mblock_install_success](./doc/picture/ZH/mblock/mb_install_success.png)
 
 2. [Mblock5库和案例下载](https://github.com/emakefun/MotorDriverBoard/releases/download/v1.0/MotorDriverBoard_Mblock5.zip)
 
@@ -427,7 +427,7 @@ MsTimer2::start(); 					/*启动定时器2*/
 
 ####  Q：驱动板驱动不了电机?
 
-##### A ：请先判断驱动板是否有供电，并且开关有打开，只通过usb口供电是驱动不了电机的，另外主板还得烧录对应的驱动程序
+##### A ：1. 主板是否上传了对应的驱动程序；2. 驱动板是否有供电，并且电源开关是否已打开；3. 驱动板是否正确插再主板上；4. 电机的接线是否正确；
 
 ####  Q：PS2遥控不了驱动板?
 
@@ -435,7 +435,7 @@ MsTimer2::start(); 					/*启动定时器2*/
 
 a、驱动板是否使用7V以上锂电池供电且正常，板子上灯是否亮
 b、下载直流电机驱动测试程序**确保要上传成功**，电机接线正确，来确定板子驱动正常
-c、测试PS2接收测试程序，来证明PS2遥控器是好的
+c、通过上传PS2接收测试程序，来证明PS2遥控器是好的
 d、前面正确后下载PS2控制四驱小车程序，并按按键控制电机
 
 ####  Q：驱动板是否有原理图?
@@ -454,4 +454,4 @@ d、前面正确后下载PS2控制四驱小车程序，并按按键控制电机
 
 ## 联系我们
 
-**技术 + 合作：TEL:  13242991035(WX同号)**
+**技术 + 合作：TEL:  null-lab
