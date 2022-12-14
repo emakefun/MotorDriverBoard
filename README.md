@@ -198,7 +198,7 @@ StepperMotor_1->step(200, FORWARD, DOUBLE);
 
 **The parameter wiring of different stepper motors is not necessarily the same, please be sure to first determine the color of each wire of the stepper motor and the corresponding A+ A- B+ B-phase (or A B C D) relationship**The following diagram is for wiring reference only
 
-![d10d299acb6323268682ccb6b693301](./doc/picture/EN/d10d299acb6323268682ccb6b693301.jpg)
+![md_stepper](./doc/picture/EN/md_stepper.png)
 
 [**Encoder**](examples/encoder/encoder.ino) Four-way coding motor test program
 

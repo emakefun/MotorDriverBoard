@@ -305,17 +305,19 @@ MsTimer2::start(); 					/*启动定时器2*/
 
    第一步
 
-   ![mixly guanliku](./doc/picture/ZH/mixly/mixly guanliku.png)第二步
+   ![mixly_guanliku](./doc/picture/ZH/mixly/mixly_guanli.png)
 
-   ![mixly kuanzhuang](./doc/picture/ZH/mixly/mixly kuanzhuang.png)
+   第二步
+
+   ![mixly_kuanzhuang](./doc/picture/ZH/mixly/mixly_kuanzhuang.png)
 
    第三步
 
-   ![install success](./doc/picture/ZH/mixly/install success.png)
+   ![install_success](./doc/picture/ZH/mixly/install_success.png)
 
    第四步 当看到一下界面，就证明安装成功。
 
-   ![mixly success](./doc/picture/ZH/mixly/mixly success.png)
+   ![mixly_success](./doc/picture/ZH/mixly/mixly_success.png)
 
 2. **本地安装**
 
@@ -325,21 +327,21 @@ MsTimer2::start(); 					/*启动定时器2*/
 
    步骤一
 
-   ![mixly guanliku](./doc/picture/ZH/mixly/mixly guanliku.png)
+   ![mixly_guanliku](./doc/picture/ZH/mixly/mixly_guanli.png)
 
    
 
    步骤二
 
-   ![local install](./doc/picture/ZH/mixly/local install.png)
+   ![local_install](./doc/picture/ZH/mixly/local_install.png)
 
    步骤三
 
-   ![select xml](./doc/picture/ZH/mixly/select xml.png)
+   ![select_xml](./doc/picture/ZH/mixly/select_xml.png)
 
    当看到一下界面，就证明安装成功。
 
-   ![mixly success](./doc/picture/ZH/mixly/mixly success.png)
+   ![mixly_success](./doc/picture/ZH/mixly/mixly_success.png)
 
 #### Mixly块表述
 
