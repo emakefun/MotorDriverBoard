@@ -1,4 +1,4 @@
-﻿#include "Emakefun_MotorDriver.h"
+#include "Emakefun_MotorDriver.h"
 #include "PS2X_lib.h"  //for v1.6
 
 #define PS2_DAT     12
@@ -29,7 +29,7 @@ void setup()
 
 void loop()
 {
- // ps2x.read_gamepad(); //read controller and set large motor to spin at 'vibrate' speed
+  // ps2x.read_gamepad(); //read controller and set large motor to spin at 'vibrate' speed
   if(ps2x.NewButtonState() == false){
     if(ps2x.Button(PSB_START))         //will be TRUE as long as button is pressed
       Serial.println("Start is being held");
