@@ -26,7 +26,7 @@
 // Maurice Beelen, nms277, Akesson Karlpetter, and Orly Andico
 // sent in fixes to work with Arduino >= version 1.0
 #include <Arduino.h>
-#include <new.h>
+// #include <new.h>
 #include <wiring_private.h> // cbi and sbi defined here
 
 #undef DEBUG
