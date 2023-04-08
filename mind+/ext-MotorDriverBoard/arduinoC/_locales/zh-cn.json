@@ -1,0 +1,37 @@
+{
+    "MotorDriverBoard.LEVELS.HIGH|menu": "高电平",
+    "MotorDriverBoard.LEVELS.LOW|menu": "低电平",
+
+    "MotorDriverBoard.DIRECTIONS.FORWARD|menu": "正转",
+    "MotorDriverBoard.DIRECTIONS.BACKWARD|menu": "反转",
+    "MotorDriverBoard.DIRECTIONS.BRAKE|menu": "刹车",
+    "MotorDriverBoard.DIRECTIONS.RELEASE|menu": "释放",
+
+    "MotorDriverBoard.STEPPER_DIRECTIONS.FORWARD|menu": "正转",
+    "MotorDriverBoard.STEPPER_DIRECTIONS.BACKWARD|menu": "反转",
+
+    "MotorDriverBoard.MODES.DOUBLE|menu": "全步",
+    "MotorDriverBoard.MODES.SINGLE|menu": "单步",
+    "MotorDriverBoard.MODES.INTERLEAVE|menu": "半步",
+
+    "MotorDriverBoard.init|block": "MotorDriverBoard初始化",
+    "MotorDriverBoard.setIOFrequency|block": "设置IO口输出频率(1-1600HZ)为 [FREQ]",
+    "MotorDriverBoard.setIOPinLevel|block": "MotorDriverBoard控制IO口 [PIN] 设置 [LEVEL]",
+    "MotorDriverBoard.setIOPinPwm|block": "MotorDriverBoard控制IO口 [PIN] 设置 [PWM]",
+
+    "MotorDriverBoard.initDCMotor|block": "直流电机初始化 [MOTOR]",
+    "MotorDriverBoard.controlDCMotor|block": "直流电机 [MOTOR] 方向 [DIRECTION] 速度(0-255) [SPEED]",
+    "MotorDriverBoard.stopDCMotor|block": "停止直流电机 [MOTOR]",
+
+    "MotorDriverBoard.initEncoderMotor|block": "编码电机初始化 [ENCODER]",
+    "MotorDriverBoard.controlEncoderMotor|block": "编码电机 [ENCODER] 方向 [DIRECTION] 速度(0-255) [SPEED]",
+    "MotorDriverBoard.stopEncoderMotor|block": "停止编码电机 [ENCODER]",
+
+    "MotorDriverBoard.initStepperMotor|block": "步进电机初始化 [STEPPER] 步数(步/圈) [STEP] 每分钟的圈数 [LAP]",
+    "MotorDriverBoard.controlStepperMotor|block": "步进电机 [STEPPER] 方向 [DIRECTION] 驱动方式(半步/单步) [MODE] 运动步数 [STEP]",
+    "MotorDriverBoard.stopStepperMotor|block": "停止步进电机 [STEPPER]",
+
+    "MotorDriverBoard.initServoMotor|block": "舵机初始化 接口[SERVO]",
+    "MotorDriverBoard.controlServoMotor|block": "舵机接口 [SERVO] 角度 [ANGLE] 速度(0-100) [SPEED]",
+    "MotorDriverBoard.readServoMotorAngle|block": "舵机接口 [SERVO] 读取当前舵机角度"
+}

@@ -1,0 +1,25 @@
+{
+	"name": {
+		"zh-cn": "电机驱动板",
+		"en": "MotorDriverBoard"
+	},
+	"description": {
+		"zh-cn": "专门针对Arduino Uno(兼容Mega2560)机器人，电机驱动，多路舵机控制而研发的一款多功能电机驱动扩展板。",
+		"en": "Specially for Arduino Uno (compatible with Mega2560) robot, motor drive, and multi-channel servo control."
+	},
+	"author": "emakefun",
+	"email": "ken@emakefun.com",
+	"license": "MIT",
+	"isBoard": false,
+	"id": "MotorDriverBoard",
+	"platform": ["win", "mac", "web"],
+	"version": "0.0.3",
+	"asset": {
+		"arduinoC": {
+			"dir": "arduinoC/",
+			"version": "0.0.1",
+			"board": ["arduino", "mega2560"],
+			"main": "main.ts"
+		}
+	}
+}
