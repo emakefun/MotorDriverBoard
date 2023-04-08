@@ -13,7 +13,7 @@ MotorDrvierBoard for Arduino  UNO(Arduino Mega2560)
 [**Arduino ide library file download**](https://github.com/emakefun/MotorDriverBoard/releases/download/v1.0/MotorDriverBoard.zip)
 [**Mixly library download**](https://github.com/emakefun/MotorDriverBoard/releases/download/v1.0/MotorDriverBoard_Mixly.zip)
 [**Mblock5 library download**](https://github.com/emakefun/MotorDriverBoard/releases/download/v1.0/MotorDriverBoard_Mblock5.zip)
-[Mind+ library download]()
+[**Mind+ library download**](https://github.com/emakefun/MotorDriverBoard/releases/download/v1.0/MotorDriverBoard_mindplus-V1.0.0.zip)
 [MagicBlock Download]()
 
 
