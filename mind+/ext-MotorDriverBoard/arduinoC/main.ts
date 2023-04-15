@@ -176,8 +176,8 @@ namespace MotorDriverBoard {
         let encoderValue = ENCODERS[parameter.ENCODER.code];
         let direction = parameter.DIRECTION.code;
         let speed = parameter.SPEED.code;
-        Generator.addCode(`EncodeMotor_${encoderValue}->run(${direction});`);
         Generator.addCode(`EncodeMotor_${encoderValue}->setSpeed(${speed});`);
+        Generator.addCode(`EncodeMotor_${encoderValue}->run(${direction});`);
     }
 
     //% block="Stop Encoder Motor [ENCODER]" blockType="command"
