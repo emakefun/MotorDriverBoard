@@ -224,6 +224,7 @@ namespace MotorDriverBoard {
     export function initServoMotor(parameter: any, block: any) {
         let servoValue = SERVOS[parameter.SERVO.code];
         Generator.addObject(`mMotorDriver.servo${servoValue}`, 'Emakefun_Servo', `*servo${servoValue} = mMotorDriver.getServo(${servoValue});`, true);
+        Generator.addSetup(`mMotorDriver.begin`, `mMotorDriver.begin(50);`, true);
     }
 
     //% block="The servo interface [SERVO] reads the current servo angle" blockType="command"
@@ -235,7 +236,7 @@ namespace MotorDriverBoard {
 
     //% block="Servo Interface [SERVO] Angle [ANGLE] Speed(0-100) [SPEED]" blockType="command"
     //% SERVO.shadow="dropdown" SERVO.options="SERVOS" SERVO.defl="SERVOS.S1"
-    //% ANGLE.shadow="range" ANGLE.params.min=0 ANGLE.params.max=360 ANGLE.defl=90
+    //% ANGLE.shadow="range" ANGLE.params.min=0 ANGLE.params.max=180 ANGLE.defl=90
     //% SPEED.shadow="range" SPEED.params.min=0 SPEED.params.max=100 SPEED.defl=10
     export function controlServoMotor(parameter: any, block: any) {
         let servoValue = SERVOS[parameter.SERVO.code];
