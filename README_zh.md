@@ -120,11 +120,11 @@ pwm.setPin(S1, 1024); 		/*引脚1输出占空比为 1024/4096 的PWM波（0~4096
 PS2手柄引脚说明：
 
 | PS2手柄引脚 | Arduino引脚 |
-| ----------- | ----------- |
-| DAT         | D12         |
-| CMD         | D11         |
-| SEL/ATT     | D10         |
-| CLK         | D13         |
+|---------|-----------|
+| DAT     | D12       |
+| CMD     | D11       |
+| SEL/ATT | D10       |
+| CLK     | D13       |
 
 PS2安装请勿接反，左边是正确安装，右边为PS2接收器接反
 
@@ -196,12 +196,12 @@ StepperMotor_1->step(200, FORWARD, SINGLE);
 
 编码器关键参数如下：
 
-| 类型         | 参数                                                         |
-| ------------ | ------------------------------------------------------------ |
-| 转速         | 电压6V  空载电流70mA  空载轮轴转速90RPM<br />电压9V  空载电流150mA  空载轮轴转速140RPM<br />电压12V  空载电流190mA  空载轮轴转速190RPM |
-| 输出方波类型 | AB相方波                                                     |
-| 基础脉冲     | 12PPR(电机转动一圈输出12个脉冲)                              |
-| 减速比       | 1:90(转轴转动一圈电机转动90圈)                               |
+| 类型     | 参数                                                                                                 |
+|--------|----------------------------------------------------------------------------------------------------|
+| 转速     | 电压6V  空载电流70mA  空载轮轴转速90RPM<br />电压9V  空载电流150mA  空载轮轴转速140RPM<br />电压12V  空载电流190mA  空载轮轴转速190RPM |
+| 输出方波类型 | AB相方波                                                                                              |
+| 基础脉冲   | 12PPR(电机转动一圈输出12个脉冲)                                                                               |
+| 减速比    | 1:90(转轴转动一圈电机转动90圈)                                                                                |
 
 通过上面参数可知，轮子旋转一圈，总共需要计数90x12=1080个脉冲
 
@@ -351,23 +351,23 @@ MsTimer2::start(); 					/*启动定时器2*/
 
 2.积木描述
 
-| 序号 | 积木                                                     | 说明                                                         |
-| ---- | :------------------------------------------------------- | ------------------------------------------------------------ |
-| 1    | ![mixly_init](./doc/picture/ZH/mixly/mixly_init.png)     | 初始化积木，使用所有积木的前提                               |
-| 2    | ![set_freq](./doc/picture/ZH/mixly/set_freq.png)         | 设置IO口输出频率，输出范围1-1600HZ                           |
-| 3    | ![set_mode](./doc/picture/ZH/mixly/set_mode.png)         | 控制IO口输出高低电平，IO口有八个，分别为S1-S8                |
-| 4    | ![pwm](./doc/picture/ZH/mixly/set_pwm.png)               | 控制IO口输出PWM，输出范围0-4096                              |
-| 5    | ![dc_init](./doc/picture/ZH/mixly/dc_init.png)           | 初始化直流电机接口，电机包含M1\M2\M3\M4四个                  |
-| 6    | ![run_dc](./doc/picture/ZH/mixly/run_dc.png)             | 设置直流电机的转动方向和速度，方向分为正转、反转、刹车、释放，速度范围为0-255 |
-| 7    | ![stop_dc](./doc/picture/ZH/mixly/stop_dc.png)           | 停止直流电机                                                 |
-| 8    | ![init_encoder](./doc/picture/ZH/mixly/init_encoder.png) | 初始化编码电机，编码电机有四个，分为Encoder1\Encoder2\Encoder3\Encoder4 |
-| 9    | ![run_encoder](./doc/picture/ZH/mixly/run_encoder.png)   | 设置编码电机运动方向和速度，方向分为正/反转，速度范围为0-255 |
-| 10   | ![stop_encoder](./doc/picture/ZH/mixly/stop_encoder.png) | 停止编码电机                                                 |
-| 11   | ![stepper_init](./doc/picture/ZH/mixly/stepper_init.png) | 初始化步进电机，不同的步进电机转一圈的步数是不同的，并设置每分钟需要转的圈数，即旋转速度 |
-| 12   | ![run_stepper](./doc/picture/ZH/mixly/run_stepper.png)   | 设置步进电机运动方向、驱动方式和运动步数；方向分为正、反转，驱动方式分为全步、半步和单步；运动步数即需要运动步数 |
-| 13   | ![stop_stepper](./doc/picture/ZH/mixly/stop_stepper.png) | 停止步进电机                                                 |
-| 14   | ![servo_init](./doc/picture/ZH/mixly/servo_init.png)     | 初始化舵机                                                   |
-| 15   | ![run_servo](./doc/picture/ZH/mixly/run_servo.png)       | 设置选择的舵机的旋转角度和旋转的速度，速度范围为0-100        |
+| 序号  | 积木                                                       | 说明                                                       |
+|-----|:---------------------------------------------------------|----------------------------------------------------------|
+| 1   | ![mixly_init](./doc/picture/ZH/mixly/mixly_init.png)     | 初始化积木，使用所有积木的前提                                          |
+| 2   | ![set_freq](./doc/picture/ZH/mixly/set_freq.png)         | 设置IO口输出频率，输出范围1-1600HZ                                   |
+| 3   | ![set_mode](./doc/picture/ZH/mixly/set_mode.png)         | 控制IO口输出高低电平，IO口有八个，分别为S1-S8                              |
+| 4   | ![pwm](./doc/picture/ZH/mixly/set_pwm.png)               | 控制IO口输出PWM，输出范围0-4096                                    |
+| 5   | ![dc_init](./doc/picture/ZH/mixly/dc_init.png)           | 初始化直流电机接口，电机包含M1\M2\M3\M4四个                              |
+| 6   | ![run_dc](./doc/picture/ZH/mixly/run_dc.png)             | 设置直流电机的转动方向和速度，方向分为正转、反转、刹车、释放，速度范围为0-255                |
+| 7   | ![stop_dc](./doc/picture/ZH/mixly/stop_dc.png)           | 停止直流电机                                                   |
+| 8   | ![init_encoder](./doc/picture/ZH/mixly/init_encoder.png) | 初始化编码电机，编码电机有四个，分为Encoder1\Encoder2\Encoder3\Encoder4    |
+| 9   | ![run_encoder](./doc/picture/ZH/mixly/run_encoder.png)   | 设置编码电机运动方向和速度，方向分为正/反转，速度范围为0-255                        |
+| 10  | ![stop_encoder](./doc/picture/ZH/mixly/stop_encoder.png) | 停止编码电机                                                   |
+| 11  | ![stepper_init](./doc/picture/ZH/mixly/stepper_init.png) | 初始化步进电机，不同的步进电机转一圈的步数是不同的，并设置每分钟需要转的圈数，即旋转速度             |
+| 12  | ![run_stepper](./doc/picture/ZH/mixly/run_stepper.png)   | 设置步进电机运动方向、驱动方式和运动步数；方向分为正、反转，驱动方式分为全步、半步和单步；运动步数即需要运动步数 |
+| 13  | ![stop_stepper](./doc/picture/ZH/mixly/stop_stepper.png) | 停止步进电机                                                   |
+| 14  | ![servo_init](./doc/picture/ZH/mixly/servo_init.png)     | 初始化舵机                                                    |
+| 15  | ![run_servo](./doc/picture/ZH/mixly/run_servo.png)       | 设置选择的舵机的旋转角度和旋转的速度，速度范围为0-100                            |
 
 <font color="red" size="5">**注:**</font> PS2、RGB灯、蜂鸣器等模块请使用Mixly自带的模块。
 
@@ -387,29 +387,63 @@ MsTimer2::start(); 					/*启动定时器2*/
 
 3. 积木描述
 
-| 序号 | 积木                                                      | 说明                                                         |
-| ---- | :-------------------------------------------------------- | ------------------------------------------------------------ |
-| 1    | ![mixly_init](./doc/picture/ZH/mblock/init.png)           | 初始化积木，使用所有积木的前提                               |
-| 2    | ![set_freq](./doc/picture/ZH/mblock/set_freq.png)         | 设置IO口输出频率，输出范围1-1600HZ                           |
-| 3    | ![set_mode](./doc/picture/ZH/mblock/set_mode.png)         | 控制IO口输出高低电平，IO口有八个，分别为S1-S8                |
-| 4    | ![pwm1](./doc/picture/ZH/mblock/set_pwm.png)              | 控制IO口输出PWM，输出范围0-4096                              |
-| 5    | ![dc_init](./doc/picture/ZH/mblock/dc_init.png)           | 初始化直流电机接口，电机包含M1\M2\M3\M4四个                  |
-| 6    | ![run_dc](./doc/picture/ZH/mblock/run_dc.png)             | 设置直流电机的转动方向和速度，方向分为正转、反转、刹车、释放，速度范围为0-255 |
-| 7    | ![stop_dc](./doc/picture/ZH/mblock/stop_dc.png)           | 停止直流电机                                                 |
-| 8    | ![init_encoder](./doc/picture/ZH/mblock/init_encoder.png) | 初始化编码电机，编码电机有四个，分为Encoder1\Encoder2\Encoder3\Encoder4 |
-| 9    | ![run_encoder](./doc/picture/ZH/mblock/run_encoder.png)   | 设置编码电机运动方向和速度，方向分为正/反转，速度范围为0-255 |
-| 10   | ![stop_encoder](./doc/picture/ZH/mblock/stop_encoder.png) | 停止编码电机                                                 |
-| 11   | ![stepper](./doc/picture/ZH/mblock/stepper_init.png)      | 初始化步进电机，不同的步进电机转一圈的步数是不同的，并设置每分钟需要转的圈数，即旋转速度 |
-| 12   | ![run_stepper](./doc/picture/ZH/mblock/run_stepper.png)   | 设置步进电机运动方向、驱动方式和运动步数；方向分为正、反转，驱动方式分为全步、半步和单步；运动步数即需要运动步数 |
-| 13   | ![stop_stepper](./doc/picture/ZH/mblock/stop_stepper.png) | 停止步进电机                                                 |
-| 14   | ![servo_init](./doc/picture/ZH/mblock/servo_init.png)     | 初始化舵机                                                   |
-| 15   | ![run_servo](./doc/picture/ZH/mblock/run_servo.png)       | 设置选择的舵机的旋转角度和旋转的速度，速度范围为0-100        |
+| 序号  | 积木                                                        | 说明                                                       |
+|-----|:----------------------------------------------------------|----------------------------------------------------------|
+| 1   | ![mixly_init](./doc/picture/ZH/mblock/init.png)           | 初始化积木，使用所有积木的前提                                          |
+| 2   | ![set_freq](./doc/picture/ZH/mblock/set_freq.png)         | 设置IO口输出频率，输出范围1-1600HZ                                   |
+| 3   | ![set_mode](./doc/picture/ZH/mblock/set_mode.png)         | 控制IO口输出高低电平，IO口有八个，分别为S1-S8                              |
+| 4   | ![pwm1](./doc/picture/ZH/mblock/set_pwm.png)              | 控制IO口输出PWM，输出范围0-4096                                    |
+| 5   | ![dc_init](./doc/picture/ZH/mblock/dc_init.png)           | 初始化直流电机接口，电机包含M1\M2\M3\M4四个                              |
+| 6   | ![run_dc](./doc/picture/ZH/mblock/run_dc.png)             | 设置直流电机的转动方向和速度，方向分为正转、反转、刹车、释放，速度范围为0-255                |
+| 7   | ![stop_dc](./doc/picture/ZH/mblock/stop_dc.png)           | 停止直流电机                                                   |
+| 8   | ![init_encoder](./doc/picture/ZH/mblock/init_encoder.png) | 初始化编码电机，编码电机有四个，分为Encoder1\Encoder2\Encoder3\Encoder4    |
+| 9   | ![run_encoder](./doc/picture/ZH/mblock/run_encoder.png)   | 设置编码电机运动方向和速度，方向分为正/反转，速度范围为0-255                        |
+| 10  | ![stop_encoder](./doc/picture/ZH/mblock/stop_encoder.png) | 停止编码电机                                                   |
+| 11  | ![stepper](./doc/picture/ZH/mblock/stepper_init.png)      | 初始化步进电机，不同的步进电机转一圈的步数是不同的，并设置每分钟需要转的圈数，即旋转速度             |
+| 12  | ![run_stepper](./doc/picture/ZH/mblock/run_stepper.png)   | 设置步进电机运动方向、驱动方式和运动步数；方向分为正、反转，驱动方式分为全步、半步和单步；运动步数即需要运动步数 |
+| 13  | ![stop_stepper](./doc/picture/ZH/mblock/stop_stepper.png) | 停止步进电机                                                   |
+| 14  | ![servo_init](./doc/picture/ZH/mblock/servo_init.png)     | 初始化舵机                                                    |
+| 15  | ![run_servo](./doc/picture/ZH/mblock/run_servo.png)       | 设置选择的舵机的旋转角度和旋转的速度，速度范围为0-100                            |
 
 <font color="red" size="5">**注:**</font> PS2、RGB灯、蜂鸣器等模块可以去Mblock扩展库找对应的扩展，这里不做解释。
 
 #### Mind+
 
-敬请期待
+1. 下载[Mind+库扩展包](https://github.com/emakefun/MotorDriverBoard/releases/download/v1.0/MotorDriverBoard_mindplus-V1.0.0.zip)
+   ![extention-pkg.png](doc/picture/ZH/mind+/extention-pkg.png)
+2. 将解压后的emakefun-motordriverboard-thirdex-V0.0.3.mpext扩展包导入到Mind+软件里面  
+   第一步：点击扩展
+   ![user-lib-step01.png](doc/picture/ZH/mind+/user-lib-step01.png)
+   第二步：选择主控板
+   ![user-lib-step02.png](doc/picture/ZH/mind+/user-lib-step02.png)
+   第三步：导入用户库
+   ![user-lib-step03.png](doc/picture/ZH/mind+/user-lib-step03.png)
+   第四步：加载并返回
+   ![user-lib-step04.png](doc/picture/ZH/mind+/user-lib-step04.png)
+   第五步：查看并使用用户库，看到如下界面，说明已成功导入电机驱动板扩展包。
+   ![user-lib-step05.png](doc/picture/ZH/mind+/user-lib-step05.png)
+
+3. 积木描述
+
+| 序号  | 积木                                                       | 说明                                                       |
+|-----|:---------------------------------------------------------|----------------------------------------------------------|
+| 1   | ![init](./doc/picture/ZH/mind+/init.png)                 | 初始化积木，使用所有积木的前提                                          |
+| 2   | ![set_freq](./doc/picture/ZH/mind+/set_freq.png)         | 设置IO口输出频率，输出范围1-1600HZ                                   |
+| 3   | ![set_mode](./doc/picture/ZH/mind+/set_mode.png)         | 控制IO口输出高低电平，IO口有八个，分别为S1-S8                              |
+| 4   | ![pwm](./doc/picture/ZH/mind+/pwm.png)                   | 控制IO口输出PWM，输出范围0-4096                                    |
+| 5   | ![dc_init](./doc/picture/ZH/mind+/dc_init.png)           | 初始化直流电机接口，电机包含M1\M2\M3\M4四个                              |
+| 6   | ![run_dc](./doc/picture/ZH/mind+/run_dc.png)             | 设置直流电机的转动方向和速度，方向分为正转、反转、刹车、释放，速度范围为0-255                |
+| 7   | ![stop_dc](./doc/picture/ZH/mind+/stop_dc.png)           | 停止直流电机                                                   |
+| 8   | ![init_encoder](./doc/picture/ZH/mind+/init_encoder.png) | 初始化编码电机，编码电机有四个，分为Encoder1\Encoder2\Encoder3\Encoder4    |
+| 9   | ![run_encoder](./doc/picture/ZH/mind+/run_encoder.png)   | 设置编码电机运动方向和速度，方向分为正/反转，速度范围为0-255                        |
+| 10  | ![stop_encoder](./doc/picture/ZH/mind+/stop_encoder.png) | 停止编码电机                                                   |
+| 11  | ![stepper](./doc/picture/ZH/mind+/stepper.png)           | 初始化步进电机，不同的步进电机转一圈的步数是不同的，并设置每分钟需要转的圈数，即旋转速度             |
+| 12  | ![run_stepper](./doc/picture/ZH/mind+/run_stepper.png)   | 设置步进电机运动方向、驱动方式和运动步数；方向分为正、反转，驱动方式分为全步、半步和单步；运动步数即需要运动步数 |
+| 13  | ![stop_stepper](./doc/picture/ZH/mind+/stop_stepper.png) | 停止步进电机                                                   |
+| 14  | ![servo_init](./doc/picture/ZH/mind+/servo_init.png)     | 初始化舵机                                                    |
+| 15  | ![readDegrees](./doc/picture/ZH/mind+/readDegrees.png)   | 读取当前舵机角度                                                 |
+| 16  | ![run_servo](./doc/picture/ZH/mind+/run_servo.png)       | 设置选择的舵机的旋转角度和旋转的速度，速度范围为0-100                            |
+
 
 #### MagicBlock
 
