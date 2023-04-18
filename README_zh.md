@@ -443,7 +443,8 @@ MsTimer2::start(); 					/*启动定时器2*/
 | 14  | ![servo_init](./doc/picture/ZH/mind+/servo_init.png)     | 初始化舵机                                                    |
 | 15  | ![readDegrees](./doc/picture/ZH/mind+/readDegrees.png)   | 读取当前舵机角度                                                 |
 | 16  | ![run_servo](./doc/picture/ZH/mind+/run_servo.png)       | 设置选择的舵机的旋转角度和旋转的速度，速度范围为0-100                            |
-
+备注：PS2手柄，可在扩展->通信模块中找到，如下图
+![mindplus-ps2.png](doc/picture/ZH/mind+/mindplus-ps2.png)
 
 #### MagicBlock
 
