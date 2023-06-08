@@ -345,8 +345,7 @@ void Emakefun_DCMotor::setSpeed(uint8_t speed) {
 Emakefun_EncoderMotor::Emakefun_EncoderMotor(void) {
   MC = NULL;
   encodernum = 0;
-  IN2pin = IN1pin = 
-	  = ENCODER2pin = 0;
+  IN2pin = IN1pin = ENCODER1pin = ENCODER2pin = 0;
   EncoderPulse = 0;
 }
 
