@@ -5,7 +5,7 @@ goog.provide('Blockly.Blocks.MotorDriverBoard');
 goog.require('Blockly.Blocks');
 
 
-Blockly.Blocks.MotorDriverBoard.HUE = 120;
+Blockly.Msg['MOTORDRIVERBOARD_HUE'] = 120;
 
 
 var MOTORDRIVERBOARD_DCPORTS=[[Blockly.MOTORDRIVERBOARD_DCPORTS_FIRST,"1"],[Blockly.MOTORDRIVERBOARD_DCPORTS_SECOND,"2"],[Blockly.MOTORDRIVERBOARD_DCPORTS_THIRD,"3"],[Blockly.MOTORDRIVERBOARD_DCPORTS_FOURTH,"4"]];
@@ -36,10 +36,21 @@ var MOTORDRIVERBOARD_PS2KEYS=[[Blockly.MOTORDRIVERBOARD_PS2KEYS_UP,"16"],[Blockl
 var MOTORDRIVERBOARD_VIBRATE=[[Blockly.MOTORDRIVERBOARD_VIBRATE_LX,"7"],[Blockly.MOTORDRIVERBOARD_VIBRATE_LY,"8"],[Blockly.MOTORDRIVERBOARD_VIBRATE_RX,"5"],[Blockly.MOTORDRIVERBOARD_VIBRATE_RY,"6"]];
 var MOTORDRIVERBOARD_VIBRATE2=[[Blockly.MOTORDRIVERBOARD_VIBRATE2_L,"LeftHart()"],[Blockly.MOTORDRIVERBOARD_VIBRATE2_R,"RightHart();"]];
 var MOTORDRIVERBOARD_SERVOPORTS=[[Blockly.MOTORDRIVERBOARD_SERVOPORTS_FIRST,"1"],[Blockly.MOTORDRIVERBOARD_SERVOPORTS_SECOND,"2"],[Blockly.MOTORDRIVERBOARD_SERVOPORTS_THIRD,"3"],[Blockly.MOTORDRIVERBOARD_SERVOPORTS_FOURTH,"4"],[Blockly.MOTORDRIVERBOARD_SERVOPORTS_FIVETH,"5"],[Blockly.MOTORDRIVERBOARD_SERVOPORTS_SIXTH,"6"],[Blockly.MOTORDRIVERBOARD_SERVOPORTS_SEVENTH,"7"],[Blockly.MOTORDRIVERBOARD_SERVOPORTS_EIGHTH,"8"]];
+
+//二维码
+Blockly.Blocks.md_qrcode = {
+  init: function() {
+    this.setColour("#00CCCC");
+    this.appendDummyInput("").appendField(Blockly.MOTORDRIVERBOARD_QRCODE)
+	.appendField(new Blockly.FieldTextInput('https://github.com/emakefun/MotorDriverBoard'), 'nulllab_rgbUltrasonic')
+    this.setTooltip(Blockly.MIXLY_1617171136759936_2);
+    this.setHelpUrl();
+  }
+};
 //第0个图形块的样式,MotorDriverBoard初始化
 Blockly.Blocks.md_setup = {
  init:function(){
-	this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+	this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
     this.appendDummyInput("")
 	    .appendField(Blockly.MOTORDRIVERBOARD_SETUP)
 	this.setPreviousStatement(true,null);
@@ -50,7 +61,7 @@ Blockly.Blocks.md_setup = {
 
 Blockly.Blocks.md_setFreq = {
     init:function(){
-        this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+        this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
         this.appendDummyInput("")
         this.appendValueInput("freq", Number)
         .appendField(Blockly.MOTORDRIVERBOARD_GPIOFREQ)
@@ -63,7 +74,7 @@ Blockly.Blocks.md_setFreq = {
 
 Blockly.Blocks.md_gpio = {
     init:function(){
-        this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+        this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
         this.appendDummyInput("")
         .appendField(Blockly.MOTORDRIVERBOARD_GPIO)
         .appendField(new Blockly.FieldDropdown(MOTORDRIVERBOARD_GPIO), "mdGpio")
@@ -77,7 +88,7 @@ Blockly.Blocks.md_gpio = {
 
 Blockly.Blocks.md_pwm = {
     init:function(){
-        this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+        this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
         this.appendDummyInput("")
         .appendField(Blockly.MOTORDRIVERBOARD_GPIO)
         .appendField(new Blockly.FieldDropdown(MOTORDRIVERBOARD_GPIO), "mdGpio")
@@ -92,10 +103,10 @@ Blockly.Blocks.md_pwm = {
 
 Blockly.Blocks.md_initdcmotor = {
 	init:function(){
-	    this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+	    this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
 		this.appendDummyInput("")
 			.appendField(Blockly.MOTORDRIVERBOARD_INITDCMOTOR)
-		   // .appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_MotorDriverBoard.png", 38, 32))
+		   // .appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_MotorDriverBoard.png", 38, 32))
 			.appendField(new Blockly.FieldDropdown(MOTORDRIVERBOARD_DCPORTS),"DCPorts")
 		this.setPreviousStatement(true, null);
 		this.setNextStatement(true, null);
@@ -105,7 +116,7 @@ Blockly.Blocks.md_initdcmotor = {
 //第一个图形块的样式,直流电机下拉（下拉没有value），正反转（下拉），速度（输入,有value）
 Blockly.Blocks.md_dcmotor = {
   init: function() {
-	    this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+	    this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
         this.appendDummyInput("")
         .appendField(Blockly.MOTORDRIVERBOARD_DCMOTOR)
         .appendField(new Blockly.FieldDropdown(MOTORDRIVERBOARD_DCPORTS), "DCPorts")
@@ -124,10 +135,10 @@ Blockly.Blocks.md_dcmotor = {
 //第二个图形块的样式,停止直流电机下拉（下拉没有value）
 Blockly.Blocks.md_stopDCmotor = {
 	init:function(){
-	    this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+	    this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
 		this.appendDummyInput("")
 			.appendField(Blockly.MOTORDRIVERBOARD_STOPDCMOTOR)
-		   // .appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_MotorDriverBoard.png", 38, 32))
+		   // .appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_MotorDriverBoard.png", 38, 32))
 			.appendField(new Blockly.FieldDropdown(MOTORDRIVERBOARD_DCPORTS),"DCPorts")
 		this.setPreviousStatement(true, null);
 		this.setNextStatement(true, null);
@@ -136,10 +147,10 @@ Blockly.Blocks.md_stopDCmotor = {
 };
 Blockly.Blocks.md_initENmotor = {
 	init:function(){
-	    this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+	    this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
 		this.appendDummyInput("")
 			.appendField(Blockly.MOTORDRIVERBOARD_INITENMOTOR)
-		   // .appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_MotorDriverBoard.png", 38, 32))
+		   // .appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_MotorDriverBoard.png", 38, 32))
 			.appendField(new Blockly.FieldDropdown(MOTORDRIVERBOARD_ENPORTS),"ENPorts")
 		this.setPreviousStatement(true, null);
 		this.setNextStatement(true, null);
@@ -149,7 +160,7 @@ Blockly.Blocks.md_initENmotor = {
 //第三个图形块的样式,编码电机下拉（下拉没有value），正反转（下拉），速度（输入,有value）
 Blockly.Blocks.md_enmotor = {
   init: function() {
-    this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+    this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
     this.appendDummyInput("")
         .appendField(Blockly.MOTORDRIVERBOARD_ENMOTOR)
         .appendField(new Blockly.FieldDropdown(MOTORDRIVERBOARD_ENPORTS), "ENPorts")
@@ -168,10 +179,10 @@ Blockly.Blocks.md_enmotor = {
 //第四个图形块的样式,停止编码电机 下拉（下拉没有value）
 Blockly.Blocks.md_stopENmotor = {
 	init:function(){
-	    this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+	    this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
 		this.appendDummyInput("")
 			.appendField(Blockly.MOTORDRIVERBOARD_STOPENMOTOR)
-		   // .appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_MotorDriverBoard.png", 38, 32))
+		   // .appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_MotorDriverBoard.png", 38, 32))
 			.appendField(new Blockly.FieldDropdown(MOTORDRIVERBOARD_ENPORTS),"ENPorts")
 		this.setPreviousStatement(true, null);
 		this.setNextStatement(true, null);
@@ -180,10 +191,10 @@ Blockly.Blocks.md_stopENmotor = {
 };
 Blockly.Blocks.md_initstmotor = {
 	init:function(){
-	    this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+	    this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
 		this.appendDummyInput("")
 			.appendField(Blockly.MOTORDRIVERBOARD_INITSTMOTOR)
-		   // .appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_MotorDriverBoard.png", 38, 32))
+		   // .appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_MotorDriverBoard.png", 38, 32))
 			.appendField(new Blockly.FieldDropdown(MOTORDRIVERBOARD_STPORTS),"STPorts")
 			.appendField(Blockly.MOTORDRIVERBOARD_STEPS);
 	   this.appendValueInput("Steps", Number)
@@ -200,7 +211,7 @@ Blockly.Blocks.md_initstmotor = {
 //第五个图形块的样式,步进电机下拉，步数value，方向下拉，方式下拉
 Blockly.Blocks.md_stmotor = {
   init: function() {
-    this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+    this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
     this.appendDummyInput("")
         .appendField(Blockly.MOTORDRIVERBOARD_STMOTOR)
         .appendField(new Blockly.FieldDropdown(MOTORDRIVERBOARD_STPORTS), "STPorts")
@@ -223,10 +234,10 @@ Blockly.Blocks.md_stmotor = {
 //停止步进电机
 Blockly.Blocks.md_stopstmotor = {
 	init:function(){
-	    this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+	    this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
 		this.appendDummyInput("")
 			.appendField(Blockly.MOTORDRIVERBOARD_STOPSTMOTOR)
-		   // .appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_MotorDriverBoard.png", 38, 32))
+		   // .appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_MotorDriverBoard.png", 38, 32))
 			.appendField(new Blockly.FieldDropdown(MOTORDRIVERBOARD_STPORTS),"STTPorts")
 		this.setPreviousStatement(true, null);
 		this.setNextStatement(true, null);
@@ -237,10 +248,10 @@ Blockly.Blocks.md_stopstmotor = {
 
 Blockly.Blocks.md_initRGB = {
   init: function(){
-	 this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+	 this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
 	 this.appendDummyInput("")
          .appendField(Blockly.MOTORDRIVERBOARD_INITRGB)
-	 	 //.appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/hb_ultrasonic.png", 45, 38))
+	 	 //.appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/hb_ultrasonic.png", 45, 38))
 	this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
 
@@ -249,10 +260,10 @@ Blockly.Blocks.md_initRGB = {
 //第六个图形块的样式,rgb
 Blockly.Blocks.md_RGB = {
   init: function(){
-	 this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+	 this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
 	 this.appendDummyInput("")
          .appendField(Blockly.MOTORDRIVERBOARD_SETRGB)
-	 	 //.appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/hb_ultrasonic.png", 45, 38))
+	 	 //.appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/hb_ultrasonic.png", 45, 38))
          .appendField(new Blockly.FieldDropdown(MOTORDRIVERBOARD_RGBNUMBER), "RGB")
 	     .appendField(Blockly.MOTORDRIVERBOARD_RGBCOLOUR)
 		 .appendField(new Blockly.FieldDropdown(MOTORDRIVERBOARD_RGBCOLOR), "RGBCOLOR");
@@ -268,10 +279,10 @@ Blockly.Blocks.md_RGB = {
 //通过模拟值参数设置rgb
 Blockly.Blocks.md_setColor = {
   init: function(){
-	 this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+	 this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
 	 this.appendDummyInput("")
          .appendField(Blockly.MOTORDRIVERBOARD_SETRGB)
-	 	 //.appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/hb_ultrasonic.png", 45, 38))
+	 	 //.appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/hb_ultrasonic.png", 45, 38))
          .appendField(new Blockly.FieldDropdown(MOTORDRIVERBOARD_RGBNUMBER), "RGB")
 	     .appendField(Blockly.MOTORDRIVERBOARD_RGBCOLOUR)
 		this.appendValueInput("red", Number)
@@ -298,7 +309,7 @@ Blockly.Blocks.md_setColor = {
 //设置rgb亮度
 Blockly.Blocks.md_setrgbbrightness = {
   init: function(){
-	 this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+	 this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
 	 this.appendDummyInput("")
          .appendField(Blockly.MOTORDRIVERBOARD_SETRGBBRIGHTNESS)
 		this.appendValueInput("brightness", Number)
@@ -312,9 +323,9 @@ Blockly.Blocks.md_setrgbbrightness = {
 //第七个图形块的样式,播放声音 下拉
 Blockly.Blocks.md_initSounds = {
  init:function(){
-	 this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+	 this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
 	 this.appendDummyInput("")
-		// .appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_MotorDriverBoard.png", 38, 32))
+		// .appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_MotorDriverBoard.png", 38, 32))
 		 .appendField(Blockly.MOTORDRIVERBOARD_INITSOUNDS)
 	this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -323,9 +334,9 @@ Blockly.Blocks.md_initSounds = {
 };
 Blockly.Blocks.md_playSounds = {
  init:function(){
-	 this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+	 this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
 	 this.appendDummyInput("")
-		// .appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_MotorDriverBoard.png", 38, 32))
+		// .appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_MotorDriverBoard.png", 38, 32))
 		 .appendField(Blockly.MOTORDRIVERBOARD_PLAYSOUNDS)
 		 .appendField(new Blockly.FieldDropdown(MOTORDRIVERBOARD_SOUNDS), "Sounds")
 	this.setPreviousStatement(true, null);
@@ -336,10 +347,10 @@ Blockly.Blocks.md_playSounds = {
 //第八个图形块的样式 超声波初始化
 Blockly.Blocks.md_initultrasonic = {
   init: function() {
-    this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+    this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
     this.appendDummyInput("")
         .appendField(Blockly.MOTORDRIVERBOARD_INITULTRASONIC)
-		//.appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_irreceive.png", 38, 32))
+		//.appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_irreceive.png", 38, 32))
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setTooltip('');
@@ -348,10 +359,10 @@ Blockly.Blocks.md_initultrasonic = {
 //第九个图形块的样式 读取超声波距离下拉
 Blockly.Blocks.md_readUltrasonicDistance = {
   init: function() {
-    this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+    this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
     this.appendDummyInput("")
         .appendField(Blockly.MOTORDRIVERBOARD_READULTRASONICDISTANCE)
-		//.appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_ultrasonic.png", 38, 32))
+		//.appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_ultrasonic.png", 38, 32))
     this.setOutput(true, Number);
     this.setTooltip('');
   }
@@ -359,10 +370,10 @@ Blockly.Blocks.md_readUltrasonicDistance = {
 //第十个图形块的样式 红外接收初始化
 Blockly.Blocks.md_initirremote = {
   init: function() {
-    this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+    this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
     this.appendDummyInput("")
         .appendField(Blockly.MOTORDRIVERBOARD_INITIRREMOTE)
-		//.appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_ultrasonic.png", 38, 32))
+		//.appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_ultrasonic.png", 38, 32))
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setTooltip('');
@@ -371,10 +382,10 @@ Blockly.Blocks.md_initirremote = {
 //if irremote pressed
 Blockly.Blocks.md_isirremote = {
   init: function() {
-    this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+    this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
     this.appendDummyInput("")
         .appendField(Blockly.MOTORDRIVERBOARD_IFIRREMOTEPRESSED)
-		//.appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_ultrasonic.png", 38, 32))
+		//.appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_ultrasonic.png", 38, 32))
     this.setOutput(true, Boolean);
     this.setTooltip('');
   }
@@ -382,11 +393,11 @@ Blockly.Blocks.md_isirremote = {
 //第十一个图形块的样式(setOutput) 红外遥控按键（下拉，返回boolean）
 Blockly.Blocks.md_irKeyPress = {
   init: function() {
-    this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+    this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
     this.appendDummyInput("")
         .appendField(Blockly.MOTORDRIVERBOARD_IRKEYPRESS)
 		.appendField(new Blockly.FieldDropdown(MOTORDRIVERBOARD_IRKEY), "Irkeys")
-		//.appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_ultrasonic.png", 38, 32))
+		//.appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_ultrasonic.png", 38, 32))
      this.setOutput(true, Number);
     this.setTooltip('');
   }
@@ -394,11 +405,11 @@ Blockly.Blocks.md_irKeyPress = {
 //第十一个图形块的样式(setOutput) 普通红外遥控按键（下拉，返回boolean）
 Blockly.Blocks.md_irKeyPress2 = {
   init: function() {
-    this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+    this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
     this.appendDummyInput("")
         .appendField(Blockly.MOTORDRIVERBOARD_IRKEYPRESS2)
 		.appendField(new Blockly.FieldDropdown(MOTORDRIVERBOARD_IRKEY2), "Irkeys2")
-		//.appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_ultrasonic.png", 38, 32))
+		//.appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_ultrasonic.png", 38, 32))
      this.setOutput(true, Number);
     this.setTooltip('');
   }
@@ -407,10 +418,10 @@ Blockly.Blocks.md_irKeyPress2 = {
 //第十二个图形块的样式 nrf24l01初始化    field的name不确定使NUM待检测
 Blockly.Blocks.md_initnrf24l01 = {
   init: function() {
-    this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+    this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
     this.appendDummyInput("")
         .appendField(Blockly.MOTORDRIVERBOARD_INITNRF24L01)
-		//.appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_ultrasonic.png", 38, 32))
+		//.appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_ultrasonic.png", 38, 32))
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setTooltip('');
@@ -419,7 +430,7 @@ Blockly.Blocks.md_initnrf24l01 = {
 //第十三个图形块的样式 NRF24L01发送数据地址value 数据value
 Blockly.Blocks.md_nrf24l01send = {
   init: function() {
-    this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+    this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
     this.appendDummyInput("")
         .appendField(Blockly.MOTORDRIVERBOARD_INITNRF24L01SENDDATA);
 		this.appendValueInput("address", String)
@@ -443,7 +454,7 @@ Blockly.Blocks.md_nrf24l01send = {
 //初始化接收数组
 Blockly.Blocks.md_nrf24l01rec = {
   init: function() {
-    this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+    this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
     this.appendDummyInput("")
         .appendField(Blockly.MOTORDRIVERBOARD_INITNRF24L01SENDDATA);
 		this.appendValueInput("address2", String)
@@ -468,7 +479,7 @@ Blockly.Blocks.md_nrf24l01rec = {
 //nrf发送数据
 Blockly.Blocks.md_nrf24l01senddatass = {
   init: function() {
-    this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+    this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
     this.appendDummyInput("")
         .appendField(Blockly.MOTORDRIVERBOARD_INITNRF24L01SENDDATASS);
 		this.appendValueInput("nrfdatass", Number)
@@ -481,10 +492,10 @@ Blockly.Blocks.md_nrf24l01senddatass = {
 //nrf24l01发送出数据
 Blockly.Blocks.md_nrfissend = {
   init:function(){
-	this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+	this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
 	this.appendDummyInput("")
 	    .appendField(Blockly.MOTORDRIVERBOARD_NRFISSEND)
-	    //.appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_ps2.png", 38, 32))
+	    //.appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_ps2.png", 38, 32))
 	   // .appendField(new Blockly.FieldDropdown(MOTORDRIVERBOARD_PS2KEY), "PS2Key")
 	this.setOutput(true, Boolean);
 	this.setTooltip('');
@@ -493,10 +504,10 @@ Blockly.Blocks.md_nrfissend = {
 //已准备接收数据
 Blockly.Blocks.md_nrfdataradys = {
   init:function(){
-	this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+	this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
 	this.appendDummyInput("")
 	    .appendField(Blockly.MOTORDRIVERBOARD_NRFREADYDATA)
-	    //.appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_ps2.png", 38, 32))
+	    //.appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_ps2.png", 38, 32))
 	   // .appendField(new Blockly.FieldDropdown(MOTORDRIVERBOARD_PS2KEY), "PS2Key")
 	this.setOutput(true, Boolean);
 	this.setTooltip('');
@@ -505,7 +516,7 @@ Blockly.Blocks.md_nrfdataradys = {
 //nrf接收数据
 Blockly.Blocks.md_nrfrecdatas = {
   init: function() {
-    this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+    this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
     this.appendDummyInput("")
         .appendField(Blockly.MOTORDRIVERBOARD_INITNRF24L01RECDATASSS);
 		this.appendValueInput("nrfdatasss", Number)
@@ -518,7 +529,7 @@ Blockly.Blocks.md_nrfrecdatas = {
 //第十四个图形块的样式 NRF24L01接收数据地址value
 Blockly.Blocks.md_nrf24l01receive = {
   init: function() {
-    this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+    this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
     this.appendDummyInput("")
         .appendField(Blockly.MOTORDRIVERBOARD_INITNRF24L01RECEIVEDATA);
 		this.appendValueInput("address", Number)
@@ -533,7 +544,7 @@ Blockly.Blocks.md_nrf24l01receive = {
 //第十五个图形块的样式 NRF24L01数据不为空
 Blockly.Blocks.md_NRF24L01isnotnull = {
  init:function(){
-	this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+	this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
     this.appendDummyInput("")
 	    .appendField(Blockly.MOTORDRIVERBOARD_INITNRF24L01ISNOTNULL)
 	   this.setOutput(true, Number);
@@ -543,7 +554,7 @@ Blockly.Blocks.md_NRF24L01isnotnull = {
 //第十六个图形块的样式 获取NRF24L01数据
 Blockly.Blocks.md_getNRF24L01 = {
  init:function(){
-	this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+	this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
     this.appendDummyInput("")
 	    .appendField(Blockly.MOTORDRIVERBOARD_GETINITNRF24L01)
 	   this.setOutput(true, Number);
@@ -553,7 +564,7 @@ Blockly.Blocks.md_getNRF24L01 = {
 //第十七个图形块的样式 PS2手柄初始化
 Blockly.Blocks.md_PS2init = {
  init:function(){
-	this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+	this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
     this.appendDummyInput("")
 	    .appendField(Blockly.MOTORDRIVERBOARD_PS2INIT)
 	this.setPreviousStatement(true, null);
@@ -564,7 +575,7 @@ Blockly.Blocks.md_PS2init = {
 
 Blockly.Blocks.md_ps2getvalue = {
     init:function(){
-       this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+       this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
        this.appendDummyInput("")
            .appendField(Blockly.MOTORDRIVERBOARD_PS2GETVALUE)
        this.setPreviousStatement(true, null);
@@ -575,10 +586,10 @@ Blockly.Blocks.md_ps2getvalue = {
 //第十八个图形块的样式 PS2键被按下（下拉）
 Blockly.Blocks.md_WhichPS2KeyPressed = {
   init:function(){
-	this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+	this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
 	this.appendDummyInput("")
 	    .appendField(Blockly.MOTORDRIVERBOARD_WHICHPS2KEYPRESSED)
-	    //.appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_ps2.png", 38, 32))
+	    //.appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_ps2.png", 38, 32))
 	   // .appendField(new Blockly.FieldDropdown(MOTORDRIVERBOARD_PS2KEY), "PS2Key")
 	this.setOutput(true, Boolean);
 	this.setTooltip('');
@@ -588,10 +599,10 @@ Blockly.Blocks.md_WhichPS2KeyPressed = {
 //第二十个图形块的样式 ps2手柄按下（下拉）
 Blockly.Blocks.md_ps2keypress = {
   init:function(){
-	this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+	this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
 	this.appendDummyInput("")
 	    .appendField(Blockly.MOTORDRIVERBOARD_PS2KEYPRESS)
-	    //.appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_irtracking.png", 38, 32))
+	    //.appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_irtracking.png", 38, 32))
 	    .appendField(new Blockly.FieldDropdown(MOTORDRIVERBOARD_PS2KEYS), "PS2keys")
 	this.setOutput(true, Boolean);
 	this.setTooltip('');
@@ -600,10 +611,10 @@ Blockly.Blocks.md_ps2keypress = {
 //第二十一个图形块的样式 ps2手柄松开
 Blockly.Blocks.md_ps2keyunpress = {
   init:function(){
-	this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+	this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
 	this.appendDummyInput("")
 	    .appendField(Blockly.MOTORDRIVERBOARD_PS2KEYUNPRESS)
-	    //.appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_irtracking.png", 38, 32))
+	    //.appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_irtracking.png", 38, 32))
 	    .appendField(new Blockly.FieldDropdown(MOTORDRIVERBOARD_PS2KEYS), "PS2keys")
 	this.setOutput(true, Boolean);
 	this.setTooltip('');
@@ -612,10 +623,10 @@ Blockly.Blocks.md_ps2keyunpress = {
 //第二十二个图形块的样式 获取摇杆值（下拉）
 Blockly.Blocks.md_ps2getvibrate = {
   init:function(){
-	this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+	this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
 	this.appendDummyInput("")
 	    .appendField(Blockly.MOTORDRIVERBOARD_PS2GETVIBRATE)
-	    //.appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_irtracking.png", 38, 32))
+	    //.appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_irtracking.png", 38, 32))
 	    .appendField(new Blockly.FieldDropdown(MOTORDRIVERBOARD_VIBRATE), "Vibrate")
 	this.setOutput(true, Number);
 	this.setTooltip('');
@@ -624,10 +635,10 @@ Blockly.Blocks.md_ps2getvibrate = {
 //第二十二个图形块的样式 获取摇杆角度（下拉）
 Blockly.Blocks.md_ps2getvibrate2 = {
   init:function(){
-	this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+	this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
 	this.appendDummyInput("")
 	    .appendField(Blockly.MOTORDRIVERBOARD_PS2GETVIBRATE2)
-	    //.appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_irtracking.png", 38, 32))
+	    //.appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_irtracking.png", 38, 32))
 	    .appendField(new Blockly.FieldDropdown(MOTORDRIVERBOARD_VIBRATE2), "Vibrate2")
 	this.setOutput(true, Number);
 	this.setTooltip('');
@@ -636,10 +647,10 @@ Blockly.Blocks.md_ps2getvibrate2 = {
 //第二十三个图形块的样式 读取ps2状态
 Blockly.Blocks.md_ps2status = {
  init:function(){
-	this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+	this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
     this.appendDummyInput("")
 	    .appendField(Blockly.MOTORDRIVERBOARD_PS2STATUS)
-	    //.appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_irtracking.png", 38, 32))
+	    //.appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_irtracking.png", 38, 32))
 	this.setPreviousStatement(true,null);
     this.setNextStatement(true,null);
 	this.setTooltip('');
@@ -648,11 +659,11 @@ Blockly.Blocks.md_ps2status = {
 //第二十三个图形块的样式 舵机 接口下拉  角度value
 Blockly.Blocks.md_initservo = {
  init:function(){
-	this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+	this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
     this.appendDummyInput("")
 	    .appendField(Blockly.MOTORDRIVERBOARD_INITSERVO)
 		.appendField(new Blockly.FieldDropdown(MOTORDRIVERBOARD_SERVOPORTS), "Servoports")
-	    //.appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_irtracking.png", 38, 32))
+	    //.appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_irtracking.png", 38, 32))
 	this.setPreviousStatement(true,null);
     this.setNextStatement(true,null);
 	this.setTooltip('');
@@ -660,7 +671,7 @@ Blockly.Blocks.md_initservo = {
 };
 Blockly.Blocks.md_servo = {
  init:function(){
-	this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+	this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
     this.appendDummyInput("")
 	    .appendField(Blockly.MOTORDRIVERBOARD_SERVOPORT)
 		.appendField(new Blockly.FieldDropdown(MOTORDRIVERBOARD_SERVOPORTS), "Servoports")
@@ -673,7 +684,7 @@ Blockly.Blocks.md_servo = {
         .setCheck(Number)
         .setAlign(Blockly.ALIGN_RIGHT);
         this.setInputsInline(true);
-	    //.appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_irtracking.png", 38, 32))
+	    //.appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_irtracking.png", 38, 32))
 	this.setPreviousStatement(true,null);
     this.setNextStatement(true,null);
 	this.setTooltip('');
@@ -682,7 +693,7 @@ Blockly.Blocks.md_servo = {
 //读取舵机角度
 Blockly.Blocks.md_readservo= {
   init:function(){
-	this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+	this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
 	this.appendDummyInput("")
 	    .appendField(Blockly.MOTORDRIVERBOARD_SERVOPORT)
 		.appendField(new Blockly.FieldDropdown(MOTORDRIVERBOARD_SERVOPORTS), "Servoports")
@@ -694,7 +705,7 @@ Blockly.Blocks.md_readservo= {
 //四驱车初始化
 Blockly.Blocks.md_m4init = {
     init: function () {
-        this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+        this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
         this.appendDummyInput("")
 			.appendField(Blockly.MOTORDRIVERBOARD_M4INIT)
         this.appendDummyInput("")
@@ -715,11 +726,11 @@ Blockly.Blocks.md_m4init = {
 //前进
 Blockly.Blocks.md_m4goforward = {
     init: function () {
-        this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+        this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
         this.appendDummyInput("")
             .appendField(Blockly.MOTORDRIVERBOARD_M4GOFORWARD)
         this.appendValueInput("m4speed1", Number)
-        //.appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_irtracking.png", 38, 32))
+        //.appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_irtracking.png", 38, 32))
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setTooltip('');
@@ -728,11 +739,11 @@ Blockly.Blocks.md_m4goforward = {
 //后退
 Blockly.Blocks.md_m4backforward = {
     init: function () {
-        this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+        this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
         this.appendDummyInput("")
             .appendField(Blockly.MOTORDRIVERBOARD_M4BACKFORWARD)
         this.appendValueInput("m4speed2", Number)
-        //.appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_irtracking.png", 38, 32))
+        //.appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_irtracking.png", 38, 32))
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setTooltip('');
@@ -741,11 +752,11 @@ Blockly.Blocks.md_m4backforward = {
 //左转
 Blockly.Blocks.md_m4turnleft = {
     init: function () {
-        this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+        this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
         this.appendDummyInput("")
             .appendField(Blockly.MOTORDRIVERBOARD_M4TURNLEFT)
         this.appendValueInput("m4speed3", Number)
-        //.appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_irtracking.png", 38, 32))
+        //.appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_irtracking.png", 38, 32))
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setTooltip('');
@@ -754,11 +765,11 @@ Blockly.Blocks.md_m4turnleft = {
 //右转
 Blockly.Blocks.md_m4turnright = {
     init: function () {
-        this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+        this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
         this.appendDummyInput("")
             .appendField(Blockly.MOTORDRIVERBOARD_M4TURNRIGHT)
         this.appendValueInput("m4speed4", Number)
-        //.appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_irtracking.png", 38, 32))
+        //.appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_irtracking.png", 38, 32))
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setTooltip('');
@@ -767,11 +778,11 @@ Blockly.Blocks.md_m4turnright = {
 //左自旋
 Blockly.Blocks.md_m4turnlefts = {
     init: function () {
-        this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+        this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
         this.appendDummyInput("")
             .appendField(Blockly.MOTORDRIVERBOARD_M4TURNLEFTS)
         this.appendValueInput("m4speed33", Number)
-        //.appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_irtracking.png", 38, 32))
+        //.appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_irtracking.png", 38, 32))
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setTooltip('');
@@ -780,11 +791,11 @@ Blockly.Blocks.md_m4turnlefts = {
 //右自旋
 Blockly.Blocks.md_m4turnrights = {
     init: function () {
-        this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+        this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
         this.appendDummyInput("")
             .appendField(Blockly.MOTORDRIVERBOARD_M4TURNRIGHTS)
         this.appendValueInput("m4speed44", Number)
-        //.appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_irtracking.png", 38, 32))
+        //.appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_irtracking.png", 38, 32))
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setTooltip('');
@@ -793,14 +804,14 @@ Blockly.Blocks.md_m4turnrights = {
 //行驶角度
 Blockly.Blocks.md_m4godegree = {
     init: function () {
-        this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+        this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
         this.appendDummyInput("")
             .appendField(Blockly.MOTORDRIVERBOARD_M4GODEGREE)
         this.appendValueInput("m4godegree", Number)
         this.appendDummyInput("")
          .appendField(Blockly.MOTORDRIVERBOARD_M4GOSPEED)
         this.appendValueInput("m4gospeed", Number)
-        //.appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_irtracking.png", 38, 32))
+        //.appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_irtracking.png", 38, 32))
         this.setInputsInline(true);
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
@@ -810,10 +821,10 @@ Blockly.Blocks.md_m4godegree = {
 //停止
 Blockly.Blocks.md_m4stop = {
     init: function () {
-        this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+        this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
         this.appendDummyInput("")
             .appendField(Blockly.MOTORDRIVERBOARD_M4STOP)
-        //.appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_irtracking.png", 38, 32))
+        //.appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_irtracking.png", 38, 32))
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setTooltip('');
@@ -822,10 +833,10 @@ Blockly.Blocks.md_m4stop = {
 //蓝牙初始化
 Blockly.Blocks.md_bluetoothinit = {
     init: function () {
-        this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+        this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
         this.appendDummyInput("")
             .appendField(Blockly.MOTORDRIVERBOARD_BLUETOOTHINIT)
-        //.appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_irtracking.png", 38, 32))
+        //.appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_irtracking.png", 38, 32))
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setTooltip('');
@@ -833,9 +844,9 @@ Blockly.Blocks.md_bluetoothinit = {
 };
 Blockly.Blocks.md_receivedata = {
     init: function () {
-        this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+        this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
         this.appendDummyInput("")
-           // .appendField(new Blockly.FieldImage("../../media/panthertank/pt_bluetooth.png", 45, 38))
+           // .appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/panthertank/pt_bluetooth.png", 45, 38))
             .appendField(Blockly.MOTORDRIVERBOARD_RECEIVEDATA)
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
@@ -844,10 +855,10 @@ Blockly.Blocks.md_receivedata = {
 };
 Blockly.Blocks.md_receiveddata = {
     init: function () {
-        this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+        this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
         this.appendDummyInput("")
             .appendField(Blockly.MOTORDRIVERBOARD_RECEIVEDDDATA)
-           //.appendField(new Blockly.FieldImage("../../media/panthertank/pt_bluetooth.png", 45, 38))
+           //.appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/panthertank/pt_bluetooth.png", 45, 38))
         this.setOutput(true, Boolean);
         this.setTooltip('');
     }
@@ -855,10 +866,10 @@ Blockly.Blocks.md_receiveddata = {
 
 Blockly.Blocks.md_bluetoothKeyPress = {
     init: function () {
-        this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+        this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
         this.appendDummyInput("")
             .appendField(Blockly.MOTORDRIVERBOARD_BLUETOOTHPRESS)
-           // .appendField(new Blockly.FieldImage("../../media/panthertank/pt_bluetooth.png", 45, 38))
+           // .appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/panthertank/pt_bluetooth.png", 45, 38))
             .appendField(new Blockly.FieldDropdown(
            [
                ["↑", "0x0008"],
@@ -876,10 +887,10 @@ Blockly.Blocks.md_bluetoothKeyPress = {
 };
 Blockly.Blocks.md_bluetoothstyle = {
     init: function () {
-        this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+        this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
         this.appendDummyInput("")
             .appendField(Blockly.MOTORDRIVERBOARD_BLUETOOTHSTYLE)
-            //.appendField(new Blockly.FieldImage("../../media/panthertank/pt_bluetooth.png", 45, 38))
+            //.appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/panthertank/pt_bluetooth.png", 45, 38))
             .appendField(new Blockly.FieldDropdown([
                 [Blockly.MOTORDRIVERBOARD_BLUETOOTHSTYLE_BUTTONS, "13"],
                 [Blockly.MOTORDRIVERBOARD_BLUETOOTHSTYLE_DIRECTIONS, "5"],
@@ -891,10 +902,10 @@ Blockly.Blocks.md_bluetoothstyle = {
 };
 Blockly.Blocks.md_bluetoothgetdegree = {
     init: function () {
-        this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+        this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
         this.appendDummyInput("")
             .appendField(Blockly.MOTORDRIVERBOARD_BLUETOOTHGETDEGREE)
-           // .appendField(new Blockly.FieldImage("../../media/panthertank/pt_bluetooth.png", 45, 38))
+           // .appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/panthertank/pt_bluetooth.png", 45, 38))
         this.setOutput(true, Number);
         this.setTooltip('');
     }
@@ -902,10 +913,10 @@ Blockly.Blocks.md_bluetoothgetdegree = {
 
 Blockly.Blocks.md_bluetoothgetspeed = {
     init: function () {
-        this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+        this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
         this.appendDummyInput("")
             .appendField(Blockly.MOTORDRIVERBOARD_BLUETOOTHGETSPEED)
-           // .appendField(new Blockly.FieldImage("../../media/panthertank/pt_bluetooth.png", 45, 38))
+           // .appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/panthertank/pt_bluetooth.png", 45, 38))
         this.setOutput(true, Number);
         this.setTooltip('');
     }
@@ -913,12 +924,12 @@ Blockly.Blocks.md_bluetoothgetspeed = {
 
 Blockly.Blocks.md_nrfinit = {
     init: function () {
-        this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+        this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
         this.appendDummyInput("")
             .appendField(Blockly.MOTORDRIVERBOARD_NRFINIT)
-           // .appendField(new Blockly.FieldImage("../../media/panthertank/pt_bluetooth.png", 45, 38))
+           // .appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/panthertank/pt_bluetooth.png", 45, 38))
         this.appendValueInput("nrfadd", String)
-        //.appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_irtracking.png", 38, 32))
+        //.appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_irtracking.png", 38, 32))
         this.setInputsInline(true);
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
@@ -928,10 +939,10 @@ Blockly.Blocks.md_nrfinit = {
 
 Blockly.Blocks.md_nrfdataready = {
     init: function () {
-        this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+        this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
         this.appendDummyInput("")
             .appendField(Blockly.MOTORDRIVERBOARD_NRFDATAREADY)
-           // .appendField(new Blockly.FieldImage("../../media/panthertank/pt_bluetooth.png", 45, 38))
+           // .appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/panthertank/pt_bluetooth.png", 45, 38))
         this.setOutput(true, Number);
         this.setTooltip('');
     }
@@ -939,12 +950,12 @@ Blockly.Blocks.md_nrfdataready = {
 
 Blockly.Blocks.md_nrfvalue = {
     init: function () {
-        this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+        this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
         this.appendDummyInput("")
             .appendField(Blockly.MOTORDRIVERBOARD_NRFVALUE)
-           // .appendField(new Blockly.FieldImage("../../media/panthertank/pt_bluetooth.png", 45, 38))
+           // .appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/panthertank/pt_bluetooth.png", 45, 38))
         //this.appendValueInput("nrfadd", String)
-        //.appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_irtracking.png", 38, 32))
+        //.appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_irtracking.png", 38, 32))
         this.setInputsInline(true);
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
@@ -954,12 +965,12 @@ Blockly.Blocks.md_nrfvalue = {
 
 Blockly.Blocks.md_nrfgetdata = {
     init: function () {
-        this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+        this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
         this.appendDummyInput("")
             .appendField(Blockly.MOTORDRIVERBOARD_NRFGETDATA)
-           // .appendField(new Blockly.FieldImage("../../media/panthertank/pt_bluetooth.png", 45, 38))
+           // .appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/panthertank/pt_bluetooth.png", 45, 38))
         //this.appendValueInput("nrfadd", String)
-        //.appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_irtracking.png", 38, 32))
+        //.appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_irtracking.png", 38, 32))
         this.setInputsInline(true);
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
@@ -969,10 +980,10 @@ Blockly.Blocks.md_nrfgetdata = {
 
 Blockly.Blocks.md_nrfgetpackage = {
     init: function () {
-        this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+        this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
         this.appendDummyInput("")
             .appendField(Blockly.MOTORDRIVERBOARD_NRFGETPACKAGE)
-           // .appendField(new Blockly.FieldImage("../../media/panthertank/pt_bluetooth.png", 45, 38))
+           // .appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/panthertank/pt_bluetooth.png", 45, 38))
         this.setOutput(true, Number);
         this.setTooltip('');
     }
@@ -980,12 +991,12 @@ Blockly.Blocks.md_nrfgetpackage = {
 
 Blockly.Blocks.md_nrfnewob = {
     init: function () {
-        this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+        this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
         this.appendDummyInput("")
             .appendField(Blockly.MOTORDRIVERBOARD_NRFNEWOB)
-           // .appendField(new Blockly.FieldImage("../../media/panthertank/pt_bluetooth.png", 45, 38))
+           // .appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/panthertank/pt_bluetooth.png", 45, 38))
         //this.appendValueInput("nrfadd", String)
-        //.appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_irtracking.png", 38, 32))
+        //.appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_irtracking.png", 38, 32))
         this.setInputsInline(true);
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
@@ -995,7 +1006,7 @@ Blockly.Blocks.md_nrfnewob = {
 
 Blockly.Blocks.md_nrfdatafun = {
     init: function () {
-        this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+        this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
         this.appendDummyInput("")
             .appendField(Blockly.MOTORDRIVERBOARD_NRFDATAFUN)
 			 .appendField(new Blockly.FieldDropdown(
@@ -1004,7 +1015,7 @@ Blockly.Blocks.md_nrfdatafun = {
                [Blockly.MOTORDRIVERBOARD_NRFSPEED, "E_ROBOT_CONTROL_SPEED"],
                [Blockly.MOTORDRIVERBOARD_NRFBUTTON, "E_BUTTON"],
            ]), "datafun")
-           // .appendField(new Blockly.FieldImage("../../media/panthertank/pt_bluetooth.png", 45, 38))
+           // .appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/panthertank/pt_bluetooth.png", 45, 38))
         this.setOutput(true, Number);
         this.setTooltip('');
     }
@@ -1012,7 +1023,7 @@ Blockly.Blocks.md_nrfdatafun = {
 
 Blockly.Blocks.md_nrfbuttons = {
     init: function () {
-        this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+        this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
         this.appendDummyInput("")
 		.appendField(Blockly.MOTORDRIVERBOARD_NRFBUTTONS)
 		 .appendField(new Blockly.FieldDropdown(
@@ -1026,7 +1037,7 @@ Blockly.Blocks.md_nrfbuttons = {
            ]), "nrfbuttons")
 
 
-           // .appendField(new Blockly.FieldImage("../../media/panthertank/pt_bluetooth.png", 45, 38))
+           // .appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/panthertank/pt_bluetooth.png", 45, 38))
         this.setOutput(true, Number);
         this.setTooltip('');
     }
@@ -1034,12 +1045,12 @@ Blockly.Blocks.md_nrfbuttons = {
 
 Blockly.Blocks.md_nrfgetdegree = {
     init: function () {
-        this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+        this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
         this.appendDummyInput("")
             .appendField(Blockly.MOTORDRIVERBOARD_NRFGETDEGREE)
-           // .appendField(new Blockly.FieldImage("../../media/panthertank/pt_bluetooth.png", 45, 38))
+           // .appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/panthertank/pt_bluetooth.png", 45, 38))
         //this.appendValueInput("nrfadd", String)
-        //.appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_irtracking.png", 38, 32))
+        //.appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_irtracking.png", 38, 32))
        this.setOutput(true, Number);
         this.setTooltip('');
     }
@@ -1047,12 +1058,12 @@ Blockly.Blocks.md_nrfgetdegree = {
 
 Blockly.Blocks.md_nrfgetspeed = {
     init: function () {
-        this.setColour(Blockly.Blocks.MotorDriverBoard.HUE);
+        this.setColour(Blockly.Msg['MOTORDRIVERBOARD_HUE']);
         this.appendDummyInput("")
             .appendField(Blockly.MOTORDRIVERBOARD_NRFGETSPEED)
-           // .appendField(new Blockly.FieldImage("../../media/panthertank/pt_bluetooth.png", 45, 38))
+           // .appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/panthertank/pt_bluetooth.png", 45, 38))
         //this.appendValueInput("nrfadd", String)
-        //.appendField(new Blockly.FieldImage("../../media/MotorDriverBoard/md_irtracking.png", 38, 32))
+        //.appendField(new Blockly.FieldImage("./libraries/ThirdParty/MotorDriverBoard/media/MotorDriverBoard/md_irtracking.png", 38, 32))
        this.setOutput(true, Number);
         this.setTooltip('');
     }

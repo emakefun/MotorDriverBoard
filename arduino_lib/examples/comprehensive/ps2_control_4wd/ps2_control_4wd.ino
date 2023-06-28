@@ -1,5 +1,6 @@
 #include "Emakefun_MotorDriver.h"
 #include "PS2X_lib.h"  //for v1.6
+#include "MsTimer2.h"
 
 #define PS2_DAT     12
 #define PS2_CMD     11
@@ -16,6 +17,17 @@ Emakefun_MotorDriver mMotor = Emakefun_MotorDriver(0x60);
 Emakefun_DCMotor *LeftFoward, *RightFoward, *LeftBackward, *RightBackward;
 
 int Speed;
+
+void Ps2Scan(void)
+{
+  static char count = 0;
+  if (count++ > 20)
+  {
+    ps2x.reconfig_gamepad();
+    count = 0;
+  }
+  ps2x.read_gamepad();
+}
 
 void MotorInit(int leftward, int rightfoward, int leftbackward, int rightbackward)
 {
@@ -69,8 +81,8 @@ void GoForward(void)
   DriveSpeed(Speed);
   LeftFoward->run(FORWARD);
   RightFoward->run(FORWARD);
-  LeftBackward->run(FORWARD);
-  RightBackward->run(FORWARD);
+  LeftBackward->run(BACKWARD);
+  RightBackward->run(BACKWARD);
 }
 
 void GoBack(void)
@@ -78,8 +90,8 @@ void GoBack(void)
   DriveSpeed(Speed);
   LeftFoward->run(BACKWARD);
   RightFoward->run(BACKWARD);
-  LeftBackward->run(BACKWARD);
-  RightBackward->run(BACKWARD);
+  LeftBackward->run(FORWARD);
+  RightBackward->run(FORWARD);
 }
 void KeepStop(void)
 {
@@ -142,11 +154,17 @@ void setup()
   MotorInit(M2, M1, M4, M3);
   //setup pins and settings: GamePad(clock, command, attention, data, Pressures?, Rumble?) check for error
   ps2x.config_gamepad(PS2_CLK, PS2_CMD, PS2_SEL, PS2_DAT, pressures, rumble);
-
+    pinMode(A0, OUTPUT);
+  tone(A0,131);
+  delay(200);
+    noTone(A0);
+//  MsTimer2::set(50, Ps2Scan);
+//  MsTimer2::start();
 }
 
 void loop()
 {
+  ps2x.read_gamepad(false, 0);
   if (ps2x.ButtonDataByte()) {
     if (ps2x.Button(PSB_TRIANGLE)) {
       Serial.print("PS2X PSB_TRIANGLE:");

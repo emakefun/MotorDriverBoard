@@ -4,6 +4,10 @@ goog.provide('Blockly.Arduino.MotorDriverBoard');
 
 goog.require('Blockly.Arduino');
 
+Blockly.Arduino.md_qrcode = function(){
+    var code = '';
+    return code;
+};
 
 Blockly.Arduino.md_setup = function() {
  //Blockly.Arduino.definitions_['define_Arduino'] = '#include<Arduino.h>';
@@ -47,7 +51,7 @@ Blockly.Arduino.md_initdcmotor = function(){
     Blockly.Arduino.definitions_['define_Emakefun_MotorDriver'] = '#include<Emakefun_MotorDriver.h>\nEmakefun_MotorDriver mMotorDriver = Emakefun_MotorDriver(0x60);\n';
     var dropdown_DCPorts = this.getFieldValue('DCPorts');
     Blockly.Arduino.definitions_['object_dc_'+dropdown_DCPorts+''] = 'Emakefun_DCMotor *DCmotor_'+dropdown_DCPorts+' = mMotorDriver.getMotor('+dropdown_DCPorts+');\n'
-    Blockly.Arduino.setups_['md_m4init'] ='mMotorDriver.begin(1600);\n'
+    Blockly.Arduino.setups_['md_m4init'] ='mMotorDriver.begin(50);\n'
     var code = ''
     return code;
 };
@@ -71,7 +75,7 @@ Blockly.Arduino.md_initENmotor = function(){
   var dropdown_ENPorts = this.getFieldValue('ENPorts');
   Blockly.Arduino.definitions_['object_en_'+dropdown_ENPorts+''] = 'Emakefun_EncoderMotor *EncodeMotor_'+dropdown_ENPorts+' = mMotorDriver.getEncoderMotor(E'+dropdown_ENPorts+');\n'
   Blockly.Arduino.definitions_['objectStaticFunc_' + dropdown_ENPorts] = 'static void encoder' + dropdown_ENPorts + '(void){\n  if(digitalRead(EncodeMotor_' + dropdown_ENPorts + '->ENCODER2pin) == LOW) {\n    EncodeMotor_' + dropdown_ENPorts + '->EncoderPulse++;\n  } else {\n    EncodeMotor_' + dropdown_ENPorts + '->EncoderPulse--;\n  }\n}\n';
-  Blockly.Arduino.setups_['md_m4init'] = "mMotorDriver.begin();\n";
+  Blockly.Arduino.setups_['md_m4init'] = "mMotorDriver.begin(50);\n";
   var code = ''
  return code;
 };
@@ -97,7 +101,7 @@ Blockly.Arduino.md_initstmotor = function(){
     var value_freq = Blockly.Arduino.valueToCode(this,'freq',Blockly.Arduino.ORDER_ATOMIC);
     var dropdown_STPorts = this.getFieldValue('STPorts');
     Blockly.Arduino.definitions_['object_st_'+dropdown_STPorts+''] = '#include<Emakefun_MotorDriver.h>\nEmakefun_StepperMotor *StepperMotor_' + dropdown_STPorts + ' = mMotorDriver.getStepper(' + dropdown_STPorts + ', ' + value_Steps + ');\n'
-    Blockly.Arduino.setups_['md_begin'] ="mMotorDriver.begin(1600);\n  StepperMotor_" + dropdown_STPorts + "->setSpeed(" + value_freq + ");\n";
+    Blockly.Arduino.setups_['md_begin'] ="mMotorDriver.begin(50);\n  StepperMotor_" + dropdown_STPorts + "->setSpeed(" + value_freq + ");\n";
     var code = ''
     return code;
 };

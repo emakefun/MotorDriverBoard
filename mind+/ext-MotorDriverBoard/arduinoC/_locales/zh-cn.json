@@ -17,7 +17,7 @@
     "MotorDriverBoard.init|block": "MotorDriverBoard初始化",
     "MotorDriverBoard.setIOFrequency|block": "设置IO口输出频率(1-1600HZ)为 [FREQ]",
     "MotorDriverBoard.setIOPinLevel|block": "MotorDriverBoard控制IO口 [PIN] 设置 [LEVEL]",
-    "MotorDriverBoard.setIOPinPwm|block": "MotorDriverBoard控制IO口 [PIN] 设置 [PWM]",
+    "MotorDriverBoard.setIOPinPwm|block": "MotorDriverBoard控制IO口 [PIN] 设置输出PWM的值(0-4096) [PWM]",
 
     "MotorDriverBoard.initDCMotor|block": "直流电机初始化 [MOTOR]",
     "MotorDriverBoard.controlDCMotor|block": "直流电机 [MOTOR] 方向 [DIRECTION] 速度(0-255) [SPEED]",
@@ -32,6 +32,6 @@
     "MotorDriverBoard.stopStepperMotor|block": "停止步进电机 [STEPPER]",
 
     "MotorDriverBoard.initServoMotor|block": "舵机初始化 接口[SERVO]",
-    "MotorDriverBoard.controlServoMotor|block": "舵机接口 [SERVO] 角度 [ANGLE] 速度(0-100) [SPEED]",
+    "MotorDriverBoard.controlServoMotor|block": "舵机接口 [SERVO] 角度 [ANGLE] 速度(0-10) [SPEED]",
     "MotorDriverBoard.readServoMotorAngle|block": "舵机接口 [SERVO] 读取当前舵机角度"
 }

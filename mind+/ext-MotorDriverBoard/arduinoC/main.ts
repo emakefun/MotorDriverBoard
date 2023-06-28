@@ -139,7 +139,7 @@ namespace MotorDriverBoard {
     export function initDCMotor(parameter: any, block: any) {
         let motorValue = MOTORS[parameter.MOTOR.code];
         Generator.addObject(`mMotorDriver.DCmotor_${motorValue}`, 'Emakefun_DCMotor', `*DCmotor_${motorValue} = mMotorDriver.getMotor(${motorValue});`, true);
-        Generator.addCode(`mMotorDriver.begin(150);`);
+        Generator.addSetup(`mMotorDriver.begin`, `mMotorDriver.begin(150);`, true);
     }
 
     //% block="DC Motor [MOTOR] Direction [DIRECTION] Speed (0-255) [SPEED]" blockType="command"
@@ -176,8 +176,8 @@ namespace MotorDriverBoard {
         let encoderValue = ENCODERS[parameter.ENCODER.code];
         let direction = parameter.DIRECTION.code;
         let speed = parameter.SPEED.code;
-        Generator.addCode(`EncodeMotor_${encoderValue}->setSpeed(${speed});`);
         Generator.addCode(`EncodeMotor_${encoderValue}->run(${direction});`);
+        Generator.addCode(`EncodeMotor_${encoderValue}->setSpeed(${speed});`);
     }
 
     //% block="Stop Encoder Motor [ENCODER]" blockType="command"
@@ -237,7 +237,7 @@ namespace MotorDriverBoard {
     //% block="Servo Interface [SERVO] Angle [ANGLE] Speed(0-100) [SPEED]" blockType="command"
     //% SERVO.shadow="dropdown" SERVO.options="SERVOS" SERVO.defl="SERVOS.S1"
     //% ANGLE.shadow="range" ANGLE.params.min=0 ANGLE.params.max=180 ANGLE.defl=90
-    //% SPEED.shadow="range" SPEED.params.min=0 SPEED.params.max=100 SPEED.defl=10
+    //% SPEED.shadow="range" SPEED.params.min=0 SPEED.params.max=10 SPEED.defl=10
     export function controlServoMotor(parameter: any, block: any) {
         let servoValue = SERVOS[parameter.SERVO.code];
         let angle = parameter.ANGLE.code;

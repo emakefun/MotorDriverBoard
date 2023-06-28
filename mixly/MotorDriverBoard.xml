@@ -1,7 +1,8 @@
 <!-- type="company" block="block/MotorDriverBoard.js" generator="generator/MotorDriverBoard.js"  lib="MotorDriverBoard" media="media/MotorDriverBoard" language="language/MotorDriverBoard"-->
-<script type="text/javascript" src="../../blocks/company/MotorDriverBoard.js"></script>
-<script type="text/javascript" src="../../generators/arduino/company/MotorDriverBoard.js"></script>
+<script type="text/javascript" src="libraries/ThirdParty/MotorDriverBoard/block/MotorDriverBoard.js"></script>
+<script type="text/javascript" src="libraries/ThirdParty/MotorDriverBoard/generator/MotorDriverBoard.js"></script>
 <category id="catMakeBlock1" name="MotorDriverBoard" colour="120">
+	<block type="md_qrcode" name="学习二维码"></block>
 	<!--第0个图形块：MotorDriverBoard初始化下拉-->
 		<block type="md_setup"></block>
 	<!-- IO口设置输出频率 -->
@@ -72,6 +73,7 @@
 
 		<!--第二十四个图形块：舵机 接口下拉  角度value-->
 		<block type="md_initservo"></block>
+		<block type="md_readservo"></block>
 		<block type="md_servo">
 			<value name="angle">
 				<shadow type="math_number">
