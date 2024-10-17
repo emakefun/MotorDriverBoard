@@ -50,10 +50,10 @@
 #define S2 1
 #define S3 14
 #define S4 15
-#define S5 9
-#define S6 12
-#define S7 3
-#define S8 6
+#define S5 3
+#define S6 6
+#define S7 9
+#define S8 12
 
 #define M1 1
 #define M2 2
