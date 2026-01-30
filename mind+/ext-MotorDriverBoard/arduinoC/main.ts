@@ -122,7 +122,7 @@ namespace MotorDriverBoard {
     export function setIOPinLevel(parameter: any, block: any) {
         let pin = parameter.PIN.code;
         let level = parameter.LEVEL.code;
-        Generator.addSetup(`mMotorDriver.setIOPinLevel${pin}`, `mMotorDriver.setPin(${pin}, ${level});`, true);
+        Generator.addCode(`mMotorDriver.setPin(${pin}, ${level});`);
     }
 
     //% block="set the IO [PIN] output PWM value(0-4096) [PWM]" blockType="command"
@@ -131,7 +131,7 @@ namespace MotorDriverBoard {
     export function setIOPinPwm(parameter: any, block: any) {
         let pin = parameter.PIN.code;
         let pwm = parameter.PWM.code;
-        Generator.addSetup(`mMotorDriver.setIOPinPwm${pin}`, `mMotorDriver.setPin(${pin}, ${pwm});`, true);
+        Generator.addCode( `mMotorDriver.setPWM(${pin}, ${pwm});`);
     }
 
     //% block="DC motor initialization [MOTOR]" blockType="command"
@@ -150,8 +150,8 @@ namespace MotorDriverBoard {
         let motorValue = MOTORS[parameter.MOTOR.code];
         let direction = parameter.DIRECTION.code;
         let speed = parameter.SPEED.code;
-        Generator.addCode(`DCmotor_${motorValue}->run(${direction});`);
         Generator.addCode(`DCmotor_${motorValue}->setSpeed(${speed});`);
+	Generator.addCode(`DCmotor_${motorValue}->run(${direction});`);
     }
 
     //% block="Stop DC motor [MOTOR]" blockType="command"
@@ -176,8 +176,18 @@ namespace MotorDriverBoard {
         let encoderValue = ENCODERS[parameter.ENCODER.code];
         let direction = parameter.DIRECTION.code;
         let speed = parameter.SPEED.code;
+		Generator.addSetup(`mMotorDriver.begin`, `mMotorDriver.begin(50);`, true);
+		Generator.addSetup(`EncodeMotor_${encoderValue}.init`, `EncodeMotor_${encoderValue}->init(encoder${encoderValue});`, true);
+		Generator.addObject(`mMotorDriver.encoder${encoderValue}`, 'static void', `encoder${encoderValue}(void) {
+  if(digitalRead(EncodeMotor_${encoderValue}->ENCODER2pin) == LOW) {
+		EncodeMotor_${encoderValue}->EncoderPulse++;
+  } else {
+		EncodeMotor_${encoderValue}->EncoderPulse--;
+  }
+}`, true);
+		Generator.addCode(`EncodeMotor_${encoderValue}->setSpeed(${speed});`);
         Generator.addCode(`EncodeMotor_${encoderValue}->run(${direction});`);
-        Generator.addCode(`EncodeMotor_${encoderValue}->setSpeed(${speed});`);
+
     }
 
     //% block="Stop Encoder Motor [ENCODER]" blockType="command"
